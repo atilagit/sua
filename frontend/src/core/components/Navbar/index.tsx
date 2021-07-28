@@ -14,7 +14,7 @@ const Navbar = () => {
             <div className="col-6">
                 <ul className="main-menu">
                     <li>
-                        <NavLink to="/daily" className="nav-link active">Diárias</NavLink>
+                        <NavLink to="/daily" className="nav-link">Diárias</NavLink>
                     </li>
                     <li>
                         <NavLink to="/entries" className="nav-link">Entradas</NavLink>

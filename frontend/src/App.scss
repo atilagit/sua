@@ -1,22 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
-@import 'core/assets/styles/variables.scss';
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
+@import "core/assets/styles/variables.scss";
 
-*{
-    font-family: 'Ubuntu', sans-serif;  
+* {
+    font-family: "Ubuntu", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-bottom: 0;
     font-weight: 700;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-ul{
-    list-style-type: none; 
-    margin-bottom: 0; 
+ul {
+    list-style-type: none;
+    margin-bottom: 0;
     padding-left: 0;
 }
+
+.table-default {
+    table-layout:fixed;
+    white-space: nowrap;
+
+    margin: 40px 0 0 60px;
+    width: calc(100vw - 120px);
+    height: 35px;
+    text-align: center;
+
+    th {
+        font-weight: bold;
+        font-size: 21px;
+        line-height: 24px;
+        
+        background-color: $header-color;
+    }
+
+    tr {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+
+        background-color: $table-line-color;
+    }
+
+    .table-line{
+        margin-right: 20px;
+        margin-left: 20px;
+        overflow-x: hidden;
+
+    }
+}
+
+.table-click{
+    tbody tr {
+        &:hover{
+            cursor: pointer;
+            background-color: #FFF;
+        }
+    }
+}
+
+
+
+    
+
+    
 
