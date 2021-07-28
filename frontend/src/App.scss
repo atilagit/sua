@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
-
-:root{
-    $header-color:  #7297AD;
-    $filter-color: #AD9C84;
-    $background-color: #FFFBF5;
-    $button-color: #F9EAD5;
-    $table-line-color: #D7ECFA;
-}
+@import 'core/assets/styles/variables.scss';
 
 *{
     font-family: 'Ubuntu', sans-serif;  
