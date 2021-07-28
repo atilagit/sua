@@ -1,5 +1,8 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
 import { ReactComponent as Logo } from 'core/assets/images/logo.svg'
+
 import './styles.scss'
 
 const Navbar = () => {
@@ -11,19 +14,13 @@ const Navbar = () => {
             <div className="col-6">
                 <ul className="main-menu">
                     <li>
-                        <a href="link" className="nav-link active">
-                            Diárias
-                        </a>
+                        <NavLink to="/daily" className="nav-link active">Diárias</NavLink>
                     </li>
                     <li>
-                        <a href="link" className="nav-link">
-                            Entradas
-                        </a>
+                        <NavLink to="/entries" className="nav-link">Entradas</NavLink>
                     </li>
                     <li>
-                        <a href="link" className="nav-link">
-                            Estoque
-                        </a> 
+                        <NavLink to="/inventory" className="nav-link">Estoque</NavLink>
                     </li>
                 </ul>
             </div>
