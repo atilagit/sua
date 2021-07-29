@@ -1,8 +1,8 @@
-import React from "react";
-import Select from "core/components/Select";
-import Table from "core/components/Table";
+import React from 'react'
+import Select from 'core/components/Select'
+import Table from 'core/components/Table'
 
-const Daily = () => (
+const FilterClient = () => (
     <div className="filter-client">
         <Select />
         <div className="table-click">
@@ -17,4 +17,4 @@ const Daily = () => (
     </div>
 )
 
-export default Daily
+export default FilterClient
