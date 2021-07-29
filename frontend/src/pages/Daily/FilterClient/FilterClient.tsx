@@ -4,7 +4,7 @@ import Table from 'core/components/Table'
 
 const FilterClient = () => (
     <div className="filter-client">
-        <Select />
+        <Select filter='Cliente'/>
         <div className="table-click">
             <Table
                 name="Antônio da Melo de Conceição Vieira"

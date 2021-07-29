@@ -2,9 +2,14 @@ import React from 'react'
 
 import './styles.scss'
 
-const Select = () => (
+type SelectProp = {
+    filter: string
+}
+
+const Select = ( { filter }: SelectProp) => (
     <div>
         <select >
+            <option selected value={filter}>{filter}</option>
             <option value="Mateus">Mateus</option>
             <option value="Ana">Ana</option>
             <option value="Clayton">Clayton</option>

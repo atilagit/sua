@@ -4,7 +4,7 @@ import Table from 'core/components/Table'
 
 const Provider = () => (
     <div className="filter-provider">
-        <Select />
+        <Select filter='Fornecedor'/>
         <div className="table-click">
             <Table
                 name="Antônio da Melo de Conceição Vieira"
