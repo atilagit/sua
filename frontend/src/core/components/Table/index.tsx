@@ -3,21 +3,25 @@ import './styles.scss'
 
 type DataProps = {
     name?: string,
+    admissionDate?: string,
     cnpj?: string,
     cpf?: string,
     corporateName?: string,
-    address?: string
+    address?: string,
+    status?: string
 }
 
-const Table = ({ name, cnpj, cpf, corporateName, address }: DataProps) => (
+const Table = ({ name, admissionDate, cnpj, cpf, corporateName, address, status }: DataProps) => (
     <table className="table-default">
         <thead>
             <tr>
                 {name && <th>Nome</th>}
+                {admissionDate && <th>Data de Admissão</th>}
                 {cnpj && <th>CNPJ</th>}
                 {cpf && <th>CPF</th>}
                 {corporateName && <th>Razão Social</th>}
                 {address && <th>Endereço</th>}
+                {status && <th>Status</th>}
             </tr>
         </thead>
         <tbody>
@@ -29,6 +33,13 @@ const Table = ({ name, cnpj, cpf, corporateName, address }: DataProps) => (
                         </div>
                     </td>
                 }
+                {admissionDate &&
+                    <td>
+                        <div className="table-line">
+                            {admissionDate}
+                        </div>
+                    </td>
+                }
                 {cnpj &&
                     <td>
                         <div className="table-line">
@@ -54,6 +65,13 @@ const Table = ({ name, cnpj, cpf, corporateName, address }: DataProps) => (
                     <td>
                         <div className="table-line">
                             {address}
+                        </div>
+                    </td>
+                }
+                {status &&
+                    <td>
+                        <div className="table-line">
+                            {status}
                         </div>
                     </td>
                 }
@@ -66,6 +84,13 @@ const Table = ({ name, cnpj, cpf, corporateName, address }: DataProps) => (
                         </div>
                     </td>
                 }
+                {admissionDate &&
+                    <td>
+                        <div className="table-line">
+                            {admissionDate}
+                        </div>
+                    </td>
+                }
                 {cnpj &&
                     <td>
                         <div className="table-line">
@@ -91,6 +116,13 @@ const Table = ({ name, cnpj, cpf, corporateName, address }: DataProps) => (
                     <td>
                         <div className="table-line">
                             {address}
+                        </div>
+                    </td>
+                }
+                {status &&
+                    <td>
+                        <div className="table-line">
+                            {status}
                         </div>
                     </td>
                 }
