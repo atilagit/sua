@@ -4,6 +4,7 @@ import Table from "core/components/Table";
 import DateFilter from "core/components/DateFilter";
 
 import './styles.scss'
+import CheckboxFilter from "core/components/Checkbox";
 
 const Daily = () => (
   <div className="general-filter">
@@ -12,6 +13,10 @@ const Daily = () => (
       <DateFilter />
       <Select filter="Fornecedor" />
       <Select filter="Cliente" />
+      <div className="checkbox-input-filter input-filter">
+        <CheckboxFilter nameFilter="Pendente"/>
+        <CheckboxFilter nameFilter="Resolvido"/>
+      </div>
     </div>
     <Table
       name="Antônio da Melo de Conceição Vieira"
