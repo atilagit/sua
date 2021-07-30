@@ -8,7 +8,7 @@ type SelectProp = {
 
 const Select = ( { filter }: SelectProp) => (
     <div>
-        <select >
+        <select className='select-filter input-filter'>
             <option selected value={filter}>{filter}</option>
             <option value="Mateus">Mateus</option>
             <option value="Ana">Ana</option>

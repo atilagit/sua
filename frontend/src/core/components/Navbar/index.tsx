@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <nav className="row main-nav">
             <div className="col-3">
-                <Logo />
+                <NavLink to="/" exact><Logo /></NavLink> 
             </div>
             <div className="col-6">
                 <ul className="main-menu">
