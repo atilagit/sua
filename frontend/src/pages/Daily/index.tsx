@@ -2,8 +2,9 @@ import React from "react";
 import Select from "core/components/Select";
 import DateFilter from "core/components/DateFilter";
 
-import './styles.scss'
 import CheckboxFilter from "core/components/Checkbox";
+import './styles.scss'
+import '../../core/components/Table/styles.scss'
 
 const Daily = () => (
   <div className="general-filter">
@@ -19,7 +20,6 @@ const Daily = () => (
           <DateFilter />
         </div>
       </div>
-
       <Select filter="Fornecedor" />
       <Select filter="Cliente" />
       <div className="checkbox-input-filter input-filter">
@@ -30,6 +30,7 @@ const Daily = () => (
     <table className="table-default">
       <thead>
         <tr>
+          <th><CheckboxFilter nameFilter=''/></th>
           <th>Funcionário</th>
           <th>Data</th>
           <th>Unidade</th>
@@ -43,6 +44,7 @@ const Daily = () => (
       </thead>
       <tbody>
         <tr>
+          <td> <CheckboxFilter nameFilter=''/> </td>
           <td>
             <div className="table-line">
               Maria
@@ -75,6 +77,11 @@ const Daily = () => (
           </td>
           <td>
             <div className="table-line">
+              R$55,00
+            </div>
+          </td>
+          <td>
+            <div className="table-line">
               Hoje fez muito frio
             </div>
           </td>
@@ -88,6 +95,5 @@ const Daily = () => (
     </table>
   </div >
 )
-
 
 export default Daily
