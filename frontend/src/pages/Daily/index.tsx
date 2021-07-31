@@ -6,6 +6,7 @@ import CheckboxFilter from "core/components/Checkbox";
 import './styles.scss'
 import '../../core/components/Table/styles.scss'
 import Button from "core/components/Button";
+import { NavLink } from "react-router-dom";
 
 const Daily = () => (
   <div className="general-filter">
@@ -32,11 +33,11 @@ const Daily = () => (
       <thead>
         <tr>
           <th><CheckboxFilter nameFilter='' /></th>
-          <th>Funcionário</th>
+          <th><NavLink to="/daily/employee" className='navlink-general-filter'>Funcionário</NavLink></th>
           <th>Data</th>
           <th>Unidade</th>
-          <th>Fornecedor</th>
-          <th>Cliente</th>
+          <th><NavLink to="/daily/provider" className='navlink-general-filter'>Fornecedor</NavLink></th>
+          <th><NavLink to="/daily/provider" className='navlink-general-filter'>Cliente</NavLink></th>
           <th>Preço</th>
           <th>Total</th>
           <th>Obervação</th>
