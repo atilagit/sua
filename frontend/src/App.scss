@@ -39,6 +39,25 @@ ul {
     border-radius: 10px;
 }
 
+.date-filter{
+    display: flex;
+    align-items: center;
+}
+
+.from,
+.to{
+    display: flex;
+    align-items: center;
+
+    height: 60px;
+    color: #fff;
+
+    span{
+        padding: 0 10px;
+        font-size: 21px;
+    }
+}
+
 
 
     
