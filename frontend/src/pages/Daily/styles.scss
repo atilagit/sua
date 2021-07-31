@@ -16,8 +16,23 @@
     padding-right: 15px;
 }
 
-th:nth-child(1){
-    width: 50px;
+.table-general-filter{
+
+    th:nth-child(1){
+        width: 50px;
+    }
 }
+
+.buttons-general-filter{
+    display: flex;
+    justify-content: center;
+
+    padding-top: 50px;
+
+    button:nth-child(1){
+        margin-right: 100px;
+    }
+}
+
 
 

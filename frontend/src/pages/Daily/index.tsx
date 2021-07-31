@@ -5,6 +5,7 @@ import DateFilter from "core/components/DateFilter";
 import CheckboxFilter from "core/components/Checkbox";
 import './styles.scss'
 import '../../core/components/Table/styles.scss'
+import Button from "core/components/Button";
 
 const Daily = () => (
   <div className="general-filter">
@@ -27,10 +28,10 @@ const Daily = () => (
         <CheckboxFilter nameFilter="Resolvido" />
       </div>
     </div>
-    <table className="table-default">
+    <table className="table-default table-general-filter">
       <thead>
         <tr>
-          <th><CheckboxFilter nameFilter=''/></th>
+          <th><CheckboxFilter nameFilter='' /></th>
           <th>Funcionário</th>
           <th>Data</th>
           <th>Unidade</th>
@@ -44,7 +45,7 @@ const Daily = () => (
       </thead>
       <tbody>
         <tr>
-          <td> <CheckboxFilter nameFilter=''/> </td>
+          <td> <CheckboxFilter nameFilter='' /> </td>
           <td>
             <div className="table-line">
               Maria
@@ -93,6 +94,10 @@ const Daily = () => (
         </tr>
       </tbody>
     </table>
+    <div className="buttons-general-filter">
+      <Button text='editar' />
+      <Button text='gerar recibo' />
+    </div>
   </div >
 )
 
