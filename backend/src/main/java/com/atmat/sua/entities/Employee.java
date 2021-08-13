@@ -2,7 +2,9 @@ package com.atmat.sua.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +39,9 @@ public class Employee implements Serializable {
 		joinColumns = @JoinColumn(name = "employee_id"),
 		inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "employee")
+	private List<Posting> postings = new ArrayList<>();
 	
 	public Employee() {
 	}
@@ -115,6 +121,14 @@ public class Employee implements Serializable {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<Posting> getPostings() {
+		return postings;
+	}
+
+	public void setPostings(List<Posting> postings) {
+		this.postings = postings;
 	}
 
 	@Override
