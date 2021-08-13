@@ -32,7 +32,7 @@ public class Employee implements Serializable {
 	private Boolean active;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_user_employee",
+	@JoinTable(name = "tb_employee_role",
 		joinColumns = @JoinColumn(name = "employee_id"),
 		inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
