@@ -35,6 +35,10 @@ public class Posting implements Serializable {
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 	
+	@ManyToOne
+	@JoinColumn(name = "provider_id")
+	private Provider provider;
+	
 	public Posting() {
 	}
 
