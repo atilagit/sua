@@ -39,6 +39,10 @@ public class Posting implements Serializable {
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
+	
 	public Posting() {
 	}
 
