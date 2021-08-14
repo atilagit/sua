@@ -2,8 +2,8 @@ package com.atmat.sua.entities.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.atmat.sua.entities.Role;
+import com.atmat.sua.entities.Client;
 
-public interface RoleRespository extends JpaRepository<Role, Long>{
+public interface ClientRepository extends JpaRepository<Client, Long>{
 
 }
