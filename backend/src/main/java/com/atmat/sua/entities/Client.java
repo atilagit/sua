@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,13 +29,17 @@ public class Client implements Serializable {
 	private Boolean active;
 	
 	@OneToMany(mappedBy = "client")
-	List<Posting> postings = new ArrayList<>();
+	private List<Posting> postings = new ArrayList<>();
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 	
 	public Client() {
 	}
 
 	public Client(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active,
-			List<Posting> postings) {
+			List<Posting> postings, Address address) {
 		super();
 		this.id = id;
 		this.contact = contact;
@@ -42,6 +48,7 @@ public class Client implements Serializable {
 		this.cnpj = cnpj;
 		this.active = active;
 		this.postings = postings;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -98,6 +105,14 @@ public class Client implements Serializable {
 
 	public void setPostings(List<Posting> postings) {
 		this.postings = postings;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override
