@@ -35,25 +35,30 @@ INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Antônio de Melo de C
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Jobiscleiton Florinda Girafales', null, '37405765000112', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Aparecido da Costa Junior', '20262197023', null, true);
 
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, '2021-07-24', 0, 120.52, 0.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (5, 2, '2021-07-24', 0, 146.52, 0.5, false, false, 'O começo do texto é aqui');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, 1, '2021-07-24', 0, 120.52, 0.75, false, false, 'Exemplo de mais um texto grande');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, '2021-07-23', 0, 56.52, 1.0, false, true, 'Acabou a energia');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, '2021-07-22', 0, 240.52, 0.8, false, true, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, '2021-07-21', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, null,'2021-07-20', 1, 10.0, 12.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, 1, '2021-07-20', 0, 120.52, 0.75, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, '2021-07-20', 0, 56.52, 1.0, false, true, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, '2021-07-20', 2, 1.0, 80, false, true, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, '2021-07-19', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, null, '2021-07-20', 1, 10.0, 12.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, null, '2021-07-20', 3, 1.0, -100.0, true, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, '2021-07-20', 0, 56.52, 1.0, false, true, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, '2021-07-20', 2, 1.0, 80.0, false, true, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, '2021-07-19', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
-INSERT INTO tb_posting (employee_id, provider_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, 1, '2021-07-20', 1, 10.0, 12.5, false, false, null);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Jonielson Cleibisson Cleber e Kauan da Silva', 'Citrus e Cia', '97717222041', '18107334000121', true);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Anderson Oliveira de Moraes', 'Fruts & Foods', '97717222042', '18107334000122', true);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Caio Azeite de Oliva', 'Oliva Embalagens e Cia', null, '18107334000123', true);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Matias e Mato Grosso de Souza', 'Matias chás e plantas', '97717222044', null, true);
+
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, 1, '2021-07-24', 0, 120.52, 0.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (5, 2, 1, '2021-07-24', 0, 146.52, 0.5, false, false, 'O começo do texto é aqui');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, 1, 1, '2021-07-24', 0, 120.52, 0.75, false, false, 'Exemplo de mais um texto grande');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, 1, '2021-07-23', 0, 56.52, 1.0, false, true, 'Acabou a energia');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, 2, '2021-07-22', 0, 240.52, 0.8, false, true, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, 2, '2021-07-21', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, null, null, '2021-07-20', 1, 10.0, 12.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, 1, 1, '2021-07-20', 0, 120.52, 0.75, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, 1, '2021-07-20', 0, 56.52, 1.0, false, true, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, 2, '2021-07-20', 2, 1.0, 80, false, true, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, 2, '2021-07-19', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, null, null, '2021-07-20', 1, 10.0, 12.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (6, null, null, '2021-07-20', 3, 1.0, -100.0, true, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (7, 2, 1, '2021-07-20', 0, 56.52, 1.0, false, true, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (8, 3, 2, '2021-07-20', 2, 1.0, 80.0, false, true, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (9, 2, 2, '2021-07-19', 0, 16.0, 0.9, false, false, 'Dia que choveu muito');
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, 1, '2021-07-21', 0, 120.52, 0.5, false, false, null);
+INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (10, 1, 1, '2021-07-20', 1, 10.0, 12.5, false, false, null);
 
 
