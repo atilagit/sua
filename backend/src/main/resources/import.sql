@@ -35,10 +35,14 @@ INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Antônio de Melo de C
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Jobiscleiton Florinda Girafales', null, '37405765000112', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Aparecido da Costa Junior', '20262197023', null, true);
 
-INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Jonielson Cleibisson Cleber e Kauan da Silva', 'Citrus e Cia', '97717222041', '18107334000121', true);
-INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Anderson Oliveira de Moraes', 'Fruts & Foods', '97717222042', '18107334000122', true);
-INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Caio Azeite de Oliva', 'Oliva Embalagens e Cia', null, '18107334000123', true);
-INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active) VALUES ('Matias e Mato Grosso de Souza', 'Matias chás e plantas', '97717222044', null, true);
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua da Confibra', '541', 'Jardim Campos Verdes', null, 'Hortolândia', 'SP', '13186-070');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Alessandro Bonci', '520', 'Eldorado', 'Perto do posto Ipiranga', 'São Paulo', 'SP', '04476-280');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Vinhal', '404', 'Jardim Campos Verdes', null, 'Sumaré', 'SP', '13171-490');
+
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Jonielson Cleibisson Cleber e Kauan da Silva', 'Citrus e Cia', '97717222041', '18107334000121', true, 1);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Anderson Oliveira de Moraes', 'Fruts & Foods', '97717222042', '18107334000122', true, 2);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Caio Azeite de Oliva', 'Oliva Embalagens e Cia', null, '18107334000123', true, 3);
+INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Matias e Mato Grosso de Souza', 'Matias chás e plantas', '97717222044', null, true, null);
 
 INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (4, 1, 1, '2021-07-24', 0, 120.52, 0.5, false, false, null);
 INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantity, price, salary_Advance, resolved, note) VALUES (5, 2, 1, '2021-07-24', 0, 146.52, 0.5, false, false, 'O começo do texto é aqui');

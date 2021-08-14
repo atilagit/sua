@@ -19,6 +19,7 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String street;
+	private String number;
 	private String neighborhood;
 	private String complement;
 	private String city;
@@ -31,11 +32,12 @@ public class Address implements Serializable {
 	public Address() {
 	}
 
-	public Address(Long id, String street, String neighborhood, String complement, String city, String state,
+	public Address(Long id, String street, String number, String neighborhood, String complement, String city, String state,
 			String cep, Client client) {
 		super();
 		this.id = id;
 		this.street = street;
+		this.number = number;
 		this.neighborhood = neighborhood;
 		this.complement = complement;
 		this.city = city;
@@ -58,6 +60,14 @@ public class Address implements Serializable {
 
 	public void setStreet(String street) {
 		this.street = street;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public String getNeighborhood() {
