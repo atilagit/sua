@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,9 @@ public class Posting implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate date;
-	private UnitType unit;
+	
+	@Enumerated(EnumType.STRING)
+	private UnitType unit = UnitType.UNIT;
 	private Double quantity;
 	private BigDecimal price;
 	private String note;
