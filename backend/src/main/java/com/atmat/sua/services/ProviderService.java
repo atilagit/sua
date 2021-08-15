@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.atmat.sua.dto.ProviderDTO;
 import com.atmat.sua.entities.Provider;
 import com.atmat.sua.entities.repositories.ProviderRepository;
+import com.atmat.sua.services.exceptions.EntityNotFoundException;
 
 @Service
 public class ProviderService {
@@ -27,7 +28,7 @@ public class ProviderService {
 	@Transactional(readOnly = true)
 	public ProviderDTO findById(Long id) {
 		Optional<Provider> obj = repository.findById(id);
-		Provider entity = obj.get();
+		Provider entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
 		return new ProviderDTO(entity);
 	}
 }
