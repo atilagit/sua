@@ -35,9 +35,9 @@ INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Antônio de Melo de C
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Jobiscleiton Florinda Girafales', null, '37405765000112', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Aparecido da Costa Junior', '20262197023', null, true);
 
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua da Confibra', '541', 'Jardim Campos Verdes', null, 'Hortolândia', 'SP', '13186-070');
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Alessandro Bonci', '520', 'Eldorado', 'Perto do posto Ipiranga', 'São Paulo', 'SP', '04476-280');
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Vinhal', '404', 'Jardim Campos Verdes', null, 'Sumaré', 'SP', '13171-490');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua da Confibra', '541', 'Jardim Campos Verdes', null, 'Hortolândia', 'SP', '13186070');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Alessandro Bonci', '520', 'Eldorado', 'Perto do posto Ipiranga', 'São Paulo', 'SP', '04476280');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Vinhal', '404', 'Jardim Campos Verdes', null, 'Sumaré', 'SP', '13171490');
 
 INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Jonielson Cleibisson Cleber e Kauan da Silva', 'Citrus e Cia', '97717222041', '18107334000121', true, 1);
 INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Anderson Oliveira de Moraes', 'Fruts & Foods', '97717222042', '18107334000122', true, 2);
