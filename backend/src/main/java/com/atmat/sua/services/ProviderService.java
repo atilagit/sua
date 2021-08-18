@@ -31,4 +31,11 @@ public class ProviderService {
 		Provider entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
 		return new ProviderDTO(entity);
 	}
+
+	@Transactional
+	public ProviderDTO insert(ProviderDTO dto) {
+		Provider entity = new Provider(null, dto.getName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null);
+		entity = repository.save(entity);
+		return new ProviderDTO(entity);
+	}
 }
