@@ -38,4 +38,18 @@ public class ProviderService {
 		entity = repository.save(entity);
 		return new ProviderDTO(entity);
 	}
+
+	@Transactional
+	public ProviderDTO update(Long id, ProviderDTO dto) {
+		Provider entity = repository.getById(id);
+		updateEntityWithDtoData(entity, dto);
+		entity = repository.save(entity);
+		return new ProviderDTO(entity);
+	}
+	
+	private void updateEntityWithDtoData(Provider entity, ProviderDTO dto) {
+		entity.setName(dto.getName());
+		entity.setCpf(dto.getCpf());
+		entity.setCnpj(dto.getCnpj());
+	}
 }
