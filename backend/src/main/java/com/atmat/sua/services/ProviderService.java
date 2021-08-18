@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,10 +43,14 @@ public class ProviderService {
 
 	@Transactional
 	public ProviderDTO update(Long id, ProviderDTO dto) {
-		Provider entity = repository.getById(id);
-		updateEntityWithDtoData(entity, dto);
-		entity = repository.save(entity);
-		return new ProviderDTO(entity);
+		try {
+			Provider entity = repository.getById(id);
+			updateEntityWithDtoData(entity, dto);
+			entity = repository.save(entity);
+			return new ProviderDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
 	}
 	
 	private void updateEntityWithDtoData(Provider entity, ProviderDTO dto) {
