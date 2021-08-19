@@ -7,12 +7,15 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atmat.sua.dto.ProviderDTO;
 import com.atmat.sua.entities.Provider;
 import com.atmat.sua.entities.repositories.ProviderRepository;
+import com.atmat.sua.services.exceptions.DatabaseException;
 import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -51,6 +54,17 @@ public class ProviderService {
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id " + id + " not found");
 		}
+	}
+	
+	public void delete(Long id) {
+		try {
+		repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
+		
 	}
 	
 	private void updateEntityWithDtoData(Provider entity, ProviderDTO dto) {
