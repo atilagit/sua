@@ -14,10 +14,12 @@ public class ClientDTO implements Serializable {
 	private String cnpj;
 	private Boolean active;
 	
+	private AddressDTO address;
+	
 	public ClientDTO() {
 	}
 
-	public ClientDTO(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active) {
+	public ClientDTO(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active, AddressDTO address) {
 		this.id = id;
 		this.contact = contact;
 		this.corporateName = corporateName;
@@ -33,6 +35,7 @@ public class ClientDTO implements Serializable {
 		this.cpf = entity.getCpf();
 		this.cnpj = entity.getCnpj();
 		this.active = entity.getActive();
+		this.address = (entity.getAddress() == null? null : (new AddressDTO(entity.getAddress())));
 	}
 
 	public Long getId() {
@@ -81,5 +84,13 @@ public class ClientDTO implements Serializable {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public AddressDTO getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDTO address) {
+		this.address = address;
 	}
 }
