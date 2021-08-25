@@ -2,6 +2,8 @@ package com.atmat.sua.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,15 +43,52 @@ public class ClientService {
 	@Transactional
 	public ClientDTO insert(ClientDTO dto) {
 		Client entity = new Client(null, dto.getContact(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null);
-		if(dto.getAddress() != null) copyAdrressFromDtoToEntity(dto, entity);
+		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ClientDTO(entity);
 	}
+	
+	@Transactional
+	public ClientDTO update(Long id, ClientDTO dto) {
+		try {
+			Client entity = repository.getById(id);
+			updateEntityWithDtoData(entity, dto);
+			entity = repository.save(entity);
+			return new ClientDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
+	}
+	
+	private void updateEntityWithDtoData(Client entity, ClientDTO dto) {
+		entity.setContact(dto.getContact());
+		entity.setCorporateName(dto.getCorporateName());
+		entity.setCpf(dto.getCpf());
+		entity.setCnpj(dto.getCnpj());
+		if (entity.getAddress() == null && dto.getAddress() != null) {
+			createAdrressFromDtoToEntity(dto, entity);
+		}
+		else if (entity.getAddress() != null && dto.getAddress() != null) {
+			copyAdrressFromDtoToEntity(dto.getAddress(), entity.getAddress());
+		}else {
+			entity.setAddress(null);
+		}
+	}
 
-	private void copyAdrressFromDtoToEntity(ClientDTO dto, Client entity) {
+	private void createAdrressFromDtoToEntity(ClientDTO dto, Client entity) {
 		AddressDTO addressDto = dto.getAddress();
 		Address entityAdrress = new Address(null, addressDto.getStreet(), addressDto.getNumber(), addressDto.getNeighborhood(), addressDto.getComplement(), addressDto.getCity(), addressDto.getState(), addressDto.getCep(), null);
 		entityAdrress = addressRepository.save(entityAdrress);
 		entity.setAddress(entityAdrress);
+	}
+	
+	private void copyAdrressFromDtoToEntity(AddressDTO addressDto, Address address) {
+		address.setCep(addressDto.getCep());
+		address.setCity(addressDto.getCity());
+		address.setComplement(addressDto.getComplement());
+		address.setNeighborhood(addressDto.getNeighborhood());
+		address.setNumber(addressDto.getNumber());
+		address.setState(addressDto.getState());
+		address.setStreet(addressDto.getStreet());
 	}
 }
