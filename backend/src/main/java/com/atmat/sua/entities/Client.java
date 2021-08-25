@@ -38,8 +38,7 @@ public class Client implements Serializable {
 	public Client() {
 	}
 
-	public Client(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active,
-			List<Posting> postings, Address address) {
+	public Client(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active, Address address) {
 		super();
 		this.id = id;
 		this.contact = contact;
@@ -47,7 +46,6 @@ public class Client implements Serializable {
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.active = active;
-		this.postings = postings;
 		this.address = address;
 	}
 
