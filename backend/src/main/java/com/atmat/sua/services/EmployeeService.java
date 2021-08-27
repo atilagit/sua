@@ -50,7 +50,7 @@ public class EmployeeService {
 
 	@Transactional
 	public EmployeeDTO insert(EmployeeDTO dto) {
-		String initialLogin = dto.getCpf().substring(0, 6);
+		String initialLogin = dto.getCpf();
 		String initialPassword = passwordEncoder.encode(dto.getCpf().substring(0, 6));
 		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null);
 		copyRolesFromDtoToEntity(entity, dto);
