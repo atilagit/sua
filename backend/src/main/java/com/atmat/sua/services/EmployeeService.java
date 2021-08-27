@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class EmployeeService {
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private EmployeeRepository repository;
@@ -47,7 +51,7 @@ public class EmployeeService {
 	@Transactional
 	public EmployeeDTO insert(EmployeeDTO dto) {
 		String initialLogin = dto.getCpf().substring(0, 6);
-		String initialPassword = dto.getCpf().substring(0, 6);
+		String initialPassword = passwordEncoder.encode(dto.getCpf().substring(0, 6));
 		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null);
 		copyRolesFromDtoToEntity(entity, dto);
 		entity = repository.save(entity);
