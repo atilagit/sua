@@ -1,6 +1,7 @@
 package com.atmat.sua.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +46,12 @@ public class Employee implements Serializable {
 	
 	@OneToMany(mappedBy = "employee")
 	private List<Posting> postings = new ArrayList<>();
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant createdAt;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant updatedAt;
 	
 	public Employee() {
 	}
@@ -129,6 +139,24 @@ public class Employee implements Serializable {
 
 	public void setPostings(List<Posting> postings) {
 		this.postings = postings;
+	}
+	
+	public Instant getCreatedAt() {
+		return createdAt;
+	}
+
+	public Instant getUpdatedAt() {
+		return updatedAt;
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		createdAt = Instant.now();
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		updatedAt = Instant.now();
 	}
 
 	@Override
