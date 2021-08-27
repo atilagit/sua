@@ -1,54 +1,33 @@
-package com.atmat.sua.entities;
+package com.atmat.sua.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.atmat.sua.entities.Posting;
 import com.atmat.sua.entities.enums.UnitType;
 
-@Entity
-@Table(name = "tb_posting")
-public class Posting implements Serializable {
+public class PostingDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private LocalDate date;
-	private UnitType unit = UnitType.UNIT;
+	private UnitType unit;
 	private Double quantity;
 	private BigDecimal price;
 	private String note;
 	private Boolean salaryAdvance;
 	private Boolean resolved;
 	
-	@ManyToOne
-	@JoinColumn(name = "employee_id")
-	private Employee employee;
+	private EmployeeDTO employee;
+	private ClientDTO client;
+	private ProviderDTO provider;
 	
-	@ManyToOne
-	@JoinColumn(name = "provider_id")
-	private Provider provider;
-	
-	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private Client client;
-	
-	public Posting() {
+	public PostingDTO() {
 	}
 
-	public Posting(Long id, LocalDate date, UnitType unit, Double quantity, BigDecimal price, String note,
-			Boolean salaryAdvance, Boolean resolved) {
-		super();
+	public PostingDTO(Long id, LocalDate date, UnitType unit, Double quantity, BigDecimal price, String note,
+			Boolean salaryAdvance, Boolean resolved, EmployeeDTO employee, ClientDTO client, ProviderDTO provider) {
 		this.id = id;
 		this.date = date;
 		this.unit = unit;
@@ -57,6 +36,23 @@ public class Posting implements Serializable {
 		this.note = note;
 		this.salaryAdvance = salaryAdvance;
 		this.resolved = resolved;
+		this.employee = employee;
+		this.client = client;
+		this.provider = provider;
+	}
+	
+	public PostingDTO(Posting entity) {
+		id = entity.getId();
+		date = entity.getDate();
+		unit = entity.getUnit();
+		quantity = entity.getQuantity();
+		price = entity.getPrice();
+		note = entity.getNote();
+		salaryAdvance = entity.getSalaryAdvance();
+		resolved = entity.getResolved();
+		employee = new EmployeeDTO(entity.getEmployee());
+		if (entity.getClient() != null) client = new ClientDTO(entity.getClient());
+		if (entity.getProvider() != null) provider = new ProviderDTO(entity.getProvider());
 	}
 
 	public Long getId() {
@@ -123,44 +119,27 @@ public class Posting implements Serializable {
 		this.resolved = resolved;
 	}
 
-	public Employee getEmployee() {
+	public EmployeeDTO getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(EmployeeDTO employee) {
 		this.employee = employee;
 	}
 
-	public Provider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(Provider provider) {
-		this.provider = provider;
-	}
-
-	public Client getClient() {
+	public ClientDTO getClient() {
 		return client;
 	}
 
-	public void setClient(Client client) {
+	public void setClient(ClientDTO client) {
 		this.client = client;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public ProviderDTO getProvider() {
+		return provider;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Posting other = (Posting) obj;
-		return Objects.equals(id, other.id);
+	public void setProvider(ProviderDTO provider) {
+		this.provider = provider;
 	}
 }
