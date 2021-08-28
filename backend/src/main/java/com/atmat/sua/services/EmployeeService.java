@@ -1,6 +1,9 @@
 package com.atmat.sua.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atmat.sua.dto.EmployeeDTO;
+import com.atmat.sua.dto.SimplifiedEmployeeDTO;
 import com.atmat.sua.entities.Employee;
 import com.atmat.sua.entities.Role;
 import com.atmat.sua.entities.repositories.EmployeeRepository;
@@ -46,6 +50,19 @@ public class EmployeeService {
 		Optional<Employee> obj = repository.findById(id);
 		Employee entity = obj.orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName() + " not found"));
 		return new EmployeeDTO(entity);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<SimplifiedEmployeeDTO> findAllActiveNames() {
+		List<Employee> list = repository.findAll();
+		List<SimplifiedEmployeeDTO> listDto = new ArrayList<>();
+		for (Employee entity : list) {
+			if (entity.getActive()) {
+				listDto.add(new SimplifiedEmployeeDTO(entity));
+			}
+		}
+		Collections.sort(listDto);
+		return listDto;
 	}
 
 	@Transactional

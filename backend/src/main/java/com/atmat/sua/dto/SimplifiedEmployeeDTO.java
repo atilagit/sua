@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.atmat.sua.entities.Employee;
 
-public class SimplifiedEmployeeDTO implements Serializable {
+public class SimplifiedEmployeeDTO implements Serializable, Comparable<SimplifiedEmployeeDTO> {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -37,5 +37,10 @@ public class SimplifiedEmployeeDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = (name == null)? null : name.split(" ")[0];
+	}
+
+	@Override
+	public int compareTo(SimplifiedEmployeeDTO o) {
+		return name.toLowerCase().compareTo(o.getName().toLowerCase());
 	}
 }
