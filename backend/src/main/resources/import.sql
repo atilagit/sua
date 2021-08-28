@@ -67,9 +67,9 @@ INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantit
 
 
 
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197024', '37405765000114', true);
+INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Inativo para massa de dados', '20262197024', '37405765000114', false);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000115', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197026', null, true);
+INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Ativo para massa de dados', '20262197026', null, true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197027', '37405765000117', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000118', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197029', null, true);
@@ -78,7 +78,7 @@ INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de da
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197032', null, true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197033', '37405765000124', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000125', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197036', null, true);
+INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Atila nome para massa de dados', '20262197036', null, true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197037', '37405765000127', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000128', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197039', null, true);
@@ -90,7 +90,7 @@ INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de da
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('C Nome para massa de dados', '20262197505', null, true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197506', '37405765000507', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000508', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('B Nome para massa de dados', '20262197509', null, true);
+INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('B Nome para massa de dados', '20262197509', null, false);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197510', '37405765000511', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000512', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('A Nome para massa de dados', '20262197513', null, true);

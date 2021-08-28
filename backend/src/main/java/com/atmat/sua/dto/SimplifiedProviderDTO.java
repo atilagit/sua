@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.atmat.sua.entities.Provider;
 
-public class SimplifiedProviderDTO implements Serializable {
+public class SimplifiedProviderDTO implements Serializable, Comparable<SimplifiedProviderDTO> {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -37,5 +37,10 @@ public class SimplifiedProviderDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(SimplifiedProviderDTO o) {
+		return name.toLowerCase().compareTo(o.getName().toLowerCase());
 	}
 }

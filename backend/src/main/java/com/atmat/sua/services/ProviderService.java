@@ -1,5 +1,8 @@
 package com.atmat.sua.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atmat.sua.dto.ProviderDTO;
+import com.atmat.sua.dto.SimplifiedProviderDTO;
 import com.atmat.sua.entities.Provider;
 import com.atmat.sua.entities.repositories.ProviderRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
@@ -35,6 +39,18 @@ public class ProviderService {
 		Optional<Provider> obj = repository.findById(id);
 		Provider entity = obj.orElseThrow(() -> new ResourceNotFoundException(Provider.class.getSimpleName() + " not found"));
 		return new ProviderDTO(entity);
+	}
+	
+	public List<SimplifiedProviderDTO> findAllActiveNames() {
+		List<Provider> list = repository.findAll();
+		List<SimplifiedProviderDTO> listDto = new ArrayList<>();
+		for (Provider provider : list) {
+			if (provider.getActive()) {
+				listDto.add(new SimplifiedProviderDTO(provider));
+			}
+		}
+		Collections.sort(listDto);
+		return listDto;
 	}
 
 	@Transactional
