@@ -19,15 +19,15 @@ public class PostingDTO implements Serializable {
 	private Boolean salaryAdvance;
 	private Boolean resolved;
 	
-	private EmployeeDTO employee;
-	private ClientDTO client;
-	private ProviderDTO provider;
+	private SimplifiedEmployeeDTO employee;
+	private SimplifiedClientDTO client;
+	private SimplifiedProviderDTO provider;
 	
 	public PostingDTO() {
 	}
 
 	public PostingDTO(Long id, LocalDate date, UnitType unit, Double quantity, BigDecimal price, String note,
-			Boolean salaryAdvance, Boolean resolved, EmployeeDTO employee, ClientDTO client, ProviderDTO provider) {
+			Boolean salaryAdvance, Boolean resolved, SimplifiedEmployeeDTO employee, SimplifiedClientDTO client, SimplifiedProviderDTO provider) {
 		this.id = id;
 		this.date = date;
 		this.unit = unit;
@@ -50,9 +50,9 @@ public class PostingDTO implements Serializable {
 		note = entity.getNote();
 		salaryAdvance = entity.getSalaryAdvance();
 		resolved = entity.getResolved();
-		employee = new EmployeeDTO(entity.getEmployee());
-		if (entity.getClient() != null) client = new ClientDTO(entity.getClient());
-		if (entity.getProvider() != null) provider = new ProviderDTO(entity.getProvider());
+		employee = new SimplifiedEmployeeDTO(entity.getEmployee());
+		if (entity.getClient() != null) client = new SimplifiedClientDTO(entity.getClient());
+		if (entity.getProvider() != null) provider = new SimplifiedProviderDTO(entity.getProvider());
 	}
 
 	public Long getId() {
@@ -119,27 +119,27 @@ public class PostingDTO implements Serializable {
 		this.resolved = resolved;
 	}
 
-	public EmployeeDTO getEmployee() {
+	public SimplifiedEmployeeDTO getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(EmployeeDTO employee) {
+	public void setEmployee(SimplifiedEmployeeDTO employee) {
 		this.employee = employee;
 	}
 
-	public ClientDTO getClient() {
+	public SimplifiedClientDTO getClient() {
 		return client;
 	}
 
-	public void setClient(ClientDTO client) {
+	public void setClient(SimplifiedClientDTO client) {
 		this.client = client;
 	}
 
-	public ProviderDTO getProvider() {
+	public SimplifiedProviderDTO getProvider() {
 		return provider;
 	}
 
-	public void setProvider(ProviderDTO provider) {
+	public void setProvider(SimplifiedProviderDTO provider) {
 		this.provider = provider;
 	}
 }

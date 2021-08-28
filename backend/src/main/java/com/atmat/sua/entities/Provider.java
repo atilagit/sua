@@ -44,7 +44,7 @@ public class Provider implements Serializable {
 	public Provider(Long id, String name, String cpf, String cnpj, Boolean active, List<Posting> postings) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.name = name.trim();
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.active = active;
@@ -64,7 +64,7 @@ public class Provider implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getCpf() {

@@ -51,7 +51,7 @@ public class Client implements Serializable {
 	public Client(Long id, String contact, String corporateName, String cpf, String cnpj, Boolean active, Address address) {
 		super();
 		this.id = id;
-		this.contact = contact;
+		this.contact = contact.trim();
 		this.corporateName = corporateName;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
@@ -72,7 +72,7 @@ public class Client implements Serializable {
 	}
 
 	public void setContact(String contact) {
-		this.contact = contact;
+		this.contact = contact.trim();
 	}
 
 	public String getCorporateName() {

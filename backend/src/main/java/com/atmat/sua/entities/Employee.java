@@ -60,7 +60,7 @@ public class Employee implements Serializable {
 			Boolean active, Set<Role> roles) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.name = name.trim();
 		this.cpf = cpf;
 		this.admissionDate = admissionDate;
 		this.login = login;
@@ -82,7 +82,7 @@ public class Employee implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 
 	public String getCpf() {
