@@ -1,6 +1,7 @@
 package com.atmat.sua.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.atmat.sua.dto.ClientDTO;
+import com.atmat.sua.dto.SimplifiedClientDTO;
 import com.atmat.sua.services.ClientService;
 
 @RestController
@@ -39,6 +41,12 @@ public class ClientResource {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 				
 		Page<ClientDTO> list = service.findAllPaged(pageRequest);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/active-names")
+	public ResponseEntity<List<SimplifiedClientDTO>> findAllActiveNames(){
+		List<SimplifiedClientDTO> list = service.findAllActiveNames();
 		return ResponseEntity.ok().body(list);
 	}
 	

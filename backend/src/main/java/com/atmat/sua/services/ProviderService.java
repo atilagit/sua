@@ -41,12 +41,13 @@ public class ProviderService {
 		return new ProviderDTO(entity);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<SimplifiedProviderDTO> findAllActiveNames() {
 		List<Provider> list = repository.findAll();
 		List<SimplifiedProviderDTO> listDto = new ArrayList<>();
-		for (Provider provider : list) {
-			if (provider.getActive()) {
-				listDto.add(new SimplifiedProviderDTO(provider));
+		for (Provider entity : list) {
+			if (entity.getActive()) {
+				listDto.add(new SimplifiedProviderDTO(entity));
 			}
 		}
 		Collections.sort(listDto);
