@@ -3,6 +3,8 @@ package com.atmat.sua.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -57,14 +59,14 @@ public class ProviderResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProviderDTO> insert(@RequestBody ProviderDTO dto){
+	public ResponseEntity<ProviderDTO> insert(@Valid @RequestBody ProviderDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ProviderDTO> update(@PathVariable Long id, @RequestBody ProviderDTO dto){
+	public ResponseEntity<ProviderDTO> update(@PathVariable Long id, @Valid @RequestBody ProviderDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
