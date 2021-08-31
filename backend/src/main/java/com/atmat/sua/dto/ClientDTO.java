@@ -2,15 +2,24 @@ package com.atmat.sua.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.atmat.sua.entities.Client;
 
 public class ClientDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotBlank(message = "O campo não pode ser nulo ou vazio")
 	private String contact;
 	private String corporateName;
+	
+	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
 	private String cpf;
+	
+	@Size(min = 14, max = 14, message = "Quantidade de dígitos inválida")
 	private String cnpj;
 	private Boolean active;
 	
