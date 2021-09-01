@@ -23,6 +23,8 @@ public class EmployeeDTO implements Serializable {
 	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
 	private String cpf;
 	private LocalDate admissionDate;
+	
+	@Size(min = 3, message = "O tamanho deve ser de no mínimo 3 caracteres")
 	private String login;
 	private Boolean active;
 	

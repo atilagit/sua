@@ -102,7 +102,7 @@ public class EmployeeService {
 		entity.setName(dto.getName());
 		entity.setAdmissionDate(dto.getAdmissionDate());
 		entity.setCpf(dto.getCpf());
-		entity.setLogin(dto.getLogin());
+		entity.setLogin((dto.getLogin() != null)? dto.getLogin() : dto.getCpf());
 		copyRolesFromDtoToEntity(entity, dto);
 	}
 	
