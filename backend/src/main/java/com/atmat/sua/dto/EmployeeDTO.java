@@ -5,13 +5,22 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.atmat.sua.entities.Employee;
 
 public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotBlank(message = "O campo não pode ser nulo ou vazio")
 	private String name;
+	
+	@NotNull(message = "O campo não pode ser nulo")
+	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
 	private String cpf;
 	private LocalDate admissionDate;
 	private String login;
