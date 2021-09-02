@@ -28,7 +28,11 @@ public class Client implements Serializable {
 	private Long id;
 	private String contact;
 	private String corporateName;
+	
+	@Column(unique = true)
 	private String cpf;
+	
+	@Column(unique = true)
 	private String cnpj;
 	private Boolean active;
 	
