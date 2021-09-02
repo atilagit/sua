@@ -8,4 +8,7 @@ import com.atmat.sua.entities.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
+	Employee findByCpf(String cpf);
+
+	Employee findByLogin(String login);
 }
