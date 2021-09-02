@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.atmat.sua.entities.Posting;
 import com.atmat.sua.entities.enums.UnitType;
 
@@ -11,14 +13,25 @@ public class PostingDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@NotNull
 	private LocalDate date;
+	
+	@NotNull
 	private UnitType unit;
+	
+	@NotNull
 	private Double quantity;
+	
+	@NotNull
 	private BigDecimal price;
 	private String note;
+	
+	@NotNull
 	private Boolean salaryAdvance;
 	private Boolean resolved;
 	
+	@NotNull
 	private SimplifiedEmployeeDTO employee;
 	private SimplifiedClientDTO client;
 	private SimplifiedProviderDTO provider;
@@ -35,7 +48,7 @@ public class PostingDTO implements Serializable {
 		this.price = price;
 		this.note = note;
 		this.salaryAdvance = salaryAdvance;
-		this.resolved = resolved;
+		this.resolved = (resolved == null)? false : resolved;
 		this.employee = employee;
 		this.client = client;
 		this.provider = provider;
@@ -49,7 +62,7 @@ public class PostingDTO implements Serializable {
 		price = entity.getPrice();
 		note = entity.getNote();
 		salaryAdvance = entity.getSalaryAdvance();
-		resolved = entity.getResolved();
+		resolved = (entity.getResolved() == null)? false : entity.getResolved();
 		employee = new SimplifiedEmployeeDTO(entity.getEmployee());
 		if (entity.getClient() != null) client = new SimplifiedClientDTO(entity.getClient());
 		if (entity.getProvider() != null) provider = new SimplifiedProviderDTO(entity.getProvider());

@@ -2,6 +2,8 @@ package com.atmat.sua.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -49,14 +51,14 @@ public class PostingResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<PostingDTO> insert(@RequestBody PostingDTO dto){
+	public ResponseEntity<PostingDTO> insert(@Valid @RequestBody PostingDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<PostingDTO> update(@PathVariable Long id, @RequestBody PostingDTO dto){
+	public ResponseEntity<PostingDTO> update(@PathVariable Long id, @Valid @RequestBody PostingDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
