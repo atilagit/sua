@@ -32,12 +32,8 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
-	@Column(unique = true)
 	private String cpf;
 	private LocalDate admissionDate;
-	
-	@Column(unique = true)
 	private String login;
 	private String password;
 	private Boolean active;

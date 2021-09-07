@@ -25,11 +25,7 @@ public class Provider implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
-	@Column(unique = true)
 	private String cpf;
-	
-	@Column(unique = true)
 	private String cnpj;
 	private Boolean active;
 	
