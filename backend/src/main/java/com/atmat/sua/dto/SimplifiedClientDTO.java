@@ -1,6 +1,8 @@
 package com.atmat.sua.dto;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import com.atmat.sua.entities.Client;
 
@@ -15,12 +17,12 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 
 	public SimplifiedClientDTO(Long id, String contact) {
 		this.id = id;
-		this.contact = (contact == null)? null : contact.split(" ")[0];
+		this.contact = buildSimplifiedContactName(contact);
 	}
 	
 	public SimplifiedClientDTO(Client entity) {
 		id = entity.getId();
-		contact = (entity.getContact() == null)? null : entity.getContact().split(" ")[0];
+		contact = buildSimplifiedContactName(entity.getContact());
 	}
 
 	public Long getId() {
@@ -36,7 +38,16 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 	}
 
 	public void setContact(String contact) {
-		this.contact = contact;
+		this.contact = buildSimplifiedContactName(contact);
+	}
+	
+	private String buildSimplifiedContactName(String name) {
+		List<String> words = Arrays.asList(name.split(" "));
+		if (words.size() > 1) {
+			return words.get(0) + " " + words.get(words.size() - 1);
+		} else {
+			return words.get(0);
+		}
 	}
 
 	@Override

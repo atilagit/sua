@@ -1,6 +1,8 @@
 package com.atmat.sua.dto;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import com.atmat.sua.entities.Provider;
 
@@ -15,12 +17,12 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 
 	public SimplifiedProviderDTO(Long id, String name) {
 		this.id = id;
-		this.name = (name == null)? null : name.split(" ")[0].trim();
+		this.name = buildSimplifiedContactName(name);
 	}
 	
 	public SimplifiedProviderDTO(Provider entity) {
 		id = entity.getId();
-		name = (entity.getName() == null)? null : entity.getName().split(" ")[0];
+		name = buildSimplifiedContactName(entity.getName());
 	}
 
 	public Long getId() {
@@ -36,7 +38,16 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = buildSimplifiedContactName(name);
+	}
+	
+	private String buildSimplifiedContactName(String name) {
+		List<String> words = Arrays.asList(name.split(" "));
+		if (words.size() > 1) {
+			return words.get(0) + " " + words.get(words.size() - 1);
+		} else {
+			return words.get(0);
+		}
 	}
 
 	@Override
