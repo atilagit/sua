@@ -8,4 +8,7 @@ import com.atmat.sua.entities.Client;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
 
+	Client findByCpf(String cpf);
+	
+	Client findByCnpj(String cnpj);
 }
