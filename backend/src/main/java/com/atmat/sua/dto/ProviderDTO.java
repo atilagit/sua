@@ -6,7 +6,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.atmat.sua.entities.Provider;
+import com.atmat.sua.services.validation.ProviderValid;
 
+@ProviderValid
 public class ProviderDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

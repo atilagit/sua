@@ -8,4 +8,7 @@ import com.atmat.sua.entities.Provider;
 @Repository
 public interface ProviderRepository extends JpaRepository<Provider, Long>{
 
+	Provider findByCpf(String cpf);
+	
+	Provider findByCnpj(String cnpj);
 }
