@@ -1,0 +1,14 @@
+$theme-colors: (
+  'primary': #7297AD,
+  'secondary': #AD9C84,
+  'success': #7297AD,
+  'warning': #AD9C84,
+  'dark': #000000,
+  'white': white,
+  'muted': #D7ECFA
+);
+
+$body-bg: #FFFBF5;
+$body-color: #000000;
+
+@import '~bootstrap/scss/bootstrap.scss';
