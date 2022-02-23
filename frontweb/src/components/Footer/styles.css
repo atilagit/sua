@@ -1,0 +1,9 @@
+.footer-container {
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  height: 120px;
+  position: fixed;
+  width: 100%;
+}

@@ -1,6 +1,5 @@
 .main-nav {
     min-height: 120px;
-    padding-left: 20px;
 }
 
 .nav-log-text, .nav-log-text:hover {
@@ -27,8 +26,6 @@
     font-weight: bold;
 }
 
-.ola {
-    font-size: 25px;
-    color: #F9EAD5;
-    padding-right: 30px;
+.nav-container {
+    max-width: 1140px;
 }

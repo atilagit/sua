@@ -1,12 +1,13 @@
+import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
 import 'bootstrap/js/src/collapse.js'
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
-      <div className="container-fluid">
-        <a href="link" className="nav-log-text">
-          <h4>SU Alimentos</h4>
+      <div className="container-fluid nav-container">
+        <a href="link">
+          <LogoImage />
         </a>
 
         <button
