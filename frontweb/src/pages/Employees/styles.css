@@ -1,0 +1,11 @@
+.page-container-especific {
+    margin-top: 34px;
+    padding: 0 10px;
+}
+
+.title-content-container {
+    width: 100%;
+    margin-bottom: 28px;
+    border-bottom: 2px solid black;
+    font-size: 30px;
+}

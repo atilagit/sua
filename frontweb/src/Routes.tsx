@@ -1,6 +1,8 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import Clients from 'pages/Clients';
+import Providers from 'pages/Providers';
+import Employees from 'pages/Employees';
 import Postings from 'pages/Postings';
 import Entries from 'pages/Entries';
 import Inventory from 'pages/Inventory';
@@ -15,6 +17,12 @@ const Routes = () => (
             </Route>
             <Route path="/clients">
                 <Clients />
+            </Route>
+            <Route path="/providers">
+                <Providers />
+            </Route>
+            <Route path="/employees">
+                <Employees />
             </Route>
             <Route path="/postings">
                 <Postings />
