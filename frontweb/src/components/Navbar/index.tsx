@@ -1,14 +1,15 @@
 import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
-import 'bootstrap/js/src/collapse.js'
+import 'bootstrap/js/src/collapse.js';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
       <div className="container-fluid nav-container">
-        <a href="link">
+        <Link to="/">
           <LogoImage />
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -25,15 +26,19 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="sualimentos-navbar">
           <ul className="navbar-nav main-menu">
             <li>
-              <a href="link" className="active">
+              <NavLink to="/postings" activeClassName="active">
                 DIÁRIAS
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="link">ENTRADAS</a>
+              <NavLink to="/entries" activeClassName="active">
+                ENTRADAS
+              </NavLink>
             </li>
             <li>
-              <a href="link">ESTOQUE</a>
+              <NavLink to="/inventory" activeClassName="active">
+                ESTOQUE
+              </NavLink>
             </li>
           </ul>
         </div>

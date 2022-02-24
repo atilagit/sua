@@ -1,11 +1,11 @@
 import './assets/styles/custom.scss';
 import './App.css';
 
-import Clients from 'pages/Clients';
+import Routes from 'Routes';
 
 const App = () => {
   return (
-    <Clients />
+    <Routes />
   );
 };
 

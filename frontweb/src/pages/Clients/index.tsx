@@ -5,22 +5,19 @@ import './styles.css';
 
 const Clients = () => {
   return (
-    <>
-      <Navbar />
-      <div className="page-container page-container-especific">
-        <div className="title-content-container">
-          <h1>Filtros / Clientes</h1>
-        </div>
-        <PjCard />
-        <PjCard />
-        <PjCard />
-        <PjCard />
-        <PjCard />
-        <PjCard />
-        <PjCard />
-        <PjCard />
+    <div className="page-container page-container-especific">
+      <div className="title-content-container">
+        <h1>Filtros / Clientes</h1>
       </div>
-    </>
+      <PjCard />
+      <PjCard />
+      <PjCard />
+      <PjCard />
+      <PjCard />
+      <PjCard />
+      <PjCard />
+      <PjCard />
+    </div>
   );
 };
 

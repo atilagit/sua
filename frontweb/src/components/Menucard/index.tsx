@@ -1,4 +1,5 @@
 import Button from 'components/Button';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 const Menucard = () => {
@@ -9,10 +10,18 @@ const Menucard = () => {
             <h2>Módulo A - Materiais e pagamentos</h2>
           </div>
           <div className="home-button-container">
-            <Button />
-            <Button />
-            <Button />
-            <Button />
+            <Link to="/clients">
+              <Button />
+            </Link>
+            <Link to="/clients">
+              <Button />
+            </Link>
+            <Link to="/clients">
+              <Button />
+            </Link>
+            <Link to="/clients">
+              <Button />
+            </Link>
           </div>
         </div>
     </>
