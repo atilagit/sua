@@ -1,4 +1,4 @@
-.pj-card {
+.pf-card {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     margin-bottom: 15px;
 }
 
-.pj-card-line1 {
+.pf-card-line1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,18 +14,18 @@
     margin-bottom: 5px;
 }
 
-.pj-card-line1 h2 {
+.pf-card-line1 h2 {
     font-size: 20px;
     font-weight: bold;
 }
 
-.pj-card-line1 p {
+.pf-card-line1 p {
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 0;
 }
 
-.pj-card-line2 {
+.pf-card-line2 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -33,103 +33,103 @@
     margin-bottom: 15px;
 }
 
-.pj-card-line2 p {
+.pf-card-line2 p {
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 0;
 }
 
-.name-pj {
+.name-pf {
     width: 244px;
 }
 
-.cnpj-pj {
+.admissao-pf {
     width: 273px;
     min-width: 235px;
 }
 
-.cpf-pj {
+.cpf-pf {
     width: 370px;
     min-width: 180px;
 }
 
-.status-pj {
+.status-pf {
     width: 147px;
     min-width: 92px;
     text-align: right;
 }
 
-.razao-social-pj {
+.nivel-usuario-pf {
     width: 244px;
     margin-right: 15px;
 }
 
-.endereco-pj {
+.endereco-pf {
     width: 658px;
 }
 
 @media (max-width: 1140px) {
-    .pj-card-line1 {
+    .pf-card-line1 {
         display: flex;
         justify-content: flex-start;
     }
 
-    .name-pj {
+    .name-pf {
         min-width: 244px;
         margin-right: 15px;
     }
 
-    .razao-social-pj {
+    .nivel-usuario-pf {
         min-width: 244px;
     }
 }
 
 @media (max-width: 850px) {
-    .pj-card-line1 {
+    .pf-card-line1 {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .pj-card-line2 {
+    .pf-card-line2 {
         border-top: 1px solid black;
     }
 
-    .cpf-pj {
+    .cpf-pf {
         width: 385px;
     }
 
-    .cnpj-pj {
+    .admissao-pf {
         text-align: right;
     }
 
-    .pj-card-line2 {
+    .pf-card-line2 {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .razao-social-pj {
+    .nivel-usuario-pf {
         text-align: center;
     }
 
-    .endereco-pj {
+    .endereco-pf {
         text-align: center;
     }
 }
 
 @media (max-width: 591px) {
-    .name-pj {
+    .name-pf {
         text-align: center;
     }
     
-    .cnpj-pj {
+    .admissao-pf {
         text-align: center;
     }
     
-    .cpf-pj {
+    .cpf-pf {
         text-align: center;
     }
     
-    .status-pj {
+    .status-pf {
         text-align: center;
     }
 }

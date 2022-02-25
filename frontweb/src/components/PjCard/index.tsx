@@ -1,4 +1,3 @@
-import Button from 'components/Button';
 import './styles.css';
 
 const PjCard = () => {
@@ -14,7 +13,7 @@ const PjCard = () => {
                 <div className="cpf-pj">
                     <p>CPF: 390.199.288-11</p>
                 </div>
-                <div className="staus-pj">
+                <div className="status-pj">
                     <h2>INATIVO</h2>
                 </div>
             </div>
