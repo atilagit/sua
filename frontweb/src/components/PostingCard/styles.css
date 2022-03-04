@@ -1,0 +1,159 @@
+.posting-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    margin-bottom: 15px;
+}
+
+.line1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.line1 h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.line1 p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.line2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.line2 p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.name {
+    width: 244px;
+}
+
+.provider {
+    min-width: 254px;
+}
+
+.client {
+    min-width: 195px;
+}
+
+.data {
+    width: 177px;
+    min-width: 130px;
+}
+
+.total {
+    width: 177px;
+    min-width: 177px;
+}
+
+.unity-x-price {
+    width: 274px;
+    min-width: 260px;
+}
+
+.status {
+    width: 147px;
+    min-width: 92px;
+    text-align: right;
+}
+
+.name {
+    width: 244px;
+}
+
+.obs {
+    width: 658px;
+}
+
+@media (max-width: 1140px) {
+    .line1 {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .name {
+        min-width: 244px;
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .line1 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .line2 {
+        border-top: 1px solid black;
+    }
+
+    .unity-x-price {
+        width: 274px;
+    }
+
+    .data {
+        text-align: left;
+    }
+
+    .total {
+        text-align: right;
+    }
+
+    .line2 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .name {
+        text-align: center;
+    }
+
+    .obs {
+        text-align: center;
+    }
+}
+
+@media (max-width: 591px) {
+    .name {
+        text-align: center;
+    }
+    
+    .data {
+        text-align: center;
+    }
+
+    .provider {
+        text-align: center;
+    }
+
+    .client {
+        text-align: center;
+    }
+
+    .total {
+        text-align: center;
+    }
+    
+    .unity-x-price {
+        text-align: center;
+    }
+    
+    .status {
+        text-align: center;
+    }
+}
