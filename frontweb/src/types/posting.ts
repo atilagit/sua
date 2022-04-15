@@ -1,6 +1,6 @@
-import { Client } from "./client";
-import { Employee } from "./employee";
-import { Provider } from "./provider";
+import { ShortClient } from "./shortClient";
+import { ShortEmployee } from "./shortEmployee";
+import { ShortProvider } from "./shortProvider";
 
 export type Posting = {
     id: number;
@@ -11,7 +11,7 @@ export type Posting = {
     note: string;
     salaryAdvance: boolean;
     resolved: boolean;
-    employee: Employee;
-    client: Client;
-    provider: Provider;
+    employee: ShortEmployee;
+    client: ShortClient;
+    provider: ShortProvider;
 }

@@ -3,7 +3,7 @@ import { Posting } from 'types/posting';
 
 import './styles.css';
 
-const Clients = () => {
+const Postings = () => {
 
   const posting: Posting = {
     "id": 1,
@@ -20,11 +20,11 @@ const Clients = () => {
     },
     "client": {
       "id": 1,
-      "contact": "Jonielson Silva"
+      "contact": "Jonielson"
     },
     "provider": {
       "id": 1,
-      "name": "Antônio Vieira"
+      "name": "Antônio"
     }
   }
   return (
@@ -44,4 +44,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Postings;
