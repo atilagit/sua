@@ -1,5 +1,6 @@
 import './styles.css';
 import { Posting } from 'types/posting';
+import { formatNumber, formatPrice } from 'util/formatters';
 
 type Props = {
     posting: Posting;
@@ -16,10 +17,10 @@ const PostingCard = ( {posting} : Props) => {
                     <p>{posting.date}</p>
                 </div>
                 <div className="unity-x-price">
-                    <p>{posting.quantity} {posting.unit} x R$ {posting.price}</p>
+                    <p>{formatNumber(posting.quantity)} {posting.unit} x {formatPrice(posting.price)}</p>
                 </div>
                 <div className="total">
-                    <p>Total: R$ {posting.quantity * posting.price}</p>
+                    <p>Total: {formatPrice(posting.quantity * posting.price)}</p>
                 </div>
                 <div className="status">
                     <h2>{posting.resolved? "RESOLVIDO" : "PENDENTE"}</h2>
