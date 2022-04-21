@@ -1,28 +1,33 @@
+import { Employee } from 'types/employee';
 import './styles.css';
 
-const PfCard = () => {
+type Props = {
+    employee: Employee
+}
+
+const PfCard = ({employee} : Props) => {
     return (
         <div className="base-card pj-card">
             <div className="pf-card-line1">
                 <div className="name-pf">
-                    <h2>Jonielson Vieira</h2>
+                    <h2>{employee.name}</h2>
                 </div>
                 <div className="admissao-pf">
-                    <p>Admissão: 17/03/2022</p>
+                    <p>Admissão: {employee.admissionDate}</p>
                 </div>
                 <div className="cpf-pf">
-                    <p>CPF: 390.199.288-11</p>
+                    <p>CPF: {employee.cpf}</p>
                 </div>
                 <div className="status-pf">
-                    <h2>INATIVO</h2>
+                    <h2>{employee.active? "ATIVO" : "INATIVO"}</h2>
                 </div>
             </div>
             <div className="pf-card-line2">
                 <div className="nivel-usuario-pf">
-                    <p>Usuário Administrador</p>
+                    <p>{employee.roles.length > 2? "Usuário Administrador" : employee.roles.length > 1? "Usuário Operador" : "Usuário Básico"}</p>
                 </div>
                 <div className="endereco-pf">
-                    <p>Rua Alessandro Bonci, 78, Elsorado, Mogi Mirim, SP, 13800-456</p>
+                    <p>{employee.address.street}, {employee.address.number}, {employee.address.neighborhood}, {employee.address.city}, {employee.address.state}, {employee.address.cep}</p>
                 </div>
             </div>
         </div>
