@@ -10,6 +10,7 @@ import Navbar from 'components/Navbar';
 import ClientDetails from 'pages/ClientDetails';
 import EmployeeDetails from 'pages/EmployeeDetails';
 import ProviderDetails from 'pages/ProviderDetails';
+import PostingDetails from 'pages/PostingDetails';
 
 const Routes = () => (
     <BrowserRouter>
@@ -36,8 +37,11 @@ const Routes = () => (
             <Route path="/employees/:employeeId">
                 <EmployeeDetails />
             </Route>
-            <Route path="/postings">
+            <Route path="/postings" exact>
                 <Postings />
+            </Route>
+            <Route path="/postings/:postingId">
+                <PostingDetails />
             </Route>
             <Route path="/entries">
                 <Entries />
