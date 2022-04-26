@@ -9,6 +9,7 @@ import Inventory from 'pages/Inventory';
 import Navbar from 'components/Navbar';
 import ClientDetails from 'pages/ClientDetails';
 import EmployeeDetails from 'pages/EmployeeDetails';
+import ProviderDetails from 'pages/ProviderDetails';
 
 const Routes = () => (
     <BrowserRouter>
@@ -23,8 +24,11 @@ const Routes = () => (
             <Route path="/clients/:clientId">
                 <ClientDetails />
             </Route>
-            <Route path="/providers">
+            <Route path="/providers" exact>
                 <Providers />
+            </Route>
+            <Route path="/providers/:employeeId">
+                <ProviderDetails />
             </Route>
             <Route path="/employees" exact>
                 <Employees />
