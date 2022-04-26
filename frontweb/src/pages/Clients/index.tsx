@@ -1,4 +1,4 @@
-import PjCard from 'components/PjCard';
+import ClientCard from 'components/ClientCard';
 import { Client } from 'types/client';
 
 import './styles.css';
@@ -29,14 +29,14 @@ const Clients = () => {
       <div className="title-content-container">
         <h1>Filtros / Clientes</h1>
       </div>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
+      <ClientCard client={client}/>
     </div>
   );
 };

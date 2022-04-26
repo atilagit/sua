@@ -1,37 +1,37 @@
 import './styles.css';
-import { Client } from 'types/client';
+import { Provider } from 'types/provider';
 
 type Props = {
-    client: Client;
+    provider: Provider;
 }
 
-const PjCard = ( {client} : Props) => {
+const ProviderCard = ( {provider} : Props) => {
     return (
         <div className="base-card pj-card">
             <div className="pj-card-line1">
                 <div className="name-pj">
-                    <h2>{client.contact}</h2>
+                    <h2>{provider.name}</h2>
                 </div>
                 <div className="cnpj-pj">
-                    <p>CNPJ: {client.cnpj}</p>
+                    <p>CNPJ: {provider.cnpj}</p>
                 </div>
                 <div className="cpf-pj">
-                    <p>CPF: {client.cpf}</p>
+                    <p>CPF: {provider.cpf}</p>
                 </div>
                 <div className="status-pj">
-                    <h2>{client.active? "ATIVO" : "INATIVO"}</h2>
+                    <h2>{provider.active? "ATIVO" : "INATIVO"}</h2>
                 </div>
             </div>
             <div className="pj-card-line2">
                 <div className="razao-social-pj">
-                    <p>{client.corporateName}</p>
+                    <p>{provider.corporateName}</p>
                 </div>
                 <div className="endereco-pj">
-                    <p>{client.address.street}, {client.address.number}, {client.address.neighborhood}, {client.address.city}, {client.address.state}, {client.address.cep}</p>
+                    <p>{provider.address.street}, {provider.address.number}, {provider.address.neighborhood}, {provider.address.city}, {provider.address.state}, {provider.address.cep}</p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default PjCard;
+export default ProviderCard;

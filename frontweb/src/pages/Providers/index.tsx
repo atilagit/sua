@@ -1,16 +1,16 @@
-import PjCard from 'components/PjCard';
-import { Client } from 'types/client';
+import ProviderCard from 'components/ProviderCard';
+import { Provider } from 'types/provider';
 
 import './styles.css';
 
 const Providers = () => {
 
-  const client: Client = {
+  const provider: Provider = {
     "id": 1,
-    "contact": "Jonielson Silva",
-    "corporateName": "Citrus e Cia",
-    "cpf": "97717222041",
-    "cnpj": "18107334000121",
+    "name": "Antônio Vieira",
+    "corporateName": "Toninho & Cia",
+    "cpf": "20262197021",
+    "cnpj": "37405765000111",
     "active": true,
     "address": {
         "id": 1,
@@ -29,14 +29,14 @@ const Providers = () => {
       <div className="title-content-container">
         <h1>Filtros / Fornecedores</h1>
       </div>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
-      <PjCard client={client}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
+      <ProviderCard provider={provider}/>
     </div>
   );
 };
