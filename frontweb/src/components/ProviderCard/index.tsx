@@ -1,5 +1,6 @@
 import './styles.css';
 import { Provider } from 'types/provider';
+import { formatCpfCnpj } from 'util/formatters';
 
 type Props = {
     provider: Provider;
@@ -13,10 +14,10 @@ const ProviderCard = ( {provider} : Props) => {
                     <h2>{provider.name}</h2>
                 </div>
                 <div className="cnpj-pj">
-                    <p>CNPJ: {provider.cnpj}</p>
+                    <p>CNPJ: {formatCpfCnpj(provider.cnpj)}</p>
                 </div>
                 <div className="cpf-pj">
-                    <p>CPF: {provider.cpf}</p>
+                    <p>CPF: {formatCpfCnpj(provider.cpf)}</p>
                 </div>
                 <div className="status-pj">
                     <h2>{provider.active? "ATIVO" : "INATIVO"}</h2>

@@ -1,4 +1,4 @@
-import PfCard from 'components/PfCard';
+import EmployeeCard from 'components/EmployeeCard';
 import { Employee } from 'types/employee';
 
 import './styles.css';
@@ -42,14 +42,14 @@ const Employees = () => {
       <div className="title-content-container">
         <h1>Filtros / Funcionários</h1>
       </div>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
-      <PfCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
+      <EmployeeCard employee={employee}/>
     </div>
   );
 };

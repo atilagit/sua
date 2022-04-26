@@ -1,6 +1,6 @@
 import './styles.css';
 import { Posting } from 'types/posting';
-import { formatNumber, formatPrice } from 'util/formatters';
+import { formatDate, formatNumber, formatPrice } from 'util/formatters';
 
 type Props = {
     posting: Posting;
@@ -14,7 +14,7 @@ const PostingCard = ( {posting} : Props) => {
                     <h2>{posting.employee.name}</h2>
                 </div>
                 <div className="data">
-                    <p>{posting.date}</p>
+                    <p>{formatDate(posting.date)}</p>
                 </div>
                 <div className="unity-x-price">
                     <p>{formatNumber(posting.quantity)} {posting.unit} x {formatPrice(posting.price)}</p>

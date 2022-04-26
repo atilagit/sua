@@ -1,11 +1,12 @@
 import { Employee } from 'types/employee';
+import { formatCpfCnpj, formatDate } from 'util/formatters';
 import './styles.css';
 
 type Props = {
     employee: Employee
 }
 
-const PfCard = ({employee} : Props) => {
+const EmployeeCard = ({employee} : Props) => {
     return (
         <div className="base-card pj-card">
             <div className="pf-card-line1">
@@ -13,10 +14,10 @@ const PfCard = ({employee} : Props) => {
                     <h2>{employee.name}</h2>
                 </div>
                 <div className="admissao-pf">
-                    <p>Admissão: {employee.admissionDate}</p>
+                    <p>Admissão: {formatDate(employee.admissionDate)}</p>
                 </div>
                 <div className="cpf-pf">
-                    <p>CPF: {employee.cpf}</p>
+                    <p>CPF: {formatCpfCnpj(employee.cpf)}</p>
                 </div>
                 <div className="status-pf">
                     <h2>{employee.active? "ATIVO" : "INATIVO"}</h2>
@@ -34,4 +35,4 @@ const PfCard = ({employee} : Props) => {
     );
 }
 
-export default PfCard;
+export default EmployeeCard;
