@@ -7,6 +7,7 @@ import Postings from 'pages/Postings';
 import Entries from 'pages/Entries';
 import Inventory from 'pages/Inventory';
 import Navbar from 'components/Navbar';
+import ClientDetails from 'pages/ClientDetails';
 
 const Routes = () => (
     <BrowserRouter>
@@ -15,8 +16,11 @@ const Routes = () => (
             <Route path="/" exact>
                 <Home />
             </Route>
-            <Route path="/clients">
+            <Route path="/clients" exact>
                 <Clients />
+            </Route>
+            <Route path="/clients/:clientId">
+                <ClientDetails />
             </Route>
             <Route path="/providers">
                 <Providers />
