@@ -1,0 +1,55 @@
+.page-container-especific {
+    margin-top: 34px;
+    padding: 0 10px;
+}
+
+.title-content-container {
+    width: 100%;
+    margin-bottom: 28px;
+    border-bottom: 2px solid black;
+    font-size: 30px;
+}
+
+.title-content-container h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+}
+
+.fields-container {
+    width: 100%;
+    min-height: 300px;
+    max-height: 900px;
+    display: flex;
+    justify-content: space-around;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+
+.col1-82 {
+    width: 82px;
+    min-width: 82px;
+}
+
+.col2-178 {
+    width: 178px;
+    min-width: 178px;
+}
+
+.col3-274 {
+    width: 274px;
+    min-width: 274px;
+}
+
+.col5-466 {
+    width: 466px;
+    min-width: 466px;
+}
+
+.buttons-container {
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
