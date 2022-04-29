@@ -22,3 +22,7 @@ export const formatCpfCnpj = (texto: string) => {
 export const formatDate = (texto: string) => {
      return texto.substring(8,10) + "/" + texto.substring(5,7) + "/" + texto.substring(0,4);
 }
+
+export const formatCEP = (texto: string) => {
+    return texto.substring(0,5) + "-" + texto.substring(5);
+}

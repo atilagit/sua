@@ -2,6 +2,7 @@ import Button from 'components/Button';
 import FieldDetailCard from 'components/FieldDetailCard';
 import Footer from 'components/Footer';
 import { Client } from 'types/client';
+import { formatCEP, formatCpfCnpj } from 'util/formatters';
 
 import './styles.css';
 
@@ -36,10 +37,10 @@ const ClientDetails = () => {
                 <FieldDetailCard title = "Nome do Contato" content = {client.contact}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CNPJ" content = {client.cnpj}/>
+                <FieldDetailCard title = "CNPJ" content = {formatCpfCnpj(client.cnpj)}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CPF" content = {client.cpf}/>
+                <FieldDetailCard title = "CPF" content = {formatCpfCnpj(client.cpf)}/>
             </div>
             <div className='col3-274'>
                 <FieldDetailCard title = "Razão social" content = {client.corporateName}/>
@@ -60,7 +61,7 @@ const ClientDetails = () => {
                 <FieldDetailCard title = "Estado" content = {client.address.state}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CEP" content = {client.address.cep}/>
+                <FieldDetailCard title = "CEP" content = {formatCEP(client.address.cep)}/>
             </div>
             <div className='col5-466'>
                 <FieldDetailCard title = "Comlemento" content = {client.address.complement}/>

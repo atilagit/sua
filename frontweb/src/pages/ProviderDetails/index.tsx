@@ -2,6 +2,7 @@ import Button from "components/Button";
 import FieldDetailCard from "components/FieldDetailCard";
 import Footer from "components/Footer";
 import { Provider } from 'types/provider';
+import { formatCEP, formatCpfCnpj } from "util/formatters";
 
 import './styles.css';
 
@@ -9,7 +10,7 @@ const ProviderDetails = () => {
 
     const provider: Provider = {
         "id": 1,
-        "name": "Antônio Vieira",
+        "name": "Antônio Cleibisson Cleber e Kauan Vieira",
         "corporateName": "Toninho & Cia",
         "cpf": "20262197021",
         "cnpj": "37405765000111",
@@ -36,10 +37,10 @@ const ProviderDetails = () => {
                 <FieldDetailCard title = "Nome" content = {provider.name}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CNPJ" content = {provider.cnpj}/>
+                <FieldDetailCard title = "CNPJ" content = {formatCpfCnpj(provider.cnpj)}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CPF" content = {provider.cpf}/>
+                <FieldDetailCard title = "CPF" content = {formatCpfCnpj(provider.cpf)}/>
             </div>
             <div className='col3-274'>
                 <FieldDetailCard title = "Razão social" content = {provider.corporateName}/>
@@ -60,7 +61,7 @@ const ProviderDetails = () => {
                 <FieldDetailCard title = "Estado" content = {provider.address.state}/>
             </div>
             <div className='col2-178'>
-                <FieldDetailCard title = "CEP" content = {provider.address.cep}/>
+                <FieldDetailCard title = "CEP" content = {formatCEP(provider.address.cep)}/>
             </div>
             <div className='col5-466'>
                 <FieldDetailCard title = "Comlemento" content = {provider.address.complement}/>
