@@ -86,6 +86,7 @@ const EmployeeDetails = () => {
           </div>
           <div className='buttons-container'>
               <Button text='EDITAR'/>
+              <Button text='Resetar Senha'/>
               <Button text='INATIVAR'/>
           </div>
           <Footer/>
