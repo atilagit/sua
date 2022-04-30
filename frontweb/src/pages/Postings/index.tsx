@@ -1,5 +1,6 @@
 import PostingCard from 'components/PostingCard';
 import { Posting } from 'types/posting';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
@@ -30,16 +31,40 @@ const Postings = () => {
   return (
     <div className="page-container page-container-especific">
       <div className="title-content-container">
-        <h1>Filtros / Diárias</h1>
+        <h1>
+          <Link to="/">Início</Link> / <Link to="/postings"> Lançamentos </Link>
+        </h1>
       </div>
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
-      <PostingCard posting={posting} />
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
+      <Link to="postings/1">
+        <PostingCard posting={posting} />
+      </Link>
     </div>
   );
 };

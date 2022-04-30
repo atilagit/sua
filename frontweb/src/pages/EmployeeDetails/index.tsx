@@ -4,6 +4,8 @@ import Footer from "components/Footer";
 import { Employee } from "types/employee";
 import { formatCEP, formatCpfCnpj, formatDate } from "util/formatters";
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 const EmployeeDetails = () => {
@@ -44,7 +46,9 @@ const EmployeeDetails = () => {
     return (
         <div className="page-container page-container-especific">
           <div className="title-content-container">
-            <h1>Filtros / Funcionários / {employee.name}</h1>
+            <h1>
+                <Link to="/">Início</Link> / <Link to="/employees"> Funcionários </Link> / {employee.name}
+            </h1>
           </div>
           <div className='fields-container'>
             <div className='col5-466'>

@@ -1,5 +1,6 @@
 import ClientCard from 'components/ClientCard';
 import { Client } from 'types/client';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
@@ -27,16 +28,40 @@ const Clients = () => {
   return (
     <div className="page-container page-container-especific">
       <div className="title-content-container">
-        <h1>Filtros / Clientes</h1>
+        <h1>
+          <Link to="/">Início</Link> / <Link to="/clients"> Clientes </Link>
+        </h1>
       </div>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
-      <ClientCard client={client}/>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
+      <Link to="clients/1">
+        <ClientCard client={client}/>
+      </Link>
     </div>
   );
 };

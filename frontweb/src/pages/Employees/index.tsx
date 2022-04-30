@@ -1,6 +1,8 @@
 import EmployeeCard from 'components/EmployeeCard';
 import { Employee } from 'types/employee';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 const Employees = () => {
@@ -40,16 +42,40 @@ const Employees = () => {
   return (
     <div className="page-container page-container-especific">
       <div className="title-content-container">
-        <h1>Filtros / Funcionários</h1>
+        <h1>
+          <Link to="/">Início</Link> / <Link to="/employees"> Funcionários </Link>
+        </h1>
       </div>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
-      <EmployeeCard employee={employee}/>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
+      <Link to="employees/1">
+        <EmployeeCard employee={employee}/>
+      </Link>
     </div>
   );
 };

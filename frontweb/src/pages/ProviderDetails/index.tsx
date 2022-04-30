@@ -4,6 +4,8 @@ import Footer from "components/Footer";
 import { Provider } from 'types/provider';
 import { formatCEP, formatCpfCnpj } from "util/formatters";
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 const ProviderDetails = () => {
@@ -30,7 +32,9 @@ const ProviderDetails = () => {
     return (
         <div className="page-container page-container-especific">
           <div className="title-content-container">
-            <h1>Filtros / Fornecedores / {provider.name}</h1>
+            <h1>
+                <Link to="/">Início</Link> / <Link to="/providers"> Fornecedores </Link> / {provider.name}
+            </h1>
           </div>
           <div className='fields-container'>
             <div className='col5-466'>

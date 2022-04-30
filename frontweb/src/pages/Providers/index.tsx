@@ -1,6 +1,8 @@
 import ProviderCard from 'components/ProviderCard';
 import { Provider } from 'types/provider';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 const Providers = () => {
@@ -27,16 +29,40 @@ const Providers = () => {
   return (
     <div className="page-container page-container-especific">
       <div className="title-content-container">
-        <h1>Filtros / Fornecedores</h1>
+      <h1>
+        <Link to="/">Início</Link> / <Link to="/providers"> Fornecedores </Link>
+      </h1>
       </div>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
-      <ProviderCard provider={provider}/>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
+      <Link to="/providers/1">
+        <ProviderCard provider={provider}/>
+      </Link>
     </div>
   );
 };

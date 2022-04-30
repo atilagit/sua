@@ -4,6 +4,8 @@ import Footer from 'components/Footer';
 import { Client } from 'types/client';
 import { formatCEP, formatCpfCnpj } from 'util/formatters';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 const ClientDetails = () => {
@@ -30,7 +32,9 @@ const ClientDetails = () => {
     return (
         <div className="page-container page-container-especific">
           <div className="title-content-container">
-            <h1>Filtros / Clientes / {client.contact}</h1>
+            <h1>
+                <Link to="/">Início</Link> / <Link to="/clients"> Clientes </Link> / {client.contact}
+            </h1>
           </div>
           <div className='fields-container'>
             <div className='col5-466'>
