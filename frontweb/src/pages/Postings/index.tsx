@@ -3,6 +3,7 @@ import { Posting } from 'types/posting';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import Pagination from 'components/Pagination';
 
 const Postings = () => {
 
@@ -65,6 +66,7 @@ const Postings = () => {
       <Link to="postings/1">
         <PostingCard posting={posting} />
       </Link>
+      <Pagination />
     </div>
   );
 };
