@@ -3,6 +3,7 @@ import { Client } from 'types/client';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import Pagination from 'components/Pagination';
 
 const Clients = () => {
   
@@ -62,6 +63,7 @@ const Clients = () => {
       <Link to="clients/1">
         <ClientCard client={client}/>
       </Link>
+      <Pagination />
     </div>
   );
 };

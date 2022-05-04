@@ -4,6 +4,7 @@ import { Employee } from 'types/employee';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import Pagination from 'components/Pagination';
 
 const Employees = () => {
 
@@ -76,6 +77,7 @@ const Employees = () => {
       <Link to="employees/1">
         <EmployeeCard employee={employee}/>
       </Link>
+      <Pagination />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Provider } from 'types/provider';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import Pagination from 'components/Pagination';
 
 const Providers = () => {
 
@@ -63,6 +64,7 @@ const Providers = () => {
       <Link to="/providers/1">
         <ProviderCard provider={provider}/>
       </Link>
+      <Pagination />
     </div>
   );
 };
