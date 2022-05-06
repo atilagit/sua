@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.atmat.sua.dto.ProviderDTO;
 import com.atmat.sua.dto.SimplifiedProviderDTO;
 import com.atmat.sua.entities.Provider;
-import com.atmat.sua.entities.repositories.ProviderRepository;
+import com.atmat.sua.repositories.ProviderRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
 import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 

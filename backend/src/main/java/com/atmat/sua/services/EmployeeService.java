@@ -9,11 +9,16 @@ import java.util.Set;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +27,15 @@ import com.atmat.sua.dto.EmployeeDTO;
 import com.atmat.sua.dto.SimplifiedEmployeeDTO;
 import com.atmat.sua.entities.Employee;
 import com.atmat.sua.entities.Role;
-import com.atmat.sua.entities.repositories.EmployeeRepository;
-import com.atmat.sua.entities.repositories.RoleRepository;
+import com.atmat.sua.repositories.EmployeeRepository;
+import com.atmat.sua.repositories.RoleRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
 import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class EmployeeService {
+public class EmployeeService implements UserDetailsService{
+	
+	private static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -112,5 +119,16 @@ public class EmployeeService {
 			dto.getRoles().forEach(x -> roles.add(roleRepository.getById(x.getId())));
 			entity.setRoles(roles);
 		}
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Employee user = repository.findByLogin(username);
+		if(user == null) {
+			logger.error("loadUserByUsername() - User not found: " + username);
+			throw new UsernameNotFoundException("Login not found");
+		}
+		logger.info("loadUserByUsername() - User found: " + username);
+		return user;
 	}
 }

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import com.atmat.sua.dto.EmployeeDTO;
 import com.atmat.sua.entities.Employee;
-import com.atmat.sua.entities.repositories.EmployeeRepository;
+import com.atmat.sua.repositories.EmployeeRepository;
 import com.atmat.sua.resources.exceptions.FieldMessage;
 
 public class EmployeeValidator implements ConstraintValidator<EmployeeValid, EmployeeDTO> {

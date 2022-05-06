@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atmat.sua.dto.PostingDTO;
 import com.atmat.sua.entities.Posting;
-import com.atmat.sua.entities.repositories.ClientRepository;
-import com.atmat.sua.entities.repositories.EmployeeRepository;
-import com.atmat.sua.entities.repositories.PostingRepository;
-import com.atmat.sua.entities.repositories.ProviderRepository;
+import com.atmat.sua.repositories.ClientRepository;
+import com.atmat.sua.repositories.EmployeeRepository;
+import com.atmat.sua.repositories.PostingRepository;
+import com.atmat.sua.repositories.ProviderRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
 import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 

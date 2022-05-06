@@ -13,7 +13,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import com.atmat.sua.dto.ClientDTO;
 import com.atmat.sua.entities.Client;
-import com.atmat.sua.entities.repositories.ClientRepository;
+import com.atmat.sua.repositories.ClientRepository;
 import com.atmat.sua.resources.exceptions.FieldMessage;
 
 public class ClientValidator implements ConstraintValidator<ClientValid, ClientDTO> {

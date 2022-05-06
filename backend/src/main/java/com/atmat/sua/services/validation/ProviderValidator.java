@@ -13,7 +13,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import com.atmat.sua.dto.ProviderDTO;
 import com.atmat.sua.entities.Provider;
-import com.atmat.sua.entities.repositories.ProviderRepository;
+import com.atmat.sua.repositories.ProviderRepository;
 import com.atmat.sua.resources.exceptions.FieldMessage;
 
 public class ProviderValidator implements ConstraintValidator<ProviderValid, ProviderDTO> {

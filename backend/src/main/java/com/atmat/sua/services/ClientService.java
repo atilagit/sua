@@ -20,8 +20,8 @@ import com.atmat.sua.dto.ClientDTO;
 import com.atmat.sua.dto.SimplifiedClientDTO;
 import com.atmat.sua.entities.Address;
 import com.atmat.sua.entities.Client;
-import com.atmat.sua.entities.repositories.AddressRepository;
-import com.atmat.sua.entities.repositories.ClientRepository;
+import com.atmat.sua.repositories.AddressRepository;
+import com.atmat.sua.repositories.ClientRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
 import com.atmat.sua.services.exceptions.ResourceNotFoundException;
 
