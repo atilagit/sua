@@ -23,8 +23,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private JwtTokenStore tokenStore;
 	
 	private static final String[] PUBLIC_ROUTES = {"/oauth/token", "/h2-console/**"};
-	private static final String[] BASIC_ROUTES = {"/employees/**"};
-	private static final String[] OPERATOR_OR_ADMIN_ROUTES = {"/clients/**", "/providers/**", "/postings/**"};
+	private static final String[] BASIC_ROUTES = {"/employees/**", "/postings/**"};
+	private static final String[] OPERATOR_OR_ADMIN_ROUTES = {"/clients/**", "/providers/**"};
 	private static final String BASIC = "BASIC";
 	private static final String OPERATOR = "OPERATOR";
 	private static final String ADMIN = "ADMIN";
@@ -46,8 +46,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(PUBLIC_ROUTES).permitAll()
 		.antMatchers(HttpMethod.GET, BASIC_ROUTES).hasAnyRole(BASIC, OPERATOR, ADMIN)
-		.antMatchers(HttpMethod.POST, BASIC_ROUTES).hasAnyRole(OPERATOR, ADMIN)
-		.antMatchers(HttpMethod.PUT, BASIC_ROUTES).hasAnyRole(OPERATOR, ADMIN)
 		.antMatchers(BASIC_ROUTES).hasRole(ADMIN)
 		.antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN_ROUTES).hasAnyRole(OPERATOR, ADMIN)
 		.antMatchers(OPERATOR_OR_ADMIN_ROUTES).hasRole(ADMIN)
