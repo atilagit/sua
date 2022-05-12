@@ -61,7 +61,7 @@ public class PostingService {
 	@Transactional
 	public PostingDTO update(Long id, PostingDTO dto) {
 		try {
-			Posting entity = repository.getById(id);
+			Posting entity = repository.getOne(id);
 			updateEntityWithDtoData(entity, dto);
 			entity = repository.save(entity);
 			return new PostingDTO(entity);
@@ -91,12 +91,12 @@ public class PostingService {
 	}
 	
 	private void copyEmployeeAndClientAndProviderFromDtoToEntity(PostingDTO dto, Posting entity) {
-		entity.setEmployee(employeeRepository.getById(dto.getEmployee().getId()));
+		entity.setEmployee(employeeRepository.getOne(dto.getEmployee().getId()));
 		if(dto.getClient() != null) {
-			entity.setClient(clientRepository.getById(dto.getClient().getId()));
+			entity.setClient(clientRepository.getOne(dto.getClient().getId()));
 		}
 		if(dto.getProvider() != null) {
-			entity.setProvider(providerRepository.getById(dto.getProvider().getId()));
+			entity.setProvider(providerRepository.getOne(dto.getProvider().getId()));
 		}
 	}
 }

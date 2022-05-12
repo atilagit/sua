@@ -64,7 +64,7 @@ public class ProviderService {
 	@Transactional
 	public ProviderDTO update(Long id, ProviderDTO dto) {
 		try {
-			Provider entity = repository.getById(id);
+			Provider entity = repository.getOne(id);
 			updateEntityWithDtoData(entity, dto);
 			entity = repository.save(entity);
 			return new ProviderDTO(entity);

@@ -85,7 +85,7 @@ public class EmployeeService implements UserDetailsService{
 	@Transactional
 	public EmployeeDTO update(Long id, EmployeeDTO dto) {
 		try {
-			Employee entity = repository.getById(id);
+			Employee entity = repository.getOne(id);
 			updateEntityWithDtoData(entity, dto);
 			entity = repository.save(entity);
 			return new EmployeeDTO(entity);
@@ -116,7 +116,7 @@ public class EmployeeService implements UserDetailsService{
 	private void copyRolesFromDtoToEntity(Employee entity, EmployeeDTO dto) {
 		if(dto.getRoles() != null) {
 			Set<Role> roles = new HashSet<>();
-			dto.getRoles().forEach(x -> roles.add(roleRepository.getById(x.getId())));
+			dto.getRoles().forEach(x -> roles.add(roleRepository.getOne(x.getId())));
 			entity.setRoles(roles);
 		}
 	}
