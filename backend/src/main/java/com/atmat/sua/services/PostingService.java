@@ -40,12 +40,12 @@ public class PostingService {
 	private ProviderRepository providerRepository;
 
 	@Transactional(readOnly = true)
-	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, PageRequest pageRequest){
+	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, PageRequest pageRequest){
 		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
 		Client client = (clientId != 0) ? clientRepository.getOne(clientId) : null;
 		Provider provider = (providerId != 0) ? providerRepository.getOne(providerId) : null;
 		
-		Page<Posting> list = repository.find(employee, client, provider, pageRequest);
+		Page<Posting> list = repository.find(employee, client, provider, resolved, pageRequest);
 		return list.map(x -> new PostingDTO(x));
 	}
 

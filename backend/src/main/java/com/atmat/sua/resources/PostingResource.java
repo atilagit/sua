@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,7 @@ public class PostingResource {
 			@RequestParam(value = "employeeId", defaultValue = "0") Long employeeId,
 			@RequestParam(value = "clientId", defaultValue = "0") Long clientId,
 			@RequestParam(value = "providerId", defaultValue = "0") Long providerId,
+			@Param(value = "resolved") Boolean resolved,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "20") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
@@ -43,7 +45,7 @@ public class PostingResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 				
-		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, pageRequest);
+		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, resolved, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	
