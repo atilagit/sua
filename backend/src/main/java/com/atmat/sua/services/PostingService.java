@@ -1,5 +1,6 @@
 package com.atmat.sua.services;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -40,12 +41,14 @@ public class PostingService {
 	private ProviderRepository providerRepository;
 
 	@Transactional(readOnly = true)
-	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, PageRequest pageRequest){
+	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, String from, String to, PageRequest pageRequest){
 		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
 		Client client = (clientId != 0) ? clientRepository.getOne(clientId) : null;
 		Provider provider = (providerId != 0) ? providerRepository.getOne(providerId) : null;
+		LocalDate de = (from != null) ? LocalDate.parse(from) : null;
+		LocalDate ate = (to != null) ? LocalDate.parse(to) : null;
 		
-		Page<Posting> list = repository.find(employee, client, provider, resolved, pageRequest);
+		Page<Posting> list = repository.find(employee, client, provider, resolved, de, ate, pageRequest);
 		return list.map(x -> new PostingDTO(x));
 	}
 
