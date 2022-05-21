@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atmat.sua.dto.PostingDTO;
+import com.atmat.sua.entities.Employee;
 import com.atmat.sua.entities.Posting;
 import com.atmat.sua.repositories.ClientRepository;
 import com.atmat.sua.repositories.EmployeeRepository;
@@ -37,8 +38,9 @@ public class PostingService {
 	private ProviderRepository providerRepository;
 
 	@Transactional(readOnly = true)
-	public Page<PostingDTO> findAllPaged(PageRequest pageRequest){
-		Page<Posting> list = repository.findAll(pageRequest);
+	public Page<PostingDTO> findAllPaged(Long employeeId, PageRequest pageRequest){
+		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
+		Page<Posting> list = repository.find(employee, pageRequest);
 		return list.map(x -> new PostingDTO(x));
 	}
 
