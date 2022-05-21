@@ -33,6 +33,8 @@ public class PostingResource {
 	@GetMapping
 	public ResponseEntity<Page<PostingDTO>> findAll(
 			@RequestParam(value = "employeeId", defaultValue = "0") Long employeeId,
+			@RequestParam(value = "clientId", defaultValue = "0") Long clientId,
+			@RequestParam(value = "providerId", defaultValue = "0") Long providerId,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "20") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
@@ -41,7 +43,7 @@ public class PostingResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 				
-		Page<PostingDTO> list = service.findAllPaged(employeeId, pageRequest);
+		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	
