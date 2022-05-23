@@ -21,6 +21,6 @@ public interface PostingRepository extends JpaRepository<Posting, Long>{
 			+ "(:client IS NULL OR :client = obj.client) AND "
 			+ "(:provider IS NULL OR :provider = obj.provider) AND "
 			+ "(:resolved IS NULL OR :resolved = obj.resolved) AND "
-			+ "(:de IS NULL OR obj.date BETWEEN :de AND :ate)")
+			+ "(cast(:de as date) IS NULL OR obj.date BETWEEN :de AND :ate)")
 	Page<Posting> find(Employee employee, Client client, Provider provider, Boolean resolved, LocalDate de, LocalDate ate, Pageable pageable);
 }
