@@ -39,6 +39,7 @@ public class PostingResource {
 			@Param(value = "resolved") Boolean resolved,
 			@Param(value = "from") String from,
 			@Param(value = "to") String to,
+			@RequestParam(value = "exclusionList", defaultValue = "0") long[] exclusionList,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "20") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
@@ -47,7 +48,7 @@ public class PostingResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 				
-		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, resolved, from, to, pageRequest);
+		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, resolved, from, to, exclusionList, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	

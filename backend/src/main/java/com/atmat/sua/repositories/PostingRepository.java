@@ -1,6 +1,7 @@
 package com.atmat.sua.repositories;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ public interface PostingRepository extends JpaRepository<Posting, Long>{
 			+ "(:provider IS NULL OR :provider = obj.provider) AND "
 			+ "(:resolved IS NULL OR :resolved = obj.resolved) AND "
 			+ "(cast(:de as date) IS NULL OR obj.date >= :de) AND "
-			+ "(cast(:ate as date) IS NULL OR obj.date <= :ate)")
-	Page<Posting> find(Employee employee, Client client, Provider provider, Boolean resolved, LocalDate de, LocalDate ate, Pageable pageable);
+			+ "(cast(:ate as date) IS NULL OR obj.date <= :ate) AND "
+			+ "(obj.id not in :exclusionList)")
+	Page<Posting> find(Employee employee, Client client, Provider provider, Boolean resolved, LocalDate de, LocalDate ate, List<Long> exclusionList, Pageable pageable);
 }

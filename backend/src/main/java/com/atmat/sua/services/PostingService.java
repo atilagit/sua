@@ -1,7 +1,11 @@
 package com.atmat.sua.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -41,15 +45,17 @@ public class PostingService {
 	private ProviderRepository providerRepository;
 
 	@Transactional(readOnly = true)
-	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, String from, String to, PageRequest pageRequest){
+	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, 
+			String from, String to, long[] exclusionList, PageRequest pageRequest){
 		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
 		Client client = (clientId != 0) ? clientRepository.getOne(clientId) : null;
 		Provider provider = (providerId != 0) ? providerRepository.getOne(providerId) : null;
 		LocalDate de = (from != null) ? LocalDate.parse(from) : null;
 		LocalDate ate = (to != null) ? LocalDate.parse(to) : null;
+		List<Long> listOfId = (ArrayList<Long>) Arrays.stream(exclusionList).boxed().collect(Collectors.toList());
 		
-		Page<Posting> list = repository.find(employee, client, provider, resolved, de, ate, pageRequest);
-		return list.map(x -> new PostingDTO(x));
+		Page<Posting> page = repository.find(employee, client, provider, resolved, de, ate, listOfId, pageRequest);
+		return page.map(x -> new PostingDTO(x));
 	}
 
 	@Transactional(readOnly = true)
