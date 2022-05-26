@@ -37,25 +37,25 @@ const PostingDetails = () => {
       </div>
       <div className='fields-container'>
         <div className='col4-370'>
-          {posting && <FieldDetailCard title="Funcionário" content={posting?.employee.name} />}
+          {posting && <FieldDetailCard title="Funcionário" content={posting.employee.name} />}
         </div>
         <div className='col2-178'>
-          {posting && <FieldDetailCard title="Data" content={formatDate(posting?.date)} />}
+          {posting && <FieldDetailCard title="Data" content={formatDate(posting.date)} />}
         </div>
         <div className='col2-178'>
           <FieldDetailCard title="Quantidade" content={posting?.quantity + " " + posting?.unit} />
         </div>
         <div className='col2-178'>
-          {posting && <FieldDetailCard title="Preço" content={formatPrice(posting?.price)} />}
+          {posting && <FieldDetailCard title="Preço" content={formatPrice(posting.price)} />}
         </div>
         <div className='col2-178'>
-          {posting && <FieldDetailCard title="Total" content={formatPrice(posting?.quantity * posting?.price)} />}
+          {posting && <FieldDetailCard title="Total" content={formatPrice(posting.quantity * posting.price)} />}
         </div>
         <div className='col4-370'>
-          {posting && <FieldDetailCard title="Fornecedor" content={(posting?.provider != null) ? posting?.provider.name : "-"} />}
+          {posting && <FieldDetailCard title="Fornecedor" content={(posting.provider != null) ? posting.provider.name : "-"} />}
         </div>
         <div className='col4-370'>
-          {posting && <FieldDetailCard title="Cliente" content={(posting?.client != null) ? posting?.client.contact : "-"} />}
+          {posting && <FieldDetailCard title="Cliente" content={(posting.client != null) ? posting.client.contact : "-"} />}
         </div>
         <div className='col4-370'>
           <FieldDetailCard title="Status" content={posting?.resolved ? "RESOLVIDO" : "PENDENTE"} />
