@@ -44,7 +44,10 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 	private String buildSimplifiedContactName(String name) {
 		List<String> words = Arrays.asList(name.split(" "));
 		if (words.size() > 1) {
-			return words.get(0) + " " + words.get(words.size() - 1);
+			return words.get(0) 
+					+ " " 
+					+ words.get(words.size() - 1).charAt(0) 
+					+ ".";
 		} else {
 			return words.get(0);
 		}
