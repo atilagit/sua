@@ -28,7 +28,7 @@ const ClientCard = ( {client} : Props) => {
                     <p>{client.corporateName}</p>
                 </div>
                 <div className="endereco-pj">
-                    <p>{client.address.street}, {client.address.number}, {client.address.neighborhood}, {client.address.city}, {client.address.state}, {client.address.cep}</p>
+                    {client.address && <p>{client.address.street}, {client.address.number}, {client.address.neighborhood}, {client.address.city}, {client.address.state}, {client.address.cep}</p>}
                 </div>
             </div>
         </div>
