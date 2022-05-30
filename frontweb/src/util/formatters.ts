@@ -11,11 +11,15 @@ export const formatPrice = (price: number) => {
 }
 
 export const formatCpfCnpj = (texto: string) => {
-    texto = texto.replace(/(\.|\/|-)/g,"");
-    if (texto.length <= 11) {
-        return texto.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"$1.$2.$3-$4");
+    if (texto != null) {
+        texto = texto.replace(/(\.|\/|-)/g, "");
+        if (texto.length <= 11) {
+            return texto.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
+        } else {
+            return texto.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
+        }
     } else {
-        return texto.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,"$1.$2.$3/$4-$5");
+        return "";
     }
 }
 

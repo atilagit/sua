@@ -28,7 +28,7 @@ const ProviderCard = ( {provider} : Props) => {
                     <p>{provider.corporateName}</p>
                 </div>
                 <div className="endereco-pj">
-                    <p>{provider.address.street}, {provider.address.number}, {provider.address.neighborhood}, {provider.address.city}, {provider.address.state}, {provider.address.cep}</p>
+                    {provider.address && <p>{provider.address.street}, {provider.address.number}, {provider.address.neighborhood}, {provider.address.city}, {provider.address.state}, {provider.address.cep}</p>}
                 </div>
             </div>
         </div>
