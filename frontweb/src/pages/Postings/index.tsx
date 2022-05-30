@@ -1,34 +1,36 @@
 import PostingCard from 'components/PostingCard';
 import { Posting } from 'types/posting';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Pagination from 'components/Pagination';
+import { SpringPage } from 'types/vendor/spring';
+import { AxiosParams } from 'types/vendor/axios';
+import { BASE_URL } from 'util/requests';
+import axios from 'axios';
 
 import './styles.css';
-import Pagination from 'components/Pagination';
 
 const Postings = () => {
 
-  const posting: Posting = {
-    "id": 1,
-    "date": "2021-07-24",
-    "unit": "KG",
-    "quantity": 120.52,
-    "price": 0.50,
-    "note": "Um exemplo de observaçao legal e de tamanho razoavelmente grand...",
-    "salaryAdvance": false,
-    "resolved": true,
-    "employee": {
-      "id": 4,
-      "name": "Marianalva Vieira"
-    },
-    "client": {
-      "id": 1,
-      "contact": "Jonielson"
-    },
-    "provider": {
-      "id": 1,
-      "name": "Antônio"
+  const[page, setPage] = useState<SpringPage<Posting>>();
+  
+  useEffect(() => {
+
+    const params: AxiosParams = {
+      method: 'GET',
+      url: `${BASE_URL}/postings`,
+      params: {
+        page: 0,
+        size: 50
+      }
     }
-  }
+
+    axios(params)
+      .then(response => {
+        setPage(response.data);
+      });
+  }, []);
+
   return (
     <div className="page-container page-container-especific">
       <div className="title-content-container">
@@ -36,36 +38,13 @@ const Postings = () => {
           <Link to="/">Início</Link> / <Link to="/postings"> Lançamentos </Link>
         </h1>
       </div>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
-      <Link to="postings/1">
-        <PostingCard posting={posting} />
-      </Link>
+
+      {page?.content.map(posting => (
+        <Link to="postings/1" key={posting.id}>
+          <PostingCard posting={posting} />
+        </Link>
+      ))}
+
       <Pagination />
     </div>
   );

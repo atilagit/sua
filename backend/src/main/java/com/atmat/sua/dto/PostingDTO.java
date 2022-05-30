@@ -64,8 +64,8 @@ public class PostingDTO implements Serializable {
 		salaryAdvance = entity.getSalaryAdvance();
 		resolved = (entity.getResolved() == null)? false : entity.getResolved();
 		employee = new SimplifiedEmployeeDTO(entity.getEmployee());
-		if (entity.getClient() != null) client = new SimplifiedClientDTO(entity.getClient());
-		if (entity.getProvider() != null) provider = new SimplifiedProviderDTO(entity.getProvider());
+		client = (entity.getClient() != null) ? new SimplifiedClientDTO(entity.getClient()) : new SimplifiedClientDTO();
+		provider = (entity.getProvider() != null) ? new SimplifiedProviderDTO(entity.getProvider()) : new SimplifiedProviderDTO();
 	}
 
 	public Long getId() {
