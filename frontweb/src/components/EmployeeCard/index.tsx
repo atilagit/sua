@@ -28,7 +28,7 @@ const EmployeeCard = ({employee} : Props) => {
                     <p>{employee.roles.length > 2? "Usuário Administrador" : employee.roles.length > 1? "Usuário Operador" : "Usuário Básico"}</p>
                 </div>
                 <div className="endereco-pf">
-                    <p>{employee.address.street}, {employee.address.number}, {employee.address.neighborhood}, {employee.address.city}, {employee.address.state}, {employee.address.cep}</p>
+                    {employee.address && <p>{employee.address.street}, {employee.address.number}, {employee.address.neighborhood}, {employee.address.city}, {employee.address.state}, {employee.address.cep}</p>}
                 </div>
             </div>
         </div>
