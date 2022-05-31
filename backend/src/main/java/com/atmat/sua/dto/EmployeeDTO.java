@@ -20,6 +20,7 @@ public class EmployeeDTO implements Serializable {
 	
 	@NotBlank(message = "O campo não pode ser nulo ou vazio")
 	private String name;
+	private String abbreviatedName;
 	
 	@NotNull(message = "O campo não pode ser nulo")
 	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
@@ -48,6 +49,7 @@ public class EmployeeDTO implements Serializable {
 	public EmployeeDTO(Employee entity) {
 		id = entity.getId();
 		name = entity.getName();
+		this.setAbbreviatedName(getAbbreviatedNameFromName(entity.getName()));
 		cpf = entity.getCpf();
 		admissionDate = entity.getAdmissionDate();
 		login = entity.getLogin();
@@ -114,5 +116,22 @@ public class EmployeeDTO implements Serializable {
 
 	public void setAddress(AddressDTO address) {
 		this.address = address;
+	}
+	
+	public String getAbbreviatedName() {
+		return abbreviatedName;
+	}
+	
+	public void setAbbreviatedName(String abbreviatedName) {
+		this.abbreviatedName = abbreviatedName;
+	}
+	
+	private String getAbbreviatedNameFromName(String name) {
+		String[] fullName = name.trim().split(" ");
+		if(fullName.length > 1) {
+			return fullName[0] + " " + fullName[fullName.length - 1];
+		}else {
+			return name;
+		}
 	}
 }

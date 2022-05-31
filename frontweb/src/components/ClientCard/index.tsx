@@ -11,7 +11,7 @@ const ClientCard = ( {client} : Props) => {
         <div className="base-card pj-card">
             <div className="pj-card-line1">
                 <div className="name-pj">
-                    <h2>{client.contact}</h2>
+                    <h2>{client.abbreviatedName}</h2>
                 </div>
                 <div className="cnpj-pj">
                     <p>CNPJ: {formatCpfCnpj(client.cnpj)}</p>

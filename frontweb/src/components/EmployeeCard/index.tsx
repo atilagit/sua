@@ -11,7 +11,7 @@ const EmployeeCard = ({employee} : Props) => {
         <div className="base-card pj-card">
             <div className="pf-card-line1">
                 <div className="name-pf">
-                    <h2>{employee.name}</h2>
+                    <h2>{employee.abbreviatedName}</h2>
                 </div>
                 <div className="admissao-pf">
                     <p>Admissão: {formatDate(employee.admissionDate)}</p>

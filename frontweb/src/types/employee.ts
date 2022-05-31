@@ -4,6 +4,7 @@ import { Roles } from "./roles";
 export type Employee = {
     id: number,
     name: string,
+    abbreviatedName: string;
     cpf: string,
     admissionDate: string,
     login: string,

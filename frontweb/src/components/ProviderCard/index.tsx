@@ -11,7 +11,7 @@ const ProviderCard = ( {provider} : Props) => {
         <div className="base-card pj-card">
             <div className="pj-card-line1">
                 <div className="name-pj">
-                    <h2>{provider.name}</h2>
+                    <h2>{provider.abbreviatedName}</h2>
                 </div>
                 <div className="cnpj-pj">
                     <p>CNPJ: {formatCpfCnpj(provider.cnpj)}</p>
