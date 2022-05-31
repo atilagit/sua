@@ -72,7 +72,7 @@ public class Employee implements UserDetails, Serializable {
 	}
 
 	public Employee(Long id, String name, String cpf, LocalDate admissionDate, String login, String password,
-			Boolean active, Set<Role> roles) {
+			Boolean active, Set<Role> roles, Address address) {
 		super();
 		this.id = id;
 		this.name = name.trim();
@@ -82,6 +82,7 @@ public class Employee implements UserDetails, Serializable {
 		this.password = password;
 		this.active = active;
 		this.roles = roles;
+		this.address = address;
 	}
 
 	public Long getId() {

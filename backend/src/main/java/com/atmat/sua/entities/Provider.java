@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -36,6 +38,10 @@ public class Provider implements Serializable {
 	@OneToMany(mappedBy = "provider")
 	List<Posting> postings = new ArrayList<>();
 	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant createdAt;
 	
@@ -45,7 +51,7 @@ public class Provider implements Serializable {
 	public Provider() {
 	}
 
-	public Provider(Long id, String name, String cpf, String cnpj, Boolean active, List<Posting> postings) {
+	public Provider(Long id, String name, String cpf, String cnpj, Boolean active, List<Posting> postings, Address address) {
 		super();
 		this.id = id;
 		this.name = name.trim();
@@ -53,6 +59,7 @@ public class Provider implements Serializable {
 		this.cnpj = cnpj;
 		this.active = active;
 		this.postings = postings;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -101,6 +108,14 @@ public class Provider implements Serializable {
 
 	public void setPostings(List<Posting> postings) {
 		this.postings = postings;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Instant getCreatedAt() {

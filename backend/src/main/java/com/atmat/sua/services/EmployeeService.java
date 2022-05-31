@@ -82,7 +82,7 @@ public class EmployeeService implements UserDetailsService{
 	public EmployeeDTO insert(EmployeeDTO dto) {
 		String initialLogin = dto.getCpf();
 		String initialPassword = passwordEncoder.encode(dto.getCpf().substring(0, 6));
-		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null);
+		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null, null);
 		copyRolesFromDtoToEntity(entity, dto);
 		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
