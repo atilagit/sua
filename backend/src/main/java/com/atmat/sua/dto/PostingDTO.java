@@ -18,7 +18,7 @@ public class PostingDTO implements Serializable {
 	private LocalDate date;
 	
 	@NotNull
-	private UnitType unit;
+	private String unit;
 	
 	@NotNull
 	private Double quantity;
@@ -39,7 +39,7 @@ public class PostingDTO implements Serializable {
 	public PostingDTO() {
 	}
 
-	public PostingDTO(Long id, LocalDate date, UnitType unit, Double quantity, BigDecimal price, String note,
+	public PostingDTO(Long id, LocalDate date, String unit, Double quantity, BigDecimal price, String note,
 			Boolean salaryAdvance, Boolean resolved, SimplifiedEmployeeDTO employee, SimplifiedClientDTO client, SimplifiedProviderDTO provider) {
 		this.id = id;
 		this.date = date;
@@ -57,7 +57,7 @@ public class PostingDTO implements Serializable {
 	public PostingDTO(Posting entity) {
 		id = entity.getId();
 		date = entity.getDate();
-		unit = entity.getUnit();
+		unit = entity.getUnit().getDescription();
 		quantity = entity.getQuantity();
 		price = entity.getPrice();
 		note = entity.getNote();
@@ -84,11 +84,11 @@ public class PostingDTO implements Serializable {
 		this.date = date;
 	}
 
-	public UnitType getUnit() {
+	public String getUnit() {
 		return unit;
 	}
 
-	public void setUnit(UnitType unit) {
+	public void setUnit(String unit) {
 		this.unit = unit;
 	}
 

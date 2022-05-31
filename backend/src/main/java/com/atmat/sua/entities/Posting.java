@@ -24,7 +24,7 @@ public class Posting implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate date;
-	private UnitType unit = UnitType.UNIT;
+	private UnitType unit;
 	private Double quantity;
 	private BigDecimal price;
 	private String note;

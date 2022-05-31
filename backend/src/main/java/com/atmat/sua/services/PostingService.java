@@ -22,6 +22,7 @@ import com.atmat.sua.entities.Client;
 import com.atmat.sua.entities.Employee;
 import com.atmat.sua.entities.Posting;
 import com.atmat.sua.entities.Provider;
+import com.atmat.sua.entities.enums.UnitType;
 import com.atmat.sua.repositories.ClientRepository;
 import com.atmat.sua.repositories.EmployeeRepository;
 import com.atmat.sua.repositories.PostingRepository;
@@ -67,7 +68,7 @@ public class PostingService {
 
 	@Transactional
 	public PostingDTO insert(PostingDTO dto) {
-		Posting entity = new Posting(null, dto.getDate(), dto.getUnit(), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), dto.getResolved());
+		Posting entity = new Posting(null, dto.getDate(), UnitType.valueOf(dto.getUnit()), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), dto.getResolved());
 		copyEmployeeAndClientAndProviderFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new PostingDTO(entity);
@@ -102,7 +103,7 @@ public class PostingService {
 		entity.setPrice(dto.getPrice());
 		entity.setQuantity(dto.getQuantity());
 		entity.setSalaryAdvance(dto.getSalaryAdvance());
-		entity.setUnit(dto.getUnit());
+		entity.setUnit(UnitType.valueOf(dto.getUnit()));
 		copyEmployeeAndClientAndProviderFromDtoToEntity(dto, entity);
 	}
 	
