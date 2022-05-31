@@ -38,14 +38,18 @@ public class ClientValidator implements ConstraintValidator<ClientValid, ClientD
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-		Client clientWithCpf = clientRepository.findByCpf(dto.getCpf());
-		if(clientWithCpf != null && clientId != clientWithCpf.getId()) {
-			list.add(new FieldMessage("cpf", "Já existe no banco de dados"));
+		if (dto.getCpf() != null && dto.getCpf().trim() != "") {
+			Client clientWithCpf = clientRepository.findByCpf(dto.getCpf());
+			if(clientWithCpf != null && clientId != clientWithCpf.getId()) {
+				list.add(new FieldMessage("cpf", "Já existe no banco de dados"));
+			}
 		}
 		
-		Client clientWithCnpj = clientRepository.findByCnpj(dto.getCnpj());
-		if(clientWithCnpj != null && clientId != clientWithCnpj.getId()) {
-			list.add(new FieldMessage("cnpj", "Já existe no banco de dados"));
+		if (dto.getCnpj() != null && dto.getCnpj().trim() != "") {
+			Client clientWithCnpj = clientRepository.findByCnpj(dto.getCnpj());
+			if(clientWithCnpj != null && clientId != clientWithCnpj.getId()) {
+				list.add(new FieldMessage("cnpj", "Já existe no banco de dados"));
+			}
 		}
 		
 		for (FieldMessage e : list) {

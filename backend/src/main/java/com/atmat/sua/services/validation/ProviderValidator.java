@@ -38,14 +38,18 @@ public class ProviderValidator implements ConstraintValidator<ProviderValid, Pro
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-		Provider providerWithCpf = providerRepository.findByCpf(dto.getCpf());
-		if(providerWithCpf != null && providerId != providerWithCpf.getId()) {
-			list.add(new FieldMessage("cpf", "Já existe no banco de dados"));
+		if (dto.getCpf() != null && dto.getCpf().trim() != "") {
+			Provider providerWithCpf = providerRepository.findByCpf(dto.getCpf());
+			if (providerWithCpf != null && providerId != providerWithCpf.getId()) {
+				list.add(new FieldMessage("cpf", "Já existe no banco de dados"));
+			}
 		}
-		
-		Provider providerWithCnpj = providerRepository.findByCnpj(dto.getCnpj());
-		if(providerWithCnpj != null && providerId != providerWithCnpj.getId()) {
-			list.add(new FieldMessage("cnpj", "Já existe no banco de dados"));
+
+		if (dto.getCnpj() != null && dto.getCnpj().trim() != "") {
+			Provider providerWithCnpj = providerRepository.findByCnpj(dto.getCnpj());
+			if(providerWithCnpj != null && providerId != providerWithCnpj.getId()) {
+				list.add(new FieldMessage("cnpj", "Já existe no banco de dados"));
+			}
 		}
 		
 		for (FieldMessage e : list) {

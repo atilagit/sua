@@ -3,7 +3,6 @@ package com.atmat.sua.dto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import com.atmat.sua.entities.Provider;
 import com.atmat.sua.services.validation.ProviderValid;
@@ -17,11 +16,7 @@ public class ProviderDTO implements Serializable {
 	@NotBlank(message = "O campo não pode ser nulo ou vazio")
 	private String name;
 	private String corporateName;
-	
-	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
 	private String cpf;
-	
-	@Size(min = 14, max = 14, message = "Quantidade de dígitos inválida")
 	private String cnpj;
 	private Boolean active;
 	private AddressDTO address;
