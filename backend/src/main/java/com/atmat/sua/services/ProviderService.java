@@ -62,7 +62,7 @@ public class ProviderService {
 
 	@Transactional
 	public ProviderDTO insert(ProviderDTO dto) {
-		Provider entity = new Provider(null, dto.getName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null, null);
+		Provider entity = new Provider(null, dto.getName(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null, null);
 		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ProviderDTO(entity);
@@ -93,6 +93,7 @@ public class ProviderService {
 	
 	private void updateEntityWithDtoData(Provider entity, ProviderDTO dto) {
 		entity.setName(dto.getName());
+		entity.setCorporateName(dto.getCorporateName());
 		entity.setCpf(dto.getCpf());
 		entity.setCnpj(dto.getCnpj());
 		if (entity.getAddress() == null && dto.getAddress() != null) {

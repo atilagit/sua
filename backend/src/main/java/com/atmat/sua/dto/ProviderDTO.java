@@ -16,6 +16,7 @@ public class ProviderDTO implements Serializable {
 	
 	@NotBlank(message = "O campo não pode ser nulo ou vazio")
 	private String name;
+	private String corporateName;
 	
 	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
 	private String cpf;
@@ -28,9 +29,10 @@ public class ProviderDTO implements Serializable {
 	public ProviderDTO() {
 	}
 
-	public ProviderDTO(Long id, String name, String cpf, String cnpj, Boolean active) {
+	public ProviderDTO(Long id, String name, String corporateName, String cpf, String cnpj, Boolean active) {
 		this.id = id;
 		this.name = name;
+		this.corporateName = corporateName;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.active = active;
@@ -39,6 +41,7 @@ public class ProviderDTO implements Serializable {
 	public ProviderDTO(Provider entity) {
 		this.id = entity.getId();
 		this.name = entity.getName();
+		this.corporateName = entity.getCorporateName();
 		this.cpf = entity.getCpf();
 		this.cnpj = entity.getCnpj();
 		this.active = entity.getActive();
@@ -59,6 +62,14 @@ public class ProviderDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCorporateName() {
+		return corporateName;
+	}
+
+	public void setCorporateName(String corporateName) {
+		this.corporateName = corporateName;
 	}
 
 	public String getCpf() {

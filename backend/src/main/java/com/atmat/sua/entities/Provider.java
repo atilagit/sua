@@ -27,6 +27,7 @@ public class Provider implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String corporateName;
 	
 	@Column(unique = true)
 	private String cpf;
@@ -51,10 +52,11 @@ public class Provider implements Serializable {
 	public Provider() {
 	}
 
-	public Provider(Long id, String name, String cpf, String cnpj, Boolean active, List<Posting> postings, Address address) {
+	public Provider(Long id, String name, String corporateName, String cpf, String cnpj, Boolean active, List<Posting> postings, Address address) {
 		super();
 		this.id = id;
 		this.name = name.trim();
+		this.corporateName = corporateName;
 		this.cpf = cpf;
 		this.cnpj = cnpj;
 		this.active = active;
@@ -76,6 +78,14 @@ public class Provider implements Serializable {
 
 	public void setName(String name) {
 		this.name = name.trim();
+	}
+	
+	public String getCorporateName() {
+		return corporateName;
+	}
+
+	public void setCorporateName(String corporateName) {
+		this.corporateName = corporateName;
 	}
 
 	public String getCpf() {
