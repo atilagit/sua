@@ -23,10 +23,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.atmat.sua.dto.AddressDTO;
 import com.atmat.sua.dto.EmployeeDTO;
 import com.atmat.sua.dto.SimplifiedEmployeeDTO;
+import com.atmat.sua.entities.Address;
 import com.atmat.sua.entities.Employee;
 import com.atmat.sua.entities.Role;
+import com.atmat.sua.repositories.AddressRepository;
 import com.atmat.sua.repositories.EmployeeRepository;
 import com.atmat.sua.repositories.RoleRepository;
 import com.atmat.sua.services.exceptions.DatabaseException;
@@ -45,6 +48,9 @@ public class EmployeeService implements UserDetailsService{
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 
 	@Transactional(readOnly = true)
 	public Page<EmployeeDTO> findAllPaged(PageRequest pageRequest){
@@ -78,6 +84,7 @@ public class EmployeeService implements UserDetailsService{
 		String initialPassword = passwordEncoder.encode(dto.getCpf().substring(0, 6));
 		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null);
 		copyRolesFromDtoToEntity(entity, dto);
+		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new EmployeeDTO(entity);
 	}
@@ -111,6 +118,14 @@ public class EmployeeService implements UserDetailsService{
 		entity.setCpf(dto.getCpf());
 		entity.setLogin((dto.getLogin() != null)? dto.getLogin() : dto.getCpf());
 		copyRolesFromDtoToEntity(entity, dto);
+		if (entity.getAddress() == null && dto.getAddress() != null) {
+			createAdrressFromDtoToEntity(dto, entity);
+		}
+		else if (entity.getAddress() != null && dto.getAddress() != null) {
+			copyAdrressFromDtoToEntity(dto.getAddress(), entity.getAddress());
+		}else {
+			entity.setAddress(null);
+		}
 	}
 	
 	private void copyRolesFromDtoToEntity(Employee entity, EmployeeDTO dto) {
@@ -119,6 +134,23 @@ public class EmployeeService implements UserDetailsService{
 			dto.getRoles().forEach(x -> roles.add(roleRepository.getOne(x.getId())));
 			entity.setRoles(roles);
 		}
+	}
+	
+	private void createAdrressFromDtoToEntity(EmployeeDTO dto, Employee entity) {
+		AddressDTO addressDto = dto.getAddress();
+		Address entityAdrress = new Address(null, addressDto.getStreet(), addressDto.getNumber(), addressDto.getNeighborhood(), addressDto.getComplement(), addressDto.getCity(), addressDto.getState(), addressDto.getCep(), null);
+		entityAdrress = addressRepository.save(entityAdrress);
+		entity.setAddress(entityAdrress);
+	}
+	
+	private void copyAdrressFromDtoToEntity(AddressDTO addressDto, Address address) {
+		address.setCep(addressDto.getCep());
+		address.setCity(addressDto.getCity());
+		address.setComplement(addressDto.getComplement());
+		address.setNeighborhood(addressDto.getNeighborhood());
+		address.setNumber(addressDto.getNumber());
+		address.setState(addressDto.getState());
+		address.setStreet(addressDto.getStreet());
 	}
 
 	@Override

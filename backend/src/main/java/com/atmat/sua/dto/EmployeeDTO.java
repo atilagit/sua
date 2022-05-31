@@ -31,6 +31,7 @@ public class EmployeeDTO implements Serializable {
 	private Boolean active;
 	
 	Set<RoleDTO> roles = new HashSet<>();
+	private AddressDTO address;
 
 	public EmployeeDTO() {
 	}
@@ -52,6 +53,7 @@ public class EmployeeDTO implements Serializable {
 		login = entity.getLogin();
 		active = entity.getActive();
 		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+		this.address = (entity.getAddress() == null? null : (new AddressDTO(entity.getAddress())));
 	}
 
 	public Long getId() {
@@ -104,5 +106,13 @@ public class EmployeeDTO implements Serializable {
 
 	public Set<RoleDTO> getRoles() {
 		return roles;
+	}
+
+	public AddressDTO getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDTO address) {
+		this.address = address;
 	}
 }

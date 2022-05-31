@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -56,6 +57,10 @@ public class Employee implements UserDetails, Serializable {
 	
 	@OneToMany(mappedBy = "employee")
 	private List<Posting> postings = new ArrayList<>();
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant createdAt;
@@ -149,6 +154,14 @@ public class Employee implements UserDetails, Serializable {
 
 	public void setPostings(List<Posting> postings) {
 		this.postings = postings;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	public Instant getCreatedAt() {
