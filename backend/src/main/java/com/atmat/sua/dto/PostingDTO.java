@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 
 import com.atmat.sua.entities.Posting;
-import com.atmat.sua.entities.enums.UnitType;
 
 public class PostingDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
