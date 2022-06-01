@@ -15,13 +15,17 @@ INSERT INTO tb_employee_role (employee_id, role_id) VALUES (2, 2);
 
 INSERT INTO tb_employee_role (employee_id, role_id) VALUES (3, 1);
 
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Marianalva da Melo de Conceição Vieira', '39856854321', '2020-10-21', '39856854321', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);	--4
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Jéssica Florinda Girafales', '39856854322', '2018-10-22', '39856854322', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);				--5
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Ana de Melo Antonio Fagundes', '39856854323', '2020-10-23', '39856854323', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);				--6
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Andréia Maria de Conceição', '39856854324', '2019-10-24', '39856854324', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);				--7
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('José Bezerra Souza e Silva', '39856854325', '2020-10-25', '39856854325', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);				--8
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Maria Madalena de Jesus', '39856854326', '2020-10-26', '39856854326', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);					--9
-INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Marcos Antonio Junqueira Ramos', '39856854327', '2021-05-27', '39856854327', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);			--10
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua da Confibra', '541', 'Jardim Campos Verdes', null, 'Hortolândia', 'SP', '13186070');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Alessandro Bonci', '520', 'Eldorado', 'Perto do posto Ipiranga', 'São Paulo', 'SP', '04476280');
+INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Vinhal', '404', 'Jardim Campos Verdes', null, 'Sumaré', 'SP', '13171490');
+
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active, address_id) VALUES ('Marianalva da Melo de Conceição Vieira', '39856854321', '2020-10-21', '39856854321', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true, 1);	--4
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active, address_id) VALUES ('Jéssica Florinda Girafales', '39856854322', '2018-10-22', '39856854322', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true, 2);				--5
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active, address_id) VALUES ('Ana de Melo Antonio Fagundes', '39856854323', '2020-10-23', '39856854323', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true, 3);				--6
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('Andréia Maria de Conceição', '39856854324', '2019-10-24', '39856854324', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);								--7
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active) VALUES ('José Bezerra Souza e Silva', '39856854325', '2020-10-25', '39856854325', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true);								--8
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active, address_id) VALUES ('Maria Madalena de Jesus', '39856854326', '2020-10-26', '39856854326', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', true, 1);					--9
+INSERT INTO tb_employee (name, cpf, admission_Date, login, password, active, address_id) VALUES ('Marcos Antonio Junqueira Ramos', '39856854327', '2021-05-27', '39856854327', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG', false, 2);			--10
 
 INSERT INTO tb_employee_role (employee_id, role_id) VALUES (4, 1);
 INSERT INTO tb_employee_role (employee_id, role_id) VALUES (5, 1);
@@ -34,10 +38,6 @@ INSERT INTO tb_employee_role (employee_id, role_id) VALUES (10, 1);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Antônio de Melo de Conceição Vieira', '20262197021', '37405765000111', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Jobiscleiton Florinda Girafales', null, '37405765000112', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Aparecido da Costa Junior', '20262197023', null, true);
-
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua da Confibra', '541', 'Jardim Campos Verdes', null, 'Hortolândia', 'SP', '13186070');
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Alessandro Bonci', '520', 'Eldorado', 'Perto do posto Ipiranga', 'São Paulo', 'SP', '04476280');
-INSERT INTO tb_address (street, number, neighborhood, complement, city, state, cep) VALUES ('Rua Vinhal', '404', 'Jardim Campos Verdes', null, 'Sumaré', 'SP', '13171490');
 
 INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Jonielson Cleibisson Cleber e Kauan da Silva', 'Citrus e Cia', '97717222041', '18107334000121', true, 1);
 INSERT INTO tb_client (contact, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Anderson Oliveira de Moraes', 'Fruts & Foods', '97717222042', '18107334000122', true, 2);
@@ -174,16 +174,16 @@ INSERT INTO tb_posting (employee_id, provider_id, client_id, date, unit, quantit
 
 
 
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Inativo para massa de dados', '20262197024', '37405765000114', false);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000115', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Ativo para massa de dados', '20262197026', null, true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197027', '37405765000117', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000118', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197029', null, true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197030', '37405765000120', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000121', true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197032', null, true);
-INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197033', '37405765000124', true);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active) VALUES ('Inativo para massa de dados', 'Frutas e Alegria', '20262197024', '37405765000114', false);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active) VALUES ('Nome para massa de dados', 'Music & Cia', null, '37405765000115', true);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active) VALUES ('Ativo para massa de dados', 'Fantasias Mágicas', '20262197026', null, true);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active) VALUES ('Nome para massa de dados', 'Babys & Jhonson', '20262197027', '37405765000117', true);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', 'Turma Kids', null, '37405765000118', true, 1);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', 'Carnes Brasil', '20262197029', null, true, 2);
+INSERT INTO tb_provider (name, corporate_Name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', 'Papelaria Milos', '20262197030', '37405765000120', true, 3);
+INSERT INTO tb_provider (name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', null, '37405765000121', true, 1);
+INSERT INTO tb_provider (name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', '20262197032', null, true, 2);
+INSERT INTO tb_provider (name, cpf, cnpj, active, address_id) VALUES ('Nome para massa de dados', '20262197033', '37405765000124', true, null);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', null, '37405765000125', true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Atila nome para massa de dados', '20262197036', null, true);
 INSERT INTO tb_provider (name, cpf, cnpj, active) VALUES ('Nome para massa de dados', '20262197037', '37405765000127', true);
