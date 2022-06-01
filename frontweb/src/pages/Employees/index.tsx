@@ -7,6 +7,7 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
+import ListLoader from '../../components/ListLoader';
 
 import './styles.css';
 import Pagination from 'components/Pagination';
@@ -14,6 +15,7 @@ import Pagination from 'components/Pagination';
 const Employees = () => {
 
   const [page, setPage] = useState<SpringPage<Employee>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
@@ -26,9 +28,13 @@ const Employees = () => {
       }
     }
 
+    setIsLoading(true);
     axios(params)
       .then(response => {
         setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -41,12 +47,13 @@ const Employees = () => {
         </h1>
       </div>
 
-      {page?.content.map(employee => (
-        <Link to="employees/1" key={employee.id}>
-          <EmployeeCard employee={employee}/>
-        </Link>
-      ))}
-      
+      {isLoading ? <ListLoader /> : (
+        page?.content.map(employee => (
+          <Link to="employees/1" key={employee.id}>
+            <EmployeeCard employee={employee} />
+          </Link>
+        )))}
+
       <Pagination />
     </div>
   );

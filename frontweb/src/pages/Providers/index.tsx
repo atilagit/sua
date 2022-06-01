@@ -7,11 +7,13 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 import ProviderCard from 'components/ProviderCard';
 import Pagination from 'components/Pagination';
+import ListLoader from '../../components/ListLoader';
 import './styles.css';
 
 const Providers = () => {
 
   const [page, setPage] = useState<SpringPage<Provider>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
@@ -24,9 +26,13 @@ const Providers = () => {
       }
     }
 
+    setIsLoading(true);
     axios(params)
       .then(response => {
         setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -38,11 +44,12 @@ const Providers = () => {
         </h1>
       </div>
 
-      {page?.content.map(provider => (
-        <Link to="/providers/1" key={provider.id}>
-          <ProviderCard provider={provider} />
-        </Link>
-      ))}
+      {isLoading ? <ListLoader /> : (
+        page?.content.map(provider => (
+          <Link to="/providers/1" key={provider.id}>
+            <ProviderCard provider={provider} />
+          </Link>
+        )))}
 
       <Pagination />
     </div>

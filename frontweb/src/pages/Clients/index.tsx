@@ -9,10 +9,12 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 import Pagination from 'components/Pagination';
+import ListLoader from '../../components/ListLoader';
 
 const Clients = () => {
   
   const [page, setPage] = useState<SpringPage<Client>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
@@ -25,9 +27,13 @@ const Clients = () => {
       }
     }
 
+    setIsLoading(true);
     axios(params)
       .then(response => {
         setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -39,12 +45,13 @@ const Clients = () => {
         </h1>
       </div>
 
-      {page?.content.map(client => (
-        <Link to="clients/1" key={client.id}>
-          <ClientCard client={client}/>
-        </Link>
-      ))}
-      
+      {isLoading ? <ListLoader /> : (
+        page?.content.map(client => (
+          <Link to="clients/1" key={client.id}>
+            <ClientCard client={client} />
+          </Link>
+        )))}
+
       <Pagination />
     </div>
   );
