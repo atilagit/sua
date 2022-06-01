@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-const CardLoader = () => {
+const ListLoader = () => {
   return (
     <ContentLoader
       speed={2}
@@ -22,4 +22,4 @@ const CardLoader = () => {
   )
 }
 
-export default CardLoader
+export default ListLoader

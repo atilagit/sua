@@ -9,7 +9,7 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 
 import './styles.css';
-import CardLoader from './CardLoader';
+import ListLoader from './ListLoader';
 
 const Postings = () => {
 
@@ -45,7 +45,7 @@ const Postings = () => {
         </h1>
       </div>
 
-      {isLoading ? <CardLoader /> : (
+      {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
         <Link to="postings/1" key={posting.id}>
           <PostingCard posting={posting} />
