@@ -9,7 +9,7 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 
 import './styles.css';
-import ListLoader from './ListLoader';
+import ListLoader from '../../components/ListLoader';
 
 const Postings = () => {
 
