@@ -9,11 +9,13 @@ import { BASE_URL } from 'util/requests';
 import axios from 'axios';
 
 import './styles.css';
+import CardLoader from './CardLoader';
 
 const Postings = () => {
 
-  const[page, setPage] = useState<SpringPage<Posting>>();
-  
+  const [page, setPage] = useState<SpringPage<Posting>>();
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
 
     const params: AxiosParams = {
@@ -25,9 +27,13 @@ const Postings = () => {
       }
     }
 
+    setIsLoading(true);
     axios(params)
       .then(response => {
         setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -39,11 +45,12 @@ const Postings = () => {
         </h1>
       </div>
 
-      {page?.content.map(posting => (
+      {isLoading ? <CardLoader /> : (
+        page?.content.map(posting => (
         <Link to="postings/1" key={posting.id}>
           <PostingCard posting={posting} />
         </Link>
-      ))}
+      )))}
 
       <Pagination />
     </div>
