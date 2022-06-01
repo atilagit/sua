@@ -11,6 +11,7 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 	
 	private Long id;
 	private String contact;
+	private String abbreviatedName;
 	
 	public SimplifiedClientDTO() {
 	}
@@ -22,7 +23,8 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 	
 	public SimplifiedClientDTO(Client entity) {
 		id = entity.getId();
-		contact = buildSimplifiedContactName(entity.getContact());
+		contact = buildMaxLengthName(entity.getContact());
+		abbreviatedName = buildSimplifiedContactName(entity.getContact());
 	}
 
 	public Long getId() {
@@ -41,16 +43,31 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 		this.contact = buildSimplifiedContactName(contact);
 	}
 	
+	public String getAbbreviatedName() {
+		return abbreviatedName;
+	}
+	
+	public void setAbbreviatedName(String abbreviatedName) {
+		this.abbreviatedName = abbreviatedName;
+	}
+	
 	private String buildSimplifiedContactName(String name) {
 		List<String> words = Arrays.asList(name.split(" "));
-		if (words.size() > 1) {
-			return words.get(0) 
-					+ " " 
-					+ words.get(words.size() - 1).charAt(0) 
-					+ ".";
-		} else {
-			return words.get(0);
+		String firstName = words.get(0);
+		if (words.size() > 1 && firstName.length() <= 10) {
+			String lastName = words.get(words.size() - 1);
+			return firstName + " " + lastName.charAt(0) + ".";
 		}
+		return (firstName.length() > 10) ? firstName.substring(0, 10) + "..." : firstName;
+	}
+	
+	private String buildMaxLengthName(String name) {
+		int lengthOfName = name.trim().length();
+		int maxLength = 40;
+		if(lengthOfName > maxLength) {
+			return name.substring(0, maxLength) + "...";
+		}
+		return name;
 	}
 
 	@Override

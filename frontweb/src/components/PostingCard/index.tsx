@@ -28,10 +28,10 @@ const PostingCard = ( {posting} : Props) => {
             </div>
             <div className="line2">
                 <div className="provider">
-                    <p>Fornecedor: {posting.provider.name}</p>
+                    <p>Fornecedor: {posting.provider?.abbreviatedName}</p>
                 </div>
                 <div className="client">
-                    <p>Cliente: {posting.client.contact}</p>
+                    <p>Cliente: {posting.client?.abbreviatedName}</p>
                 </div>
                 <div className="obs">
                     <p>Obs.: {posting.note}</p>

@@ -11,6 +11,7 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 	
 	private Long id;
 	private String name;
+	private String abbreviatedName;
 	
 	public SimplifiedProviderDTO() {
 	}
@@ -22,7 +23,8 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 	
 	public SimplifiedProviderDTO(Provider entity) {
 		id = entity.getId();
-		name = buildSimplifiedContactName(entity.getName());
+		name = buildMaxLengthName(entity.getName());
+		abbreviatedName = buildSimplifiedContactName(entity.getName());
 	}
 
 	public Long getId() {
@@ -41,20 +43,35 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 		this.name = buildSimplifiedContactName(name);
 	}
 	
+	public String getAbbreviatedName() {
+		return abbreviatedName;
+	}
+	
+	public void setAbbreviatedName(String abbreviatedName) {
+		this.abbreviatedName = abbreviatedName;
+	}
+	
 	private String buildSimplifiedContactName(String name) {
 		List<String> words = Arrays.asList(name.split(" "));
-		if (words.size() > 1) {
-			return words.get(0) 
-					+ " " 
-					+ words.get(words.size() - 1).charAt(0)
-					+ ".";
-		} else {
-			return words.get(0);
+		String firstName = words.get(0);
+		if (words.size() > 1 && firstName.length() <= 10) {
+			String lastName = words.get(words.size() - 1);
+			return firstName + " " + lastName.charAt(0) + ".";
 		}
+		return (firstName.length() > 10) ? firstName.substring(0, 10) + "..." : firstName;
 	}
 
 	@Override
 	public int compareTo(SimplifiedProviderDTO o) {
 		return name.toLowerCase().compareTo(o.getName().toLowerCase());
+	}
+	
+	private String buildMaxLengthName(String name) {
+		int lengthOfName = name.trim().length();
+		int maxLength = 40;
+		if(lengthOfName > maxLength) {
+			return name.substring(0, maxLength) + "...";
+		}
+		return name;
 	}
 }
