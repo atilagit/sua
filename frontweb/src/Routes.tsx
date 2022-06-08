@@ -11,6 +11,7 @@ import ClientDetails from 'pages/ClientDetails';
 import EmployeeDetails from 'pages/EmployeeDetails';
 import ProviderDetails from 'pages/ProviderDetails';
 import PostingDetails from 'pages/PostingDetails';
+import Auth from 'pages/Auth';
 
 const Routes = () => (
     <BrowserRouter>
@@ -48,6 +49,9 @@ const Routes = () => (
             </Route>
             <Route path="/inventory">
                 <Inventory />
+            </Route>
+            <Route path="/auth">
+                <Auth />
             </Route>
         </Switch>
     </BrowserRouter>

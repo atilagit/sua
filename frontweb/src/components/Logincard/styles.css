@@ -1,0 +1,32 @@
+.auth-card {
+    width: 85%;
+    height: 300px;
+    max-width: 600px;
+    min-width: 260px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-content-container {
+    text-align: center;
+}
+
+.auth-content-container h2 {
+    font-size: 1em;
+}
+
+.auth-button-container {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media (min-width: 584px) {
+    .home-container {
+        font-size: 30px;
+    }
+}

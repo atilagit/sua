@@ -1,0 +1,16 @@
+.auth-container {
+    margin: auto;
+    max-width: 1140px;
+    font-size: 20px;
+    display: flex;
+    padding: 30px 10px 0px 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 120px;
+}
+
+@media (min-width: 584px) {
+    .auth-container {
+        font-size: 30px;
+    }
+}
