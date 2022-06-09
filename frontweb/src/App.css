@@ -24,3 +24,25 @@ a, a:hover {
     max-width: 1140px;
     margin: 0 auto;
 }
+
+.base-input {
+    font-size: 0.5em;
+    letter-spacing: -0.015em;
+    height: 40px;
+    background: #FFFBF5;
+    border: 1px solid #AD9C84;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+    margin: 1px;
+  }
+
+  .base-input::placeholder {
+    color: #9E9E9E;
+  }
+  
+  
+  

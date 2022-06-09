@@ -1,12 +1,15 @@
 .auth-card {
     width: 85%;
-    height: 300px;
     max-width: 600px;
     min-width: 260px;
     padding: 20px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.auth-card h2 {
+    font-weight: 200;
 }
 
 .auth-content-container {
@@ -24,6 +27,19 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.login-link-recover {
+    font-size: 12px;
+}
+
+.login-link-recover {
+    font-size: 0.5em;
+    letter-spacing: -0.015em;
+    color: #407bff;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
 
 @media (min-width: 584px) {
     .home-container {

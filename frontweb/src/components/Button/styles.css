@@ -13,3 +13,14 @@
   font-size: 30px;
   margin-bottom: 0;
 }
+
+@media (max-width: 584px) {
+  .button-container p {
+    font-size: 1em;
+  }
+
+  .button-container {
+    width: 170px;
+    height: 40px;
+  }
+}

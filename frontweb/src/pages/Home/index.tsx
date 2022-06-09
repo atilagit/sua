@@ -8,14 +8,14 @@ const Home = () => {
     <>
       <div className="home-container">
         <Menucard
-          text="Módulo A - Materias e pagamentos" 
+          text="Materias e pagamentos" 
           btn1="ENTRADAS" btn1rota="/entries" 
           btn2="ESTOQUE" btn2rota="/inventory" 
           btn3="FORNECEDORES" btn3rota="/providers" 
           btn4="-" btn4rota="/"
         />
         <Menucard
-          text="Módulo B - Serviços e pagamentos" 
+          text="Serviços e pagamentos" 
           btn1="DIÁRIAS" btn1rota="/postings" 
           btn2="CLIENTES" btn2rota="/clients" 
           btn3="FORNECEDORES" btn3rota="/providers" 

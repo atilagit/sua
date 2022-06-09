@@ -1,5 +1,4 @@
 import Button from 'components/Button';
-import FieldDetailCard from 'components/FieldDetailCard';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -16,19 +15,30 @@ const Logincard = ({ text, btn4, btn4rota }: Props) => {
         <div className="auth-content-container">
           <h2>{text}</h2>
         </div>
-        <FieldDetailCard
-          title=""
-          content="Email"
-        />
-        <FieldDetailCard
-          title=""
-          content="Senha"
-        />
-        <div className="auth-button-container">
-          <Link to={btn4rota}>
-            <Button text={btn4} />
+        <form>
+          <div className="mb-4 mt-4">
+            <input
+              type="text"
+              className="form-control base-input"
+              placeholder="Email ou CPF"
+              name="username"
+            />
+          </div>
+          <div className="mb-1">
+            <input
+              type="password"
+              className="form-control base-input "
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+          <Link to="/auth/recover" className="login-link-recover">
+            Esqueci a senha
           </Link>
-        </div>
+          <div className="auth-button-container">
+            <Button text="ENTRAR" />
+          </div>
+        </form>
       </div>
     </>
   );
