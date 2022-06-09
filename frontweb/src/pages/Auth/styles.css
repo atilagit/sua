@@ -9,8 +9,55 @@
     margin-bottom: 120px;
 }
 
+.auth-card {
+    width: 85%;
+    max-width: 600px;
+    min-width: 260px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-card h2 {
+    font-weight: 200;
+}
+
+.auth-content-container {
+    text-align: center;
+}
+
+.auth-content-container h2 {
+    font-size: 1.5em;
+}
+
+.auth-button-container {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-link-recover {
+    font-size: 12px;
+}
+
+.login-link-recover {
+    font-size: 0.8em;
+    letter-spacing: -0.015em;
+    color: #7297AD;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .login-link-recover:hover {
+    color: #2892cf;
+  }
+  
+
 @media (min-width: 584px) {
-    .auth-container {
+    .home-container {
         font-size: 30px;
     }
 }

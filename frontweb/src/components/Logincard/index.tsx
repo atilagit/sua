@@ -1,23 +1,31 @@
 import Button from 'components/Button';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-type Props = {
-  text: String;
-  btn4: string;
-  btn4rota: string;
+type FormData = {
+  username: string;
+  password: string;
 }
 
-const Logincard = ({ text, btn4, btn4rota }: Props) => {
+const Logincard = () => {
+
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (formData : FormData) => {
+    console.log(formData);
+  };
+
   return (
     <>
       <div className="base-card auth-card">
         <div className="auth-content-container">
-          <h2>{text}</h2>
+          <h2>LOGIN</h2>
         </div>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4 mt-4">
             <input
+              {...register("username")}
               type="text"
               className="form-control base-input"
               placeholder="Email ou CPF"
@@ -26,6 +34,7 @@ const Logincard = ({ text, btn4, btn4rota }: Props) => {
           </div>
           <div className="mb-1">
             <input
+              {...register("password")}
               type="password"
               className="form-control base-input "
               placeholder="Password"
