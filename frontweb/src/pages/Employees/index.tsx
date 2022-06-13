@@ -2,9 +2,8 @@ import EmployeeCard from 'components/EmployeeCard';
 import { Employee } from 'types/employee';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { Link } from 'react-router-dom';
 import ListLoader from '../../components/ListLoader';
@@ -19,9 +18,10 @@ const Employees = () => {
 
   useEffect(() => {
 
-    const params: AxiosParams = {
+    const params: AxiosRequestConfig = {
       method: 'GET',
-      url: `${BASE_URL}/employees`,
+      url: "/employees",
+      baseURL: BASE_URL,
       params: {
         page: 0,
         size: 50

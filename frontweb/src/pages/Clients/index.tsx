@@ -2,14 +2,14 @@ import ClientCard from 'components/ClientCard';
 import { Client } from 'types/client';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { AxiosParams } from 'types/vendor/axios';
 import { BASE_URL } from 'util/requests';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
 import Pagination from 'components/Pagination';
 import ListLoader from '../../components/ListLoader';
+
 
 const Clients = () => {
   
@@ -18,9 +18,10 @@ const Clients = () => {
 
   useEffect(() => {
 
-    const params: AxiosParams = {
+    const params: AxiosRequestConfig = {
       method: 'GET',
-      url: `${BASE_URL}/clients`,
+      url: "/clients",
+      baseURL: BASE_URL,
       params: {
         page: 0,
         size: 50
