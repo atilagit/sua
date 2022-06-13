@@ -4,6 +4,7 @@ import Button from 'components/Button';
 
 import './styles.css';
 import Footer from "components/Footer";
+import { requestBackendLogin } from "util/requests";
 
 type FormData = {
   username: string;
@@ -15,7 +16,13 @@ const Auth = () => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (formData : FormData) => {
-    console.log(formData);
+    requestBackendLogin(formData)
+    .then(response => {
+      console.log('SUCESSO', response);
+    })
+    .catch(error => {
+      console.log('ERRO', error);
+    });
   };
 
   return (
