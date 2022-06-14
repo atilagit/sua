@@ -4,7 +4,7 @@ import Button from 'components/Button';
 
 import './styles.css';
 import Footer from "components/Footer";
-import { requestBackendLogin } from "util/requests";
+import { getAuthData, requestBackendLogin, saveAuthData } from "util/requests";
 import { useState } from "react";
 
 type FormData = {
@@ -21,6 +21,9 @@ const Auth = () => {
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then(response => {
+        saveAuthData(response.data);
+        const token = getAuthData().access_token;
+        console.log('Token gerado: ' + token);
         setHasError(false);
         console.log('SUCESSO', response);
       })
