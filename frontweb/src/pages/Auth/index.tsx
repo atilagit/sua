@@ -53,7 +53,7 @@ const Auth = () => {
                   }
                 })}
                 type="text"
-                className="form-control base-input"
+                className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
                 placeholder="Email ou CPF"
                 name="username"
               />
@@ -65,7 +65,7 @@ const Auth = () => {
                   required: 'Campo obrigatório'
                 })}
                 type="password"
-                className="form-control base-input "
+                className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
                 placeholder="Password"
                 name="password"
               />
