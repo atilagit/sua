@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import Clients from 'pages/Clients';
 import Providers from 'pages/Providers';
@@ -12,9 +12,10 @@ import EmployeeDetails from 'pages/EmployeeDetails';
 import ProviderDetails from 'pages/ProviderDetails';
 import PostingDetails from 'pages/PostingDetails';
 import Auth from 'pages/Auth';
+import history from 'util/history';
 
 const Routes = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <Navbar />
         <Switch>
             <Route path="/" exact>
@@ -54,7 +55,7 @@ const Routes = () => (
                 <Auth />
             </Route>
         </Switch>
-    </BrowserRouter>
+    </Router>
 )
 
 export default Routes;
