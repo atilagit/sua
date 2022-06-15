@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { Provider } from 'types/provider';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/requests';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
 import ProviderCard from 'components/ProviderCard';
 import Pagination from 'components/Pagination';
 import ListLoader from '../../components/ListLoader';
@@ -19,7 +19,7 @@ const Providers = () => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/providers",
-      baseURL: BASE_URL,
+      withCredentials: true,
       params: {
         page: 0,
         size: 50
@@ -27,7 +27,7 @@ const Providers = () => {
     }
 
     setIsLoading(true);
-    axios(params)
+    requestBackend(params)
       .then(response => {
         setPage(response.data);
       })

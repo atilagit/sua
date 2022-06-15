@@ -2,8 +2,8 @@ import EmployeeCard from 'components/EmployeeCard';
 import { Employee } from 'types/employee';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/requests';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
 
 import { Link } from 'react-router-dom';
 import ListLoader from '../../components/ListLoader';
@@ -21,7 +21,7 @@ const Employees = () => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/employees",
-      baseURL: BASE_URL,
+      withCredentials: true,
       params: {
         page: 0,
         size: 50
@@ -29,7 +29,7 @@ const Employees = () => {
     }
 
     setIsLoading(true);
-    axios(params)
+    requestBackend(params)
       .then(response => {
         setPage(response.data);
       })

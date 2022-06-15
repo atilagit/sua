@@ -2,8 +2,8 @@ import ClientCard from 'components/ClientCard';
 import { Client } from 'types/client';
 import { useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/requests';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
@@ -21,7 +21,7 @@ const Clients = () => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/clients",
-      baseURL: BASE_URL,
+      withCredentials: true,
       params: {
         page: 0,
         size: 50
@@ -29,7 +29,7 @@ const Clients = () => {
     }
 
     setIsLoading(true);
-    axios(params)
+    requestBackend(params)
       .then(response => {
         setPage(response.data);
       })

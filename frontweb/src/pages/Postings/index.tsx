@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Pagination from 'components/Pagination';
 import { SpringPage } from 'types/vendor/spring';
-import { BASE_URL } from 'util/requests';
-import axios, { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
 
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
@@ -20,7 +20,7 @@ const Postings = () => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/postings",
-      baseURL: BASE_URL,
+      withCredentials: true,
       params: {
         page: 0,
         size: 50
@@ -28,7 +28,7 @@ const Postings = () => {
     }
 
     setIsLoading(true);
-    axios(params)
+    requestBackend(params)
       .then(response => {
         setPage(response.data);
       })
