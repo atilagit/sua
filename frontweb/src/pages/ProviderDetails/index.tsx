@@ -7,8 +7,8 @@ import { formatCEP, formatCpfCnpj } from "util/formatters";
 import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
-import axios from 'axios';
-import { BASE_URL } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
 
@@ -23,8 +23,15 @@ const ProviderDetails = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+
+        const params: AxiosRequestConfig = {
+            method: 'GET',
+            url: `/providers/${providerId}`,
+            withCredentials: true
+        }
+
         setIsLoading(true);
-        axios.get(`${BASE_URL}/providers/${providerId}`)
+        requestBackend(params)
             .then(response => {
                 setProvider(response.data)
             })

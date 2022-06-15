@@ -7,10 +7,10 @@ import { formatDate, formatPrice } from 'util/formatters';
 import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
-import axios from 'axios';
-import { BASE_URL } from 'util/requests';
+import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
+import { AxiosRequestConfig } from 'axios';
 
 type UrlParams = {
   postingId: string;
@@ -23,8 +23,15 @@ const PostingDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+
+    const params: AxiosRequestConfig = {
+      method: 'GET',
+      url: `/postings/${postingId}`,
+      withCredentials: true
+    }
+
     setIsLoading(true);
-    axios.get(`${BASE_URL}/postings/${postingId}`)
+    requestBackend(params)
       .then(response => {
         setPosting(response.data)
       })

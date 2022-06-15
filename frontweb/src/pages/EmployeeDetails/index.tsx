@@ -7,8 +7,8 @@ import { formatCEP, formatCpfCnpj, formatDate } from "util/formatters";
 import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
-import axios from 'axios';
-import { BASE_URL } from 'util/requests';
+import { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
 
@@ -23,8 +23,15 @@ const EmployeeDetails = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+
+        const params: AxiosRequestConfig = {
+            method: 'GET',
+            url: `/employees/${employeeId}`,
+            withCredentials: true
+        }
+
         setIsLoading(true);
-        axios.get(`${BASE_URL}/employees/${employeeId}`)
+        requestBackend(params)
             .then(response => {
                 setEmployee(response.data)
             })
