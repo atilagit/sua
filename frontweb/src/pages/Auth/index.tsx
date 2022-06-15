@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from 'components/Button';
 
 import './styles.css';
@@ -18,14 +18,17 @@ const Auth = () => {
 
   const { register, handleSubmit, formState: {errors} } = useForm<FormData>();
 
+  const history = useHistory();
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then(response => {
         saveAuthData(response.data);
-        const token = getAuthData().access_token;
-        console.log('Token gerado: ' + token);
+        //const token = getAuthData().access_token;
+        //console.log('Token gerado: ' + token);
+        //console.log('SUCESSO', response);
         setHasError(false);
-        console.log('SUCESSO', response);
+        history.push('/');
       })
       .catch(error => {
         setHasError(true);
