@@ -29,3 +29,20 @@
 .nav-container {
     max-width: 1140px;
 }
+
+.hello-user {
+    display: flex;
+    width: 30%;
+    justify-content: flex-end;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #F9EAD5;
+}
+
+@media (max-width: 768px) {
+    .hello-user {
+        font-size: 20px;
+        justify-content: flex-start;
+    }
+}

@@ -2,6 +2,7 @@ import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
+import { getAuthData, isAuthenticated } from 'util/requests';
 
 const Navbar = () => {
   return (
@@ -41,6 +42,9 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+          <div className='hello-user'>
+            <h3>Olá {isAuthenticated() ? getAuthData().userName : ""}</h3>
+          </div>
         </div>
       </div>
     </nav>
