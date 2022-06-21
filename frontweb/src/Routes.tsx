@@ -13,44 +13,45 @@ import ProviderDetails from 'pages/ProviderDetails';
 import PostingDetails from 'pages/PostingDetails';
 import Auth from 'pages/Auth';
 import history from 'util/history';
+import PrivateRoute from 'components/PrivateRoute';
 
 const Routes = () => (
     <Router history={history}>
         <Navbar />
         <Switch>
-            <Route path="/" exact>
+            <PrivateRoute path="/" exact>
                 <Home />
-            </Route>
-            <Route path="/clients" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/clients" exact>
                 <Clients />
-            </Route>
-            <Route path="/clients/:clientId">
+            </PrivateRoute>
+            <PrivateRoute path="/clients/:clientId">
                 <ClientDetails />
-            </Route>
-            <Route path="/providers" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/providers" exact>
                 <Providers />
-            </Route>
-            <Route path="/providers/:providerId">
+            </PrivateRoute>
+            <PrivateRoute path="/providers/:providerId">
                 <ProviderDetails />
-            </Route>
-            <Route path="/employees" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/employees" exact>
                 <Employees />
-            </Route>
-            <Route path="/employees/:employeeId">
+            </PrivateRoute>
+            <PrivateRoute path="/employees/:employeeId">
                 <EmployeeDetails />
-            </Route>
-            <Route path="/postings" exact>
+            </PrivateRoute>
+            <PrivateRoute path="/postings" exact>
                 <Postings />
-            </Route>
-            <Route path="/postings/:postingId">
+            </PrivateRoute>
+            <PrivateRoute path="/postings/:postingId">
                 <PostingDetails />
-            </Route>
-            <Route path="/entries">
+            </PrivateRoute>
+            <PrivateRoute path="/entries">
                 <Entries />
-            </Route>
-            <Route path="/inventory">
+            </PrivateRoute>
+            <PrivateRoute path="/inventory">
                 <Inventory />
-            </Route>
+            </PrivateRoute>
             <Route path="/auth">
                 <Auth />
             </Route>
