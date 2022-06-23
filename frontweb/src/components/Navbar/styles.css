@@ -32,8 +32,9 @@
 
 .nav-hello-user-logout {
     display: flex;
-    width: 40%;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 35%;
+    align-items: flex-end;
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
@@ -41,10 +42,8 @@
 }
 
 .nav-hello-user {
-    margin-right: 15px;
+    font-weight: 400;
 }
-
-
 
 @media (max-width: 1000px) {
     .nav-hello-user-logout {
@@ -53,7 +52,7 @@
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
     .main-menu {
         font-size: 25px;
         width: 450px;
@@ -67,8 +66,10 @@
 @media (max-width: 768px) {
     .nav-hello-user-logout {
         font-size: 20px;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+    .nav-hello-user {
+        display: none;
     }
 }
 
