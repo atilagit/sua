@@ -4,8 +4,9 @@ import Button from 'components/Button';
 
 import './styles.css';
 import Footer from "components/Footer";
-import { requestBackendLogin, saveAuthData } from "util/requests";
-import { useState } from "react";
+import { getTokenData, requestBackendLogin, saveAuthData } from "util/requests";
+import { useContext, useState } from "react";
+import { AuthContext } from "AuthContext";
 
 type FormData = {
   username: string;
@@ -13,6 +14,8 @@ type FormData = {
 }
 
 const Auth = () => {
+
+  const { setAuthContextData } = useContext(AuthContext);
 
   const [hasError, setHasError] = useState(false);
 
@@ -25,6 +28,10 @@ const Auth = () => {
       .then(response => {
         saveAuthData(response.data);
         setHasError(false);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData()
+        })
         history.push('/');
       })
       .catch(error => {

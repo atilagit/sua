@@ -2,35 +2,32 @@ import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
-import { getAuthData, getTokenData, isAuthenticated, removeAuthData, TokenData } from 'util/requests';
-import { useEffect, useState } from 'react';
+import { getAuthData, getTokenData, isAuthenticated, removeAuthData } from 'util/requests';
+import { useContext, useEffect } from 'react';
 import history from 'util/history';
-
-type AuthData = {
-  authenticated: boolean;
-  tokenData?: TokenData;
-}
+import { AuthContext } from 'AuthContext';
 
 const Navbar = () => {
-  const[authData, setAuthData] = useState<AuthData>({authenticated: false});
 
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
+  
   useEffect(() => {
     if (isAuthenticated()) {
-      setAuthData({
+      setAuthContextData({
         authenticated: true,
         tokenData: getTokenData()
       });
     }else {
-      setAuthData({
+      setAuthContextData({
         authenticated: false
       });
     }
-  }, []);
+  }, [setAuthContextData]);
 
   const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     removeAuthData();
-    setAuthData({
+    setAuthContextData({
       authenticated: false
     });
     history.replace('/auth')
@@ -74,7 +71,7 @@ const Navbar = () => {
             </li>
           </ul>
           <div className='nav-hello-user-logout'>
-            {authData.authenticated ? (
+            {authContextData.authenticated ? (
               <>
                 <span className='nav-hello-user'>Olá {getAuthData().userName}</span>
                 <a href="/auth" onClick={handleLogoutClick}>LOGOUT</a>
