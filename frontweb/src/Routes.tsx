@@ -22,16 +22,16 @@ const Routes = () => (
             <PrivateRoute path="/" exact>
                 <Home />
             </PrivateRoute>
-            <PrivateRoute path="/clients" exact>
+            <PrivateRoute path="/clients" exact roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Clients />
             </PrivateRoute>
-            <PrivateRoute path="/clients/:clientId">
+            <PrivateRoute path="/clients/:clientId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <ClientDetails />
             </PrivateRoute>
-            <PrivateRoute path="/providers" exact>
+            <PrivateRoute path="/providers" exact roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Providers />
             </PrivateRoute>
-            <PrivateRoute path="/providers/:providerId">
+            <PrivateRoute path="/providers/:providerId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <ProviderDetails />
             </PrivateRoute>
             <PrivateRoute path="/employees" exact>
@@ -46,10 +46,10 @@ const Routes = () => (
             <PrivateRoute path="/postings/:postingId">
                 <PostingDetails />
             </PrivateRoute>
-            <PrivateRoute path="/entries">
+            <PrivateRoute path="/entries" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Entries />
             </PrivateRoute>
-            <PrivateRoute path="/inventory">
+            <PrivateRoute path="/inventory" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Inventory />
             </PrivateRoute>
             <Route path="/auth">

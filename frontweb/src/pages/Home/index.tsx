@@ -1,6 +1,5 @@
 import Footer from 'components/Footer';
 import Menucard from 'components/Menucard';
-import { hasAnyRoles } from 'util/requests';
 
 import './styles.css';
 
@@ -8,7 +7,6 @@ const Home = () => {
   return (
     <>
       <div className="home-container">
-        <h1>Resultado: {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) ? "sim" : "não"}</h1>
         <Menucard
           text="Materias e pagamentos" 
           btn1="ENTRADAS" btn1rota="/entries" 

@@ -2,7 +2,7 @@ import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
-import { getAuthData, getTokenData, isAuthenticated, removeAuthData } from 'util/requests';
+import { getAuthData, getTokenData, hasAnyRoles, isAuthenticated, removeAuthData } from 'util/requests';
 import { useContext, useEffect } from 'react';
 import history from 'util/history';
 import { AuthContext } from 'AuthContext';
@@ -54,21 +54,25 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="sualimentos-navbar">
           <ul className="navbar-nav main-menu">
-            <li>
-              <NavLink to="/postings" activeClassName="active">
-                DIÁRIAS
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/entries" activeClassName="active">
-                ENTRADAS
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/inventory" activeClassName="active">
-                ESTOQUE
-              </NavLink>
-            </li>
+            {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
+              <>
+                <li>
+                  <NavLink to="/postings" activeClassName="active">
+                    DIÁRIAS
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/entries" activeClassName="active">
+                    ENTRADAS
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/inventory" activeClassName="active">
+                    ESTOQUE
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
           <div className='nav-hello-user-logout'>
             {authContextData.authenticated ? (
