@@ -36,6 +36,9 @@ const PostingCard = ( {posting} : Props) => {
                 <div className="obs">
                     <p>Obs.: {posting.note}</p>
                 </div>
+                <div className="postingId">
+                    <p>Id: {posting.id}</p>
+                </div>
             </div>
         </div>
     );
