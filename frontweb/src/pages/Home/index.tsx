@@ -1,6 +1,6 @@
 import Footer from 'components/Footer';
 import Menucard from 'components/Menucard';
-import { hasAnyRoles } from 'util/requests';
+import { hasAnyRoles } from 'util/auth';
 
 import './styles.css';
 

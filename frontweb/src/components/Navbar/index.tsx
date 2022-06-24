@@ -2,10 +2,11 @@ import { ReactComponent as LogoImage } from 'assets/images/logo-image.svg';
 import './styles.css';
 import 'bootstrap/js/src/collapse.js';
 import { Link, NavLink } from 'react-router-dom';
-import { getAuthData, getTokenData, hasAnyRoles, isAuthenticated, removeAuthData } from 'util/requests';
 import { useContext, useEffect } from 'react';
 import history from 'util/history';
 import { AuthContext } from 'AuthContext';
+import { getTokenData, hasAnyRoles, isAuthenticated } from 'util/auth';
+import { getAuthData, removeAuthData } from 'util/storage';
 
 const Navbar = () => {
 
