@@ -79,7 +79,7 @@ const Navbar = () => {
             {authContextData.authenticated ? (
               <>
                 <span className='nav-hello-user'>Olá {getAuthData().userName}</span>
-                <a href="/auth" onClick={handleLogoutClick}>LOGOUT</a>
+                <a href="/auth" onClick={handleLogoutClick}>SAIR</a>
               </>
             ) : (
               <Link to="/auth">Login</Link>
