@@ -80,7 +80,7 @@ const ClientDetails = () => {
                         {client && <FieldDetailCard title="CEP" content={(client.address != null && client.address.cep != null) ? formatCEP(client.address.cep) : ""} />}
                     </div>
                     <div className='col5-466'>
-                        {client && <FieldDetailCard title="Comlemento" content={(client.address != null) ? client.address.complement : ""} />}
+                        {client && <FieldDetailCard title="Complemento" content={(client.address != null) ? client.address.complement : ""} />}
                     </div>
                     <div className='col2-178'>
                         <FieldDetailCard title="Status" content={client?.active ? "Ativo" : "Inativo"} />
