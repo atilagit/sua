@@ -1,6 +1,7 @@
 import Footer from 'components/Footer';
 import Menucard from 'components/Menucard';
 import { hasAnyRoles } from 'util/auth';
+import { getAuthData } from 'util/storage';
 
 import './styles.css';
 
@@ -30,7 +31,7 @@ const Home = () => {
           <Menucard
             text="Painel do Funcionário"
             btn1="DIÁRIAS" btn1rota="/postings"
-            btn2="MEUS DADOS" btn2rota="/employees"
+            btn2="MEUS DADOS" btn2rota={`/employees/${getAuthData().userId}`}
             btn3="-" btn3rota="/"
             btn4="-" btn4rota="/"
           />
