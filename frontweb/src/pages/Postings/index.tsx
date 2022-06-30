@@ -47,7 +47,7 @@ const Postings = () => {
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
-        <Link to="postings/1" key={posting.id}>
+        <Link to="postings/details/1" key={posting.id}>
           <PostingCard posting={posting} />
         </Link>
       )))}
