@@ -46,7 +46,7 @@ const Providers = () => {
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(provider => (
-          <Link to="/providers/1" key={provider.id}>
+          <Link to={`/providers/${provider.id}`} key={provider.id}>
             <ProviderCard provider={provider} />
           </Link>
         )))}

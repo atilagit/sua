@@ -48,7 +48,7 @@ const Clients = () => {
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(client => (
-          <Link to="clients/1" key={client.id}>
+          <Link to={`clients/${client.id}`} key={client.id}>
             <ClientCard client={client} />
           </Link>
         )))}

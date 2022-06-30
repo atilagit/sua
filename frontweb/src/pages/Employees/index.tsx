@@ -49,7 +49,7 @@ const Employees = () => {
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(employee => (
-          <Link to="employees/1" key={employee.id}>
+          <Link to={`employees/${employee.id}`} key={employee.id}>
             <EmployeeCard employee={employee} />
           </Link>
         )))}
