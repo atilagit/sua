@@ -39,11 +39,47 @@ const Postings = () => {
 
   return (
     <div className="page-container page-container-especific">
-      <div className="title-content-container">
-        <h1>
-          <Link to="/">Início</Link> / <Link to="/postings"> Lançamentos </Link>
-        </h1>
+      <div className='container-filter-crud-postings'>
+        <div>
+          <div className='container-buttons-crud'>
+            <Link to="/postings/create">
+              <button className='button'>NOVO</button>
+            </Link>
+            <button className='button'>LIMPAR</button>
+          </div>
+          <div className='resumo-container'>
+            Resumo
+          </div>
+        </div>
+        <div>
+          <div className='filter-container'>
+            <div className='field-content'>
+              Search bar
+            </div>
+            <div className='field-content'>
+              Search bar
+            </div>
+            <div className='field-content'>
+              Search bar
+            </div>
+            <div className='field-content'>
+              Search bar
+            </div>
+          </div>
+          <div className='filter-container'>
+            <div className='field-content'>
+              Search bar
+            </div>
+            <div className='field-content'>
+              Search bar
+            </div>
+            <div className='field-content-extended'>
+              Search bar
+            </div>
+          </div>
+        </div>
       </div>
+      
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
