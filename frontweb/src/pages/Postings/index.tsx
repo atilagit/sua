@@ -9,6 +9,7 @@ import { AxiosRequestConfig } from 'axios';
 
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
+import ResumeBadge from 'components/ResumeBadge';
 
 const Postings = () => {
 
@@ -47,9 +48,7 @@ const Postings = () => {
             </Link>
             <button className='button'>LIMPAR</button>
           </div>
-          <div className='resumo-container'>
-            Resumo
-          </div>
+          <ResumeBadge text= "Resumo:" total={16562.334} />
         </div>
         <div>
           <div className='filter-container'>
