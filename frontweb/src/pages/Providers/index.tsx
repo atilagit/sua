@@ -38,15 +38,23 @@ const Providers = () => {
 
   return (
     <div className="page-container page-container-especific">
-      <div className="title-content-container">
-        <h1>
-          <Link to="/">Início</Link> / <Link to="/providers"> Fornecedores </Link>
-        </h1>
+      <div className='providers-title-and-button-container'>
+        <div className="providers-title-content-container">
+          <h1>
+            <Link to="/">Início</Link> / <Link to="/providers"> Fornecedores </Link>
+          </h1>
+        </div>
+        <div className='providers-container-buttons-crud'>
+          <Link to="/providers/create">
+            <button className='providers-button'>NOVO</button>
+          </Link>
+        </div>
       </div>
+      
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(provider => (
-          <Link to={`/providers/${provider.id}`} key={provider.id}>
+          <Link to={`/providers/details/${provider.id}`} key={provider.id}>
             <ProviderCard provider={provider} />
           </Link>
         )))}

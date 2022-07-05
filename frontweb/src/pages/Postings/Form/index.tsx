@@ -1,9 +1,9 @@
 
 
-const Form = () => {
+const PostingForm = () => {
     return (
         <h1>form</h1>
     )
 }
 
-export default Form;
+export default PostingForm;
