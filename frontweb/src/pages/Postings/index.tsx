@@ -40,6 +40,7 @@ const Postings = () => {
 
   return (
     <div className="page-container page-container-especific">
+      {isLoading ? <ListLoader /> : (
       <div className='container-filter-crud-postings'>
         <div>
           <div className='container-buttons-crud'>
@@ -78,7 +79,7 @@ const Postings = () => {
           </div>
         </div>
       </div>
-      
+      )}
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
