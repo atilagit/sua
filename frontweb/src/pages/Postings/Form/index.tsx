@@ -2,7 +2,7 @@
 
 const PostingForm = () => {
     return (
-        <h1>form</h1>
+        <h1>form posting</h1>
     )
 }
 

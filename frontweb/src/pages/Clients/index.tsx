@@ -40,15 +40,22 @@ const Clients = () => {
 
   return (
     <div className="page-container page-container-especific">
-      <div className="title-content-container">
-        <h1>
-          <Link to="/">Início</Link> / <Link to="/clients"> Clientes </Link>
-        </h1>
+      <div className='clients-title-and-button-container'>
+        <div className="clients-title-content-container">
+          <h1>
+            <Link to="/">Início</Link> / <Link to="/clients"> Clientes </Link>
+          </h1>
+        </div>
+        <div className='clients-container-buttons-crud'>
+          <Link to="/clients/create">
+            <button className='clients-button'>NOVO</button>
+          </Link>
+        </div>
       </div>
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(client => (
-          <Link to={`clients/${client.id}`} key={client.id}>
+          <Link to={`clients/details/${client.id}`} key={client.id}>
             <ClientCard client={client} />
           </Link>
         )))}

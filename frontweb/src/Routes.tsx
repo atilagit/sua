@@ -16,6 +16,7 @@ import history from 'util/history';
 import PrivateRoute from 'components/PrivateRoute';
 import PostingForm from 'pages/Postings/Form';
 import ProviderForm from 'pages/Providers/ProviderForm';
+import ClientForm from 'pages/Clients/ClientForm';
 
 const Routes = () => (
     <Router history={history}>
@@ -27,8 +28,11 @@ const Routes = () => (
             <PrivateRoute path="/clients" exact roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Clients />
             </PrivateRoute>
-            <PrivateRoute path="/clients/:clientId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
+            <PrivateRoute path="/clients/details/:clientId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <ClientDetails />
+            </PrivateRoute>
+            <PrivateRoute path="/clients/:clientId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
+                <ClientForm />
             </PrivateRoute>
             <PrivateRoute path="/providers" exact roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Providers />
