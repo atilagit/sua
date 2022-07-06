@@ -41,15 +41,22 @@ const Employees = () => {
 
   return (
     <div className="page-container page-container-especific">
-      <div className="title-content-container">
-        <h1>
-          <Link to="/">Início</Link> / <Link to="/employees"> Funcionários </Link>
-        </h1>
+      <div className='employees-title-and-button-container'>
+        <div className="employees-title-content-container">
+          <h1>
+            <Link to="/">Início</Link> / <Link to="/employees"> Funcionários </Link>
+          </h1>
+        </div>
+        <div className='employees-container-buttons-crud'>
+          <Link to="/employees/create">
+            <button className='employees-button'>NOVO</button>
+          </Link>
+        </div>
       </div>
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(employee => (
-          <Link to={`employees/${employee.id}`} key={employee.id}>
+          <Link to={`employees/details/${employee.id}`} key={employee.id}>
             <EmployeeCard employee={employee} />
           </Link>
         )))}

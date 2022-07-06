@@ -14,9 +14,10 @@ import PostingDetails from 'pages/PostingDetails';
 import Auth from 'pages/Auth';
 import history from 'util/history';
 import PrivateRoute from 'components/PrivateRoute';
-import PostingForm from 'pages/Postings/Form';
+import PostingForm from 'pages/Postings/PostingForm';
 import ProviderForm from 'pages/Providers/ProviderForm';
 import ClientForm from 'pages/Clients/ClientForm';
+import EmployeeForm from 'pages/Employees/EmployeeForm';
 
 const Routes = () => (
     <Router history={history}>
@@ -46,8 +47,11 @@ const Routes = () => (
             <PrivateRoute path="/employees" exact>
                 <Employees />
             </PrivateRoute>
-            <PrivateRoute path="/employees/:employeeId">
+            <PrivateRoute path="/employees/details/:employeeId">
                 <EmployeeDetails />
+            </PrivateRoute>
+            <PrivateRoute path="/employees/:employeeId">
+                <EmployeeForm />
             </PrivateRoute>
             <PrivateRoute path="/postings" exact>
                 <Postings />
