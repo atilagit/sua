@@ -20,6 +20,7 @@ ul {
     background: #FFFBF5;
     border: 1px solid #7297AD;
     border-radius: 5px;
+    
 }
 
 .posting-nav-item.active {
@@ -29,4 +30,19 @@ ul {
 .posting-nav-item h1 {
     font-weight: 700;
     font-size: 25px;
+}
+
+@media (max-width: 760px) {
+    ul {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: column;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .posting-nav-item {
+        margin-bottom: 10px;
+    }
 }
