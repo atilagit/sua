@@ -8,20 +8,42 @@ const ProviderForm = () => {
             </div>
             <form action=''>
                 <div className='form-provider-fields-container'>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
-
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col1-82'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
-
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
-                    <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col1-82'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col3-274' />
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col3-274' />
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col3-274'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col5-466'/>
+                    </div>
+                    <div>
+                        <input type="text" className='form-control base-card form-provider-field form-provider-col2-178'/>
+                    </div>
                 </div>
                 <div className='provider-crud-buttons-container'>
                     <button className='btn providers-cancel-button'>CANCELAR</button>
