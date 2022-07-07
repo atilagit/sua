@@ -1,8 +1,16 @@
+import Navbar from "./Navbar";
+
+import './styles.css'; 
 
 
 const PostingForm = () => {
     return (
-        <h1>form posting</h1>
+        <div className="page-container posting-form-container">
+            <Navbar />
+            <div className="posting-crud-content">
+                <h1>Conteudo</h1>
+            </div>
+        </div>
     )
 }
 
