@@ -6,12 +6,12 @@ const Navbar = () => {
         <nav className='posting-nav-container'>
             <ul>
                 <li>
-                    <NavLink to="/postings/create/posting" className='posting-nav-item'>
+                    <NavLink to="/postings/posting/create-posting" className='posting-nav-item'>
                         <h1>Cadastro de Diárias</h1>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/postings/create/salary-advance" className='posting-nav-item'>
+                    <NavLink to="/postings/posting/create-salary-advance" className='posting-nav-item'>
                         <h1>Cadastro de Adiantamentos</h1>
                     </NavLink>
                 </li>

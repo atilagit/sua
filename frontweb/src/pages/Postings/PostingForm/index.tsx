@@ -13,10 +13,10 @@ const PostingForm = () => {
             <Navbar />
             <div className="posting-crud-content">
                 <Switch>
-                    <PrivateRoute path="/postings/create/posting">
+                    <PrivateRoute path="/postings/posting/create-posting">
                         <CreatePostingForm />
                     </PrivateRoute>
-                    <PrivateRoute path="/postings/create/salary-advance">
+                    <PrivateRoute path="/postings/posting/create-salary-advance">
                         <CreateSalaryAdvanceForm />
                     </PrivateRoute>
                 </Switch>

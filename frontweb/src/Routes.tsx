@@ -59,7 +59,7 @@ const Routes = () => (
             <PrivateRoute path="/postings/details/:postingId" exact>
                 <PostingDetails />
             </PrivateRoute>
-            <PrivateRoute path="/postings/create" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
+            <PrivateRoute path="/postings/posting/:postingId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <PostingForm />
             </PrivateRoute>
             <PrivateRoute path="/entries" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
