@@ -1,0 +1,125 @@
+.form-create-posting-page-container-especific {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 34px;
+    padding: 0 10px;
+}
+
+.form-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.select-list {
+    width: 175px;
+    border: none;
+    background: #F9EAD5;
+    border-bottom: 1px solid #000000;
+}
+
+.form-create-posting-titulo-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 562px;
+    height: 60px;
+    background: #F9EAD5;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    margin-bottom: 32px;
+}
+
+.form-create-posting-titulo-container h1 {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.form-create-posting-fields-container {
+    width: 100%;
+    min-height: 300px;
+    max-height: 900px;
+    display: flex;
+    justify-content: space-around;
+    align-content: stretch;
+    flex-wrap: wrap;
+}
+
+.form-create-posting-col1-82 {
+    width: 82px;
+    min-width: 82px;
+}
+
+.form-create-posting-col2-178 {
+    width: 178px;
+    min-width: 178px;
+}
+
+.form-create-posting-col3-274 {
+    width: 274px;
+    min-width: 274px;
+}
+
+.form-create-posting-col4-370 {
+    width: 370px;
+    min-width: 370px;
+}
+
+.form-create-posting-col5-466 {
+    width: 466px;
+    min-width: 466px;
+}
+
+.form-create-posting-field {
+    height: 40px;
+    background: #FFFBF5;
+    border: 1px solid #AD9C84;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 3px;
+    margin: 0px;
+}
+
+.form-create-posting-field p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #AD9C84;
+    margin: 0;
+}
+
+.create-posting-crud-buttons-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.create-postings-cancel-button {
+    width: 320px;
+    height: 60px;
+    background: #D7ECFA;
+    border: 2px solid #AD9C84;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.create-postings-save-button {
+    width: 320px;
+    height: 60px;
+    background: #7297AD;
+    border: 2px solid #AD9C84;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+    font-weight: 700;
+    font-size: 30px;
+}
