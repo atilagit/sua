@@ -31,7 +31,7 @@ const Home = () => {
           <Menucard
             text="Painel do Funcionário"
             btn1="DIÁRIAS" btn1rota="/postings"
-            btn2="MEUS DADOS" btn2rota={`/employees/${getAuthData().userId}`}
+            btn2="MEUS DADOS" btn2rota={`/employees/details/${getAuthData().userId}`}
             btn3="-" btn3rota="/"
             btn4="-" btn4rota="/"
           />

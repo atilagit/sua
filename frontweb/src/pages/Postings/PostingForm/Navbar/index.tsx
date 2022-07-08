@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import './styles.css'; 
 
 const Navbar = () => {
@@ -5,14 +6,14 @@ const Navbar = () => {
         <nav className='posting-nav-container'>
             <ul>
                 <li>
-                    <a href="link" className='posting-nav-item active'>
+                    <NavLink to="/postings/create/posting" className='posting-nav-item'>
                         <h1>Cadastro de Diárias</h1>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a href="link" className='posting-nav-item'>
+                    <NavLink to="/postings/create/salary-advance" className='posting-nav-item'>
                         <h1>Cadastro de Adiantamentos</h1>
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
         </nav>

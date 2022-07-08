@@ -50,7 +50,7 @@ const Routes = () => (
             <PrivateRoute path="/employees/details/:employeeId">
                 <EmployeeDetails />
             </PrivateRoute>
-            <PrivateRoute path="/employees/:employeeId">
+            <PrivateRoute path="/employees/:employeeId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <EmployeeForm />
             </PrivateRoute>
             <PrivateRoute path="/postings" exact>
@@ -59,7 +59,7 @@ const Routes = () => (
             <PrivateRoute path="/postings/details/:postingId" exact>
                 <PostingDetails />
             </PrivateRoute>
-            <PrivateRoute path="/postings/:postingId" exact>
+            <PrivateRoute path="/postings/create" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <PostingForm />
             </PrivateRoute>
             <PrivateRoute path="/entries" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
