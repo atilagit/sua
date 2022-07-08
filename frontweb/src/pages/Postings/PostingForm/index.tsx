@@ -1,6 +1,7 @@
 import PrivateRoute from "components/PrivateRoute";
 import { Switch } from "react-router-dom";
 import CreatePostingForm from "./CreatePostingForm";
+import CreateSalaryAdvanceForm from "./CreateSalaryAdvanceForm";
 import Navbar from "./Navbar";
 
 import './styles.css'; 
@@ -16,7 +17,7 @@ const PostingForm = () => {
                         <CreatePostingForm />
                     </PrivateRoute>
                     <PrivateRoute path="/postings/create/salary-advance">
-                        <h1>Create adiantamentos</h1>
+                        <CreateSalaryAdvanceForm />
                     </PrivateRoute>
                 </Switch>
             </div>
