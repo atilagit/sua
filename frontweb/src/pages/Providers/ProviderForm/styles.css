@@ -105,3 +105,13 @@
     font-weight: 700;
     font-size: 30px;
 }
+
+.form-provider-fields-container label {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 24px;
+    color: #000000;
+
+    margin-bottom: 5px;
+}
