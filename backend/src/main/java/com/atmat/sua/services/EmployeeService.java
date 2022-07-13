@@ -133,6 +133,8 @@ public class EmployeeService implements UserDetailsService{
 			Set<Role> roles = new HashSet<>();
 			dto.getRoles().forEach(x -> roles.add(roleRepository.getOne(x.getId())));
 			entity.setRoles(roles);
+		} else {
+			entity.setRoles(Set.of(roleRepository.getOne(1L)));
 		}
 	}
 	

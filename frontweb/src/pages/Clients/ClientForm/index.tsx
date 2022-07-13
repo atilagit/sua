@@ -125,7 +125,7 @@ const ClientForm = () => {
                         />
                     </div>
                     <div>
-                    <label about='cep'>CEP</label>
+                        <label about='cep'>CEP</label>
                         <input 
                             {...register("address.cep")}
                             type="text" 
@@ -144,7 +144,7 @@ const ClientForm = () => {
                         />
                     </div>
                     <div>
-                    <label about='active'>Status</label>
+                        <label about='active'>Status</label>
                         <input 
                             {...register("active")}
                             type="text" 

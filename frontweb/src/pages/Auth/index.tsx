@@ -65,11 +65,7 @@ const Auth = () => {
             <div className="mb-4 mt-4">
               <input
                 {...register("username", {
-                  required: 'Campo obrigatório',
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Email inválido'
-                  }
+                  required: 'Campo obrigatório'
                 })}
                 type="text"
                 className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}

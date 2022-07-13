@@ -38,6 +38,7 @@ const EmployeeForm = () => {
                     <div className="form-employee-titulo-container">
                         <h1>Cadastro de Funcionário: </h1>
                         <input 
+                        {...register("roles.0.id")}
                         type="text"
                         className='select-list' 
                         placeholder='Básico'
@@ -143,7 +144,7 @@ const EmployeeForm = () => {
                         />
                     </div>
                     <div>
-                    <label about='complement'>Complemento</label>
+                        <label about='complement'>Complemento</label>
                         <input 
                             {...register("address.complement")}
                             type="text" 
