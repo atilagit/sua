@@ -77,14 +77,16 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='unit'>Unidade*</label>
-                        <input 
+                        <select 
+                            value="unit" 
+                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.unit ? 'is-invalid' : ''}`}
                             {...register("unit", {
                                 required: 'Campo obrigatório'
-                            })}
-                            type="text" 
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.unit ? 'is-invalid' : ''}`} 
-                            name="unit"
-                        />
+                            })}>
+                            <option value="KG">Kg</option>
+                            <option value="HOURS">Hora</option>
+                            <option value="DAY">Diária</option>
+                        </select>
                         <div className="invalid-feedback d-block">{errors.unit?.message}</div>
                     </div>
                     <div>
