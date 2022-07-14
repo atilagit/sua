@@ -2,10 +2,16 @@ import { AxiosRequestConfig } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Posting } from 'types/posting';
+import { ShortEmployee } from 'types/shortEmployee'
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
 const CreateSalaryAdvanceForm = () => {
+
+    const empregado: ShortEmployee = {
+        "id": 1,
+        "name": ""
+    }
 
     const history = useHistory();
 
@@ -13,10 +19,17 @@ const CreateSalaryAdvanceForm = () => {
 
     const onSubmit = (formData: Posting) => {
 
+        const data = { 
+            ...formData, 
+            salaryAdvance: true, 
+            unit: "ADVANCE" ,
+            quantity: 1
+        }
+
         const config: AxiosRequestConfig = {
             method: 'POST',
             url: "/postings",
-            data: formData,
+            data: data,
             withCredentials: true
         }
 
@@ -48,30 +61,6 @@ const CreateSalaryAdvanceForm = () => {
                             />
                             <div className="invalid-feedback d-block">{errors.date?.message}</div>
                         </div>
-                        <div>
-                            <label about='unit'>Unidade*</label>
-                            <input 
-                                {...register("unit", {
-                                    required: 'Campo obrigatório'
-                                })}
-                                type="text" 
-                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.unit ? 'is-invalid' : ''}`} 
-                                name="unit"
-                            />
-                            <div className="invalid-feedback d-block">{errors.unit?.message}</div>
-                        </div>
-                        <div>
-                            <label about='price'>Preço*</label>
-                            <input 
-                                {...register("price", {
-                                    required: 'Campo obrigatório'
-                                })}
-                                type="text" 
-                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.price ? 'is-invalid' : ''}`} 
-                                name="price"
-                            />
-                            <div className="invalid-feedback d-block">{errors.price?.message}</div>
-                        </div>
                     </div>
                     <div className='form-create-salary-advance-second-line'>
                         <div>
@@ -83,35 +72,28 @@ const CreateSalaryAdvanceForm = () => {
                                 type="text" 
                                 className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.employee?.id ? 'is-invalid' : ''}`} 
                                 name="employee"
+                                defaultValue={empregado.id}
                             />
                             <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
                         </div>
                         <div>
-                            <label about='quantity'>Quantidade*</label>
+                            <label about='price'>Valor*</label>
                             <input 
-                                {...register("quantity", {
+                                {...register("price", {
                                     required: 'Campo obrigatório'
                                 })}
                                 type="text" 
-                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.quantity ? 'is-invalid' : ''}`} 
-                                name="quantity"
+                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.price ? 'is-invalid' : ''}`} 
+                                name="price"
                             />
-                            <div className="invalid-feedback d-block">{errors.quantity?.message}</div>
-                        </div>
-                        <div>
-                            <label about='total'>Total</label>
-                            <input 
-                                type="text" 
-                                className='form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178' 
-                                name="total"
-                            />
+                            <div className="invalid-feedback d-block">{errors.price?.message}</div>
                         </div>
                         <div>
                             <label about='note'>Observação</label>
                             <input 
                                 {...register("note")}
                                 type="text" 
-                                className='form-control base-card form-create-salary-advance-field form-create-salary-advance-col5-466'
+                                className='form-control base-card form-create-salary-advance-field form-create-salary-advance-col7-645'
                                 name="note"
                             />
                         </div>
