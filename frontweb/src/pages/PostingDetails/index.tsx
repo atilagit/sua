@@ -80,7 +80,11 @@ const PostingDetails = () => {
       )}
 
       <div className='buttons-container'>
-        <Button text='EDITAR' />
+        <Link to={`${(posting?.salaryAdvance) ? 
+          `/postings/posting/create-salary-advance/${posting?.id}` : 
+          `/postings/posting/create-posting/${posting?.id}`}`}>
+          <Button text='EDITAR' />
+        </Link>
         <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />
         <Button text='EXCLUIR' />
       </div>
