@@ -88,7 +88,10 @@ const ClientDetails = () => {
                 </div>
             )}
             <div className='buttons-container'>
-                <Button text='EDITAR' />
+                <Link to={`/clients/${client?.id}`}>
+                    <Button text='EDITAR' />
+                </Link>
+                
                 <Button text='INATIVAR' />
             </div>
             <Footer />

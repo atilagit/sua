@@ -88,7 +88,10 @@ const ProviderDetails = () => {
                 </div>
             )}
             <div className='buttons-container'>
-                <Button text='EDITAR' />
+                <Link to={`/providers/${provider?.id}`}>
+                    <Button text='EDITAR' />
+                </Link>
+                
                 <Button text='INATIVAR' />
             </div>
             <Footer />

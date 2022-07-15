@@ -88,7 +88,10 @@ const EmployeeDetails = () => {
                 </div>
             )}
             <div className='buttons-container'>
-                <Button text='EDITAR' />
+                <Link to={`/employees/${employee?.id}`}>
+                    <Button text='EDITAR' />
+                </Link>
+                
                 <Button text='Resetar Senha' />
                 <Button text='INATIVAR' />
             </div>
