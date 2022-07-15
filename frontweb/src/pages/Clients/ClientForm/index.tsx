@@ -1,21 +1,55 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Client } from 'types/client';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+    clientId: string;
+}
+
+
 const ClientForm = () => {
+
+    const { clientId } = useParams<UrlParams>();
+
+    const isEditing = clientId !== 'create';
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Client>();
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors },
+        setValue
+     } = useForm<Client>();
+
+     useEffect(() => {
+        if (isEditing){
+            requestBackend({url: `/clients/${clientId}`, withCredentials: true})
+            .then((response) => {
+
+                const client = response.data as Client;
+
+                setValue('id', client.id);
+                setValue('contact', client.contact);
+                setValue('abbreviatedName', client.abbreviatedName);
+                setValue('corporateName', client.corporateName);
+                setValue('cpf', client.cpf);
+                setValue('cnpj', client.cnpj);
+                setValue('active', client.active);
+                setValue('address', client.address);
+            })
+        }
+     }, [isEditing, clientId, setValue])
 
     const onSubmit = (formData: Client) => {
 
         const config: AxiosRequestConfig = {
-            method: 'POST',
-            url: "/clients",
+            method: isEditing ? 'PUT' : 'POST',
+            url: isEditing ? `/clients/${clientId}` : "/clients",
             data: formData,
             withCredentials: true
         }
@@ -27,13 +61,15 @@ const ClientForm = () => {
     };
 
     const handleCancel = () => {
-        history.replace("/clients");
+        isEditing
+            ? history.replace(`/clients/details/${clientId}`)
+            : history.replace("/clients");
     }
 
     return (
         <div className="page-container form-client-page-container-especific">
             <div className="form-client-titulo-container">
-                <h1>Cadastro de Cliente</h1>
+                <h1>{isEditing ? "Editar Cliente" : "Cadastro de Cliente"}</h1>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-client-fields-container'>
@@ -150,6 +186,7 @@ const ClientForm = () => {
                             type="text" 
                             className='form-control base-card form-client-field form-client-col2-178' 
                             name="active"
+                            disabled={isEditing}
                         />
                     </div>
                 </div>
