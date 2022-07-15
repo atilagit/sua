@@ -70,6 +70,17 @@
     width: 147px;
     min-width: 92px;
     text-align: right;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #AD9C84;
+}
+
+.status.active {
+    color: #7297AD;
 }
 
 .name {
@@ -82,7 +93,7 @@
 
 .postingId {
     width: 147px;
-    text-align: right;
+    text-align: center;
 }
 
 @media (max-width: 1140px) {

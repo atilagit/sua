@@ -57,6 +57,16 @@
     width: 147px;
     min-width: 92px;
     text-align: right;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #AD9C84;
+}
+
+.status-pj.active {
+    color: #7297AD;
 }
 
 .razao-social-pj {

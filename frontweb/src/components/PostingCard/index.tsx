@@ -22,7 +22,7 @@ const PostingCard = ( {posting} : Props) => {
                 <div className="total">
                     <p>Total: {formatPrice(posting.quantity * posting.price)}</p>
                 </div>
-                <div className="status">
+                <div className={`status ${posting.resolved ? `active` : ``} `}>
                     <h2>{posting.resolved? "RESOLVIDO" : "PENDENTE"}</h2>
                 </div>
             </div>

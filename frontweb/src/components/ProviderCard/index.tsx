@@ -19,7 +19,7 @@ const ProviderCard = ( {provider} : Props) => {
                 <div className="cpf-pj">
                     <p>CPF: {formatCpfCnpj(provider.cpf)}</p>
                 </div>
-                <div className="status-pj">
+                <div className={`status-pj ${provider.active ? `active` : ``}`}>
                     <h2>{provider.active? "ATIVO" : "INATIVO"}</h2>
                 </div>
             </div>

@@ -19,7 +19,7 @@ const EmployeeCard = ({employee} : Props) => {
                 <div className="cpf-pf">
                     <p>CPF: {formatCpfCnpj(employee.cpf)}</p>
                 </div>
-                <div className="status-pf">
+                <div className={`status-pf ${employee.active? `active` : ``}`}>
                     <h2>{employee.active? "ATIVO" : "INATIVO"}</h2>
                 </div>
             </div>

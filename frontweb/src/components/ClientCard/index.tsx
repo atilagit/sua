@@ -19,7 +19,7 @@ const ClientCard = ( {client} : Props) => {
                 <div className="cpf-pj">
                     <p>CPF: {formatCpfCnpj(client.cpf)}</p>
                 </div>
-                <div className="status-pj">
+                <div className={`status-pj ${client.active ? `active` : ``}`}>
                     <h2>{client.active? "ATIVO" : "INATIVO"}</h2>
                 </div>
             </div>
