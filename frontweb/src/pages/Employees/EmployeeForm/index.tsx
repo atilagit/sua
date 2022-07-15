@@ -21,8 +21,8 @@ const EmployeeForm = () => {
         }
 
         requestBackend(config)
-            .then(response => {
-                console.log(response.data);
+            .then(() => {
+                history.replace("/employees");
             });
     };
 
