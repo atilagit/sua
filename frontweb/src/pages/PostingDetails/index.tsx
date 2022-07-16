@@ -11,6 +11,7 @@ import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
 import { AxiosRequestConfig } from 'axios';
+import { hasAnyRoles } from 'util/auth';
 
 type UrlParams = {
   postingId: string;
@@ -80,13 +81,17 @@ const PostingDetails = () => {
       )}
 
       <div className='buttons-container'>
-        <Link to={`${(posting?.salaryAdvance) ? 
-          `/postings/posting/create-salary-advance/${posting?.id}` : 
-          `/postings/posting/create-posting/${posting?.id}`}`}>
-          <Button text='EDITAR' />
-        </Link>
-        <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />
-        <Button text='EXCLUIR' />
+        {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
+          <>
+            <Link to={`${(posting?.salaryAdvance) ?
+              `/postings/posting/create-salary-advance/${posting?.id}` :
+              `/postings/posting/create-posting/${posting?.id}`}`}>
+              <Button text='EDITAR' />
+            </Link>
+            <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />
+            <Button text='EXCLUIR' />
+          </>
+        )}
       </div>
       <Footer />
     </div>

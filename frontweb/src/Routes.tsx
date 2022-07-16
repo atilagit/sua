@@ -44,7 +44,7 @@ const Routes = () => (
             <PrivateRoute path="/providers/:providerId" roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <ProviderForm />
             </PrivateRoute>
-            <PrivateRoute path="/employees" exact>
+            <PrivateRoute path="/employees" exact roles={['ROLE_ADMIN', 'ROLE_OPERATOR']}>
                 <Employees />
             </PrivateRoute>
             <PrivateRoute path="/employees/details/:employeeId">

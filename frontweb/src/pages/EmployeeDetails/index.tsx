@@ -11,7 +11,7 @@ import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
-import { ADMIN, OPERATOR } from "util/auth";
+import { ADMIN, hasAnyRoles, OPERATOR } from "util/auth";
 
 type UrlParams = {
     employeeId: string;
@@ -94,12 +94,16 @@ const EmployeeDetails = () => {
                 </div>
             )}
             <div className='buttons-container'>
-                <Link to={`/employees/${employee?.id}`}>
-                    <Button text='EDITAR' />
-                </Link>
-                
-                <Button text='Resetar Senha' />
-                <Button text={employee?.active ? 'INATIVAR' : 'ATIVAR'} />
+                {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
+                    <>
+                    <Link to={`/employees/${employee?.id}`}>
+                        <Button text='EDITAR' />
+                    </Link>
+                    
+                    <Button text='Resetar Senha' />
+                    <Button text={employee?.active ? 'INATIVAR' : 'ATIVAR'} />
+                    </>
+                )}
             </div>
             <Footer />
         </div>
