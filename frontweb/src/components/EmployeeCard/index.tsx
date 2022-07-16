@@ -14,7 +14,7 @@ const EmployeeCard = ({employee} : Props) => {
                     <h2>{employee.abbreviatedName}</h2>
                 </div>
                 <div className="admissao-pf">
-                    <p>Admissão: {formatDate(employee.admissionDate)}</p>
+                    <p>Admissão: {(employee.admissionDate != null) ? formatDate(employee.admissionDate) : ""}</p>
                 </div>
                 <div className="cpf-pf">
                     <p>CPF: {formatCpfCnpj(employee.cpf)}</p>
