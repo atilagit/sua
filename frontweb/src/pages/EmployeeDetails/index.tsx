@@ -11,6 +11,7 @@ import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
+import { ADMIN, OPERATOR } from "util/auth";
 
 type UrlParams = {
     employeeId: string;
@@ -59,7 +60,12 @@ const EmployeeDetails = () => {
                         {employee && <FieldDetailCard title="CPF" content={(employee.cpf != null) ? formatCpfCnpj(employee.cpf) : ""} />}
                     </div>
                     <div className='col3-274'>
-                        {employee && <FieldDetailCard title="Acesso" content={employee.roles.length > 2 ? "Administrador" : employee.roles.length > 1 ? "Operador" : "Básico"} />}
+                        {employee && <FieldDetailCard
+                            title="Acesso"
+                            content={employee.roles.map(role => role.authority).includes(ADMIN) ? "Administrador"
+                                : employee.roles.map(role => role.authority).includes(OPERATOR) ? "Operador"
+                                    : "Básico"} />
+                        }
                     </div>
                     <div className='col5-466'>
                         {employee && <FieldDetailCard title="Rua" content={(employee.address != null) ? employee.address.street : ""} />}

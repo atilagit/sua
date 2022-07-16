@@ -1,6 +1,10 @@
 import jwtDecode from 'jwt-decode';
 import { getAuthData } from './storage';
 
+export const ADMIN = "ROLE_ADMIN";
+export const OPERATOR = "ROLE_OPERATOR";
+export const BASIC = "ROLE_BASIC";
+
 export type Role = 'ROLE_BASIC' | 'ROLE_OPERATOR' | 'ROLE_ADMIN';
 
 export type TokenData = {

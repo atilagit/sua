@@ -1,4 +1,5 @@
 import { Employee } from 'types/employee';
+import { ADMIN, OPERATOR } from 'util/auth';
 import { formatCpfCnpj, formatDate } from 'util/formatters';
 import './styles.css';
 
@@ -25,7 +26,9 @@ const EmployeeCard = ({employee} : Props) => {
             </div>
             <div className="pf-card-line2">
                 <div className="nivel-usuario-pf">
-                    <p>{employee.roles.length > 2? "Usuário Administrador" : employee.roles.length > 1? "Usuário Operador" : "Usuário Básico"}</p>
+                    <p>{employee.roles.map(role => role.authority).includes(ADMIN) ? "Usuário Administrador"
+                                : employee.roles.map(role => role.authority).includes(OPERATOR) ? "Usuário Operador"
+                                    : "Usuário Básico"}</p>
                 </div>
                 <div className="endereco-pf">
                     {employee.address && <p>{employee.address.street}, {employee.address.number}, {employee.address.neighborhood}, {employee.address.city}, {employee.address.state}, {employee.address.cep}</p>}
