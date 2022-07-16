@@ -1,21 +1,54 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Provider } from 'types/provider';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+    providerId: string;
+}
+
 const ProviderForm = () => {
+
+    const { providerId } = useParams<UrlParams>();
+
+    const isEditing = providerId !== 'create';
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Provider>();
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors },
+        setValue
+     } = useForm<Provider>();
+
+     useEffect(() => {
+        if (isEditing){
+            requestBackend({url: `/providers/${providerId}`, withCredentials: true})
+            .then((response) => {
+
+                const provider = response.data as Provider;
+
+                setValue('id', provider.id);
+                setValue('name', provider.name);
+                setValue('abbreviatedName', provider.abbreviatedName);
+                setValue('corporateName', provider.corporateName);
+                setValue('cpf', provider.cpf);
+                setValue('cnpj', provider.cnpj);
+                setValue('active', provider.active);
+                setValue('address', provider.address);
+            })
+        }
+     }, [isEditing, providerId, setValue])
 
     const onSubmit = (formData: Provider) => {
 
         const config: AxiosRequestConfig = {
-            method: 'POST',
-            url: "/providers",
+            method: isEditing ? 'PUT' :'POST',
+            url: isEditing ? `/providers/${providerId}` :"/providers",
             data: formData,
             withCredentials: true
         }
@@ -27,13 +60,15 @@ const ProviderForm = () => {
     };
 
     const handleCancel = () => {
-        history.replace("/providers");
+        isEditing
+            ? history.replace(`/providers/details/${providerId}`)
+            : history.replace("/providers");
     }
 
     return (
         <div className="page-container form-provider-page-container-especific">
             <div className="form-provider-titulo-container">
-                <h1>Cadastro de Fornecedor</h1>
+                <h1>{isEditing ? "Editar Fornecedor" : "Cadastro de Fornecedor"}</h1>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-provider-fields-container'>
@@ -150,6 +185,7 @@ const ProviderForm = () => {
                             type="text" 
                             className='form-control base-card form-provider-field form-provider-col2-178' 
                             name="active"
+                            disabled={isEditing}
                         />
                     </div>
                 </div>

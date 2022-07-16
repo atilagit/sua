@@ -92,7 +92,7 @@ const ProviderDetails = () => {
                     <Button text='EDITAR' />
                 </Link>
                 
-                <Button text='INATIVAR' />
+                <Button text={provider?.active ? 'INATIVAR' : 'ATIVAR'} />
             </div>
             <Footer />
         </div>
