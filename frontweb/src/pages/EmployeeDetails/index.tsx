@@ -93,7 +93,7 @@ const EmployeeDetails = () => {
                 </Link>
                 
                 <Button text='Resetar Senha' />
-                <Button text='INATIVAR' />
+                <Button text={employee?.active ? 'INATIVAR' : 'ATIVAR'} />
             </div>
             <Footer />
         </div>

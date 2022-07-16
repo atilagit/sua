@@ -1,21 +1,55 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Employee } from 'types/employee';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+    employeeId: string;
+}
+
 const EmployeeForm = () => {
+
+    const { employeeId } = useParams<UrlParams>();
+
+    const isEditing = employeeId !== 'create';
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Employee>();
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors },
+        setValue
+    } = useForm<Employee>();
+
+    useEffect(() => {
+        if (isEditing){
+            requestBackend({url: `/employees/${employeeId}`, withCredentials: true})
+            .then((response) => {
+
+                const employee = response.data as Employee;
+
+                setValue('id', employee.id);
+                setValue('name', employee.name);
+                setValue('abbreviatedName', employee.abbreviatedName);
+                setValue('admissionDate', employee.admissionDate);
+                setValue('cpf', employee.cpf);
+                setValue('login', employee.login);
+                setValue('active', employee.active);
+                setValue('address', employee.address);
+                setValue('roles', employee.roles)
+            })
+        }
+     }, [isEditing, employeeId, setValue])
 
     const onSubmit = (formData: Employee) => {
 
         const config: AxiosRequestConfig = {
-            method: 'POST',
-            url: "/employees",
+            method: isEditing ? 'PUT' :'POST',
+            url: isEditing ? `/employees/${employeeId}` :"/employees",
             data: formData,
             withCredentials: true
         }
@@ -27,7 +61,9 @@ const EmployeeForm = () => {
     };
 
     const handleCancel = () => {
-        history.replace("/employees");
+        isEditing
+            ? history.replace(`/employees/details/${employeeId}`)
+            : history.replace("/employees");
     }
 
 
@@ -36,7 +72,7 @@ const EmployeeForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='form-title-container'>
                     <div className="form-employee-titulo-container">
-                        <h1>Cadastro de Funcionário: </h1>
+                        <h1>{isEditing ? "Editar Funcionário" : "Cadastro de Funcionário: "}</h1>
                         <input 
                         {...register("roles.0.id")}
                         type="text"
@@ -86,6 +122,7 @@ const EmployeeForm = () => {
                             type="text" 
                             className='form-control base-card form-employee-field form-employee-col3-274' 
                             name="active"
+                            disabled={isEditing}
                         />
                     </div>
                     <div>
