@@ -23,7 +23,7 @@ public class EmployeeDTO implements Serializable {
 	private String abbreviatedName;
 	
 	@NotNull(message = "O campo não pode ser nulo")
-	@Size(min = 11, max = 11, message = "Quantidade de dígitos inválida")
+	@Size(min = 11, max = 14, message = "Quantidade de dígitos inválida")
 	private String cpf;
 	private LocalDate admissionDate;
 	

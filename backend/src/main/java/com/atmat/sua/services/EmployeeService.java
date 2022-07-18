@@ -80,9 +80,9 @@ public class EmployeeService implements UserDetailsService{
 
 	@Transactional
 	public EmployeeDTO insert(EmployeeDTO dto) {
-		String initialLogin = dto.getCpf();
-		String initialPassword = passwordEncoder.encode(dto.getCpf().substring(0, 6));
-		Employee entity = new Employee(null, dto.getName(), dto.getCpf(), dto.getAdmissionDate(), initialLogin, initialPassword, true, null, null);
+		String numbersOfCpf = dto.getCpf().replaceAll("[^0-9]", "");
+		String initialPassword = passwordEncoder.encode(numbersOfCpf.substring(0, 6));
+		Employee entity = new Employee(null, dto.getName(), numbersOfCpf, dto.getAdmissionDate(), numbersOfCpf, initialPassword, true, null, null);
 		copyRolesFromDtoToEntity(entity, dto);
 		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
@@ -113,10 +113,11 @@ public class EmployeeService implements UserDetailsService{
 	}
 	
 	private void updateEntityWithDtoData(Employee entity, EmployeeDTO dto) {
+		String dtoCpf = dto.getCpf().replaceAll("[^0-9]", "");
 		entity.setName(dto.getName());
 		entity.setAdmissionDate(dto.getAdmissionDate());
-		entity.setCpf(dto.getCpf());
-		entity.setLogin((dto.getLogin() != null)? dto.getLogin() : dto.getCpf());
+		entity.setCpf(dtoCpf);
+		entity.setLogin((dto.getLogin() != null)? dto.getLogin() : dtoCpf);
 		copyRolesFromDtoToEntity(entity, dto);
 		if (entity.getAddress() == null && dto.getAddress() != null) {
 			createAdrressFromDtoToEntity(dto, entity);

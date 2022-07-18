@@ -78,6 +78,7 @@ const EmployeeForm = () => {
                         type="text"
                         className='select-list' 
                         placeholder='Básico'
+                        defaultValue="1"
                         />
                     </div>
                 </div>
@@ -108,12 +109,15 @@ const EmployeeForm = () => {
                     <div>
                         <label about='cpf'>CPF</label>
                         <input 
-                            {...register("cpf")}
+                            {...register("cpf", {
+                                required: 'Campo obrigatório'
+                            })}
                             type="text" 
-                            className='form-control base-card form-employee-field form-employee-col2-178'
+                            className={`form-control base-card form-employee-field form-employee-col2-178 ${errors.name ? 'is-invalid' : ''}`}
                             placeholder="000.000.000-00"
                             name="cpf"
                         />
+                        <div className="invalid-feedback d-block">{errors.cpf?.message}</div>
                     </div>
                     <div>
                         <label about='active'>Status</label>
