@@ -84,8 +84,8 @@ const PostingDetails = () => {
         {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
           <>
             <Link to={`${(posting?.salaryAdvance) ?
-              `/postings/posting/create-salary-advance/${posting?.id}` :
-              `/postings/posting/create-posting/${posting?.id}`}`}>
+              `/postings/salary-advance/${posting?.id}` :
+              `/postings/posting/${posting?.id}`}`}>
               <Button text='EDITAR' />
             </Link>
             <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />

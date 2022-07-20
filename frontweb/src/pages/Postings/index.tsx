@@ -44,7 +44,7 @@ const Postings = () => {
       <div className='container-filter-crud-postings'>
         <div>
           <div className='container-buttons-crud'>
-            <Link to="/postings/posting/create-posting">
+            <Link to="/postings/posting/create">
               <button className='button'>NOVO</button>
             </Link>
             <button className='button'>LIMPAR</button>
