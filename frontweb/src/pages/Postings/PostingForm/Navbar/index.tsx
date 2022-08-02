@@ -7,12 +7,12 @@ const Navbar = () => {
             <ul>
                 <li>
                     <NavLink to="/postings/posting/create" className='posting-nav-item'>
-                        <h1>Cadastro de Diárias</h1>
+                        <h1>Diárias</h1>
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/postings/salary-advance/create" className='posting-nav-item'>
-                        <h1>Cadastro de Adiantamentos</h1>
+                        <h1>Adiantamentos</h1>
                     </NavLink>
                 </li>
             </ul>

@@ -1,29 +1,65 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+    postingId: string;
+}
+
 const CreatePostingForm = () => {
 
+    const { postingId } = useParams<UrlParams>();
+
+    const isEditing = postingId !== 'create';
+
     const empregado: ShortEmployee = {
-        "id": 1,
+        "id": 2,
         "name": ""
     }
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Posting>();
+    const { 
+        register, 
+        handleSubmit, 
+        formState: { errors },
+        setValue
+     } = useForm<Posting>();
+
+     useEffect(() => {
+        if (isEditing){
+            requestBackend({url: `/postings/${postingId}`, withCredentials: true})
+            .then((response) => {
+
+                const posting = response.data as Posting;
+
+                setValue('id', posting.id);
+                setValue('date', posting.date);
+                setValue('unit', posting.unit);
+                setValue('quantity', posting.quantity);
+                setValue('price', posting.price);
+                setValue('note', posting.note);
+                setValue('salaryAdvance', posting.salaryAdvance);
+                setValue('resolved', posting.resolved);
+                setValue('employee', posting.employee);
+                setValue('client', posting.client);
+                setValue('provider', posting.provider);
+            })
+        }
+     }, [isEditing, postingId, setValue])
 
     const onSubmit = (formData: Posting) => {
 
         const data = { ...formData, salaryAdvance: false }
 
         const config: AxiosRequestConfig = {
-            method: 'POST',
-            url: "/postings",
+            method: isEditing ? 'PUT' :'POST',
+            url: isEditing ? `/postings/${postingId}` :"/postings",
             data: data,
             withCredentials: true
         }
@@ -35,7 +71,9 @@ const CreatePostingForm = () => {
     };
 
     const handleCancel = () => {
-        history.replace("/postings");
+        isEditing
+            ? history.replace(`/postings/details/${postingId}`)
+            : history.replace("/postings");
     }
 
     return (
@@ -83,7 +121,7 @@ const CreatePostingForm = () => {
                             {...register("unit", {
                                 required: 'Campo obrigatório'
                             })}>
-                            <option value="KG">Kg</option>
+                            <option value="KG">KG</option>
                             <option value="HOURS">Hora</option>
                             <option value="DAY">Diária</option>
                         </select>
