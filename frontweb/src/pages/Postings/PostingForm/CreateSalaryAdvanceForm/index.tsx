@@ -1,21 +1,52 @@
 import { AxiosRequestConfig } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
+type UrlParams = {
+    postingId: string;
+}
+
 const CreateSalaryAdvanceForm = () => {
 
+    const { postingId } = useParams<UrlParams>();
+
+    const isEditing = postingId !== 'create';
+
     const empregado: ShortEmployee = {
-        "id": 1,
+        "id": 2,
         "name": ""
     }
 
     const history = useHistory();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<Posting>();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        setValue
+    } = useForm<Posting>();
+
+    useEffect(() => {
+        if (isEditing) {
+            requestBackend({ url: `/postings/${postingId}`, withCredentials: true })
+                .then((response) => {
+
+                    const posting = response.data as Posting;
+
+                    setValue('id', posting.id);
+                    setValue('date', posting.date);
+                    setValue('price', posting.price);
+                    setValue('note', posting.note);
+                    setValue('resolved', posting.resolved);
+                    setValue('employee', posting.employee);
+                })
+        }
+    }, [isEditing, postingId, setValue])
 
     const onSubmit = (formData: Posting) => {
 
@@ -27,8 +58,8 @@ const CreateSalaryAdvanceForm = () => {
         }
 
         const config: AxiosRequestConfig = {
-            method: 'POST',
-            url: "/postings",
+            method: isEditing ? 'PUT' :'POST',
+            url: isEditing ? `/postings/${postingId}` : "/postings",
             data: data,
             withCredentials: true
         }
@@ -40,7 +71,9 @@ const CreateSalaryAdvanceForm = () => {
     };
 
     const handleCancel = () => {
-        history.replace("/postings");
+        isEditing
+            ? history.replace(`/postings/details/${postingId}`)
+            : history.replace("/postings");
     }
 
     return (
@@ -104,6 +137,7 @@ const CreateSalaryAdvanceForm = () => {
                                 type='text' 
                                 className='form-control base-card form-create-salary-advance-field form-create-salary-advance-col1-82' 
                                 name="resolved"
+                                disabled={isEditing}
                             />
                         </div>
                     </div>

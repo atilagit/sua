@@ -47,8 +47,8 @@ const CreatePostingForm = () => {
                 setValue('salaryAdvance', posting.salaryAdvance);
                 setValue('resolved', posting.resolved);
                 setValue('employee', posting.employee);
-                setValue('client', posting.client);
-                setValue('provider', posting.provider);
+                setValue('client', posting?.client);
+                setValue('provider', posting?.provider);
             })
         }
      }, [isEditing, postingId, setValue])
@@ -170,6 +170,7 @@ const CreatePostingForm = () => {
                             type="text" 
                             className='form-control base-card form-create-posting-field form-create-posting-col2-178' 
                             name="total"
+                            disabled={true}
                         />
                     </div>
                     <div>
@@ -188,6 +189,7 @@ const CreatePostingForm = () => {
                             type='text' 
                             className='form-control base-card form-create-posting-field form-create-posting-col1-82' 
                             name="resolved"
+                            disabled={isEditing}
                         />
                     </div>
                 </div>
