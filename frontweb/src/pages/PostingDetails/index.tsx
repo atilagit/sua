@@ -4,7 +4,7 @@ import Footer from 'components/Footer';
 import { Posting } from 'types/posting';
 import { formatDate, formatPrice } from 'util/formatters';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import './styles.css';
 import { requestBackend } from 'util/requests';
@@ -22,6 +22,26 @@ const PostingDetails = () => {
   const { postingId } = useParams<UrlParams>();
   const [posting, setPosting] = useState<Posting>();
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+
+  const handleDelete = (postingId: string) => {
+
+    if(!window.confirm("Tem certeza que deseja deletar?")) {
+      return;
+    }
+
+    const config: AxiosRequestConfig = {
+      method: 'DELETE',
+      url: `/postings/${postingId}`,
+      withCredentials: true
+    };
+
+    requestBackend(config)
+      .then(() => {
+        window.alert("Deletado com sucesso!");
+        history.replace("/postings");
+      });
+  }
 
   useEffect(() => {
 
@@ -89,7 +109,11 @@ const PostingDetails = () => {
               <Button text='EDITAR' />
             </Link>
             <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />
-            <Button text='EXCLUIR' />
+            <button
+              onClick={() => handleDelete(postingId)}
+              className="button-container">
+              <p>EXCLUIR</p>
+            </button>
           </>
         )}
       </div>
