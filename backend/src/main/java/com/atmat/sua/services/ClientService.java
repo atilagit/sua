@@ -80,6 +80,18 @@ public class ClientService {
 		}
 	}
 	
+	@Transactional
+	public ClientDTO invertActiveStatus(Long id) {
+		try {
+			Client entity = repository.getOne(id);
+			entity.setActive(!entity.getActive());
+			entity = repository.save(entity);
+			return new ClientDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
+	}
+	
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
@@ -121,4 +133,5 @@ public class ClientService {
 		address.setState(addressDto.getState());
 		address.setStreet(addressDto.getStreet());
 	}
+
 }
