@@ -71,6 +71,12 @@ public class ProviderResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	@PutMapping(value = "/active/{id}")
+	public ResponseEntity<ProviderDTO> invertActiveStatus(@PathVariable Long id){
+		ProviderDTO dto = service.invertActiveStatus(id);
+		return ResponseEntity.ok().body(dto);
+	}
+	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);

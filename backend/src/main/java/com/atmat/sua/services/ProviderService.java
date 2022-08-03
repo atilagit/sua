@@ -80,6 +80,18 @@ public class ProviderService {
 		}
 	}
 	
+	@Transactional
+	public ProviderDTO invertActiveStatus(Long id) {
+		try {
+			Provider entity = repository.getOne(id);
+			entity.setActive(!entity.getActive());
+			entity = repository.save(entity);
+			return new ProviderDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
+	}
+	
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
