@@ -71,6 +71,12 @@ public class EmployeeResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	@PutMapping(value = "/active/{id}")
+	public ResponseEntity<EmployeeDTO> invertActiveStatus(@PathVariable Long id){
+		EmployeeDTO employeeDto = service.invertActiveStatus(id);
+		return ResponseEntity.ok().body(employeeDto);
+	}
+	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);

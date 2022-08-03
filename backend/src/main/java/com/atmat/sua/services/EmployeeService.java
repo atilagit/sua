@@ -101,6 +101,18 @@ public class EmployeeService implements UserDetailsService{
 		}
 	}
 	
+	@Transactional
+	public EmployeeDTO invertActiveStatus(Long id) {
+		try {
+			Employee entity = repository.getOne(id);
+			entity.setActive(!entity.getActive());
+			entity = repository.save(entity);
+			return new EmployeeDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
+	}
+
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);
