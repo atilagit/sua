@@ -22,6 +22,28 @@ const ProviderDetails = () => {
     const [provider, setProvider] = useState<Provider>();
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleInvertActiveStatus = (providerId: string, active: boolean) => {
+
+        if(!window.confirm(`Tem certeza que deseja ${active ? "inativar" : "ativar"}?`)) {
+          return;
+        }
+        
+        const config: AxiosRequestConfig = {
+            method: 'PUT',
+            url: `/providers/active/${providerId}`,
+            withCredentials: true
+        };
+
+        setIsLoading(true);
+        requestBackend(config)
+        .then(response => {
+            setProvider(response.data)
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
+      }
+
     useEffect(() => {
 
         const params: AxiosRequestConfig = {
@@ -92,7 +114,11 @@ const ProviderDetails = () => {
                     <Button text='EDITAR' />
                 </Link>
                 
-                <Button text={provider?.active ? 'INATIVAR' : 'ATIVAR'} />
+                <button
+                    onClick={() => handleInvertActiveStatus(providerId, provider?.active ? provider.active : false)}
+                    className="button-container">
+                    <p>{provider?.active ? 'INATIVAR' : 'ATIVAR'}</p>
+                </button>
             </div>
             <Footer />
         </div>

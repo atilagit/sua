@@ -22,6 +22,28 @@ const ClientDetails = () => {
     const [client, setClient] = useState<Client>();
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleInvertActiveStatus = (clientId: string, active: boolean) => {
+
+        if(!window.confirm(`Tem certeza que deseja ${active ? "inativar" : "ativar"}?`)) {
+          return;
+        }
+        
+        const config: AxiosRequestConfig = {
+            method: 'PUT',
+            url: `/clients/active/${clientId}`,
+            withCredentials: true
+        };
+
+        setIsLoading(true);
+        requestBackend(config)
+        .then(response => {
+            setClient(response.data)
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
+      }
+
     useEffect(() => {
 
         const params: AxiosRequestConfig = {
@@ -92,7 +114,11 @@ const ClientDetails = () => {
                     <Button text='EDITAR' />
                 </Link>
                 
-                <Button text={client?.active ? 'INATIVAR' : 'ATIVAR'} />
+                <button
+                    onClick={() => handleInvertActiveStatus(clientId, client?.active ? client.active : false)}
+                    className="button-container">
+                    <p>{client?.active ? 'INATIVAR' : 'ATIVAR'}</p>
+                </button>
             </div>
             <Footer />
         </div>

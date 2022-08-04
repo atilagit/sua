@@ -23,7 +23,7 @@ const EmployeeDetails = () => {
     const [employee, setEmployee] = useState<Employee>();
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleInvertActivStatus = (employeeId: string, active: boolean) => {
+    const handleInvertActiveStatus = (employeeId: string, active: boolean) => {
 
         if(!window.confirm(`Tem certeza que deseja ${active ? "inativar" : "ativar"}?`)) {
           return;
@@ -124,7 +124,7 @@ const EmployeeDetails = () => {
 
                         <Button text='Resetar Senha' />
                         <button
-                            onClick={() => handleInvertActivStatus(employeeId, employee?.active ? employee.active : false)}
+                            onClick={() => handleInvertActiveStatus(employeeId, employee?.active ? employee.active : false)}
                             className="button-container">
                             <p>{employee?.active ? 'INATIVAR' : 'ATIVAR'}</p>
                         </button>
