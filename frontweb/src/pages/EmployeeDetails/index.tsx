@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 import { Employee } from "types/employee";
 import { formatCEP, formatCpfCnpj, formatDate } from "util/formatters";
 
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import './styles.css';
 import { AxiosRequestConfig } from 'axios';
@@ -22,25 +22,29 @@ const EmployeeDetails = () => {
     const { employeeId } = useParams<UrlParams>();
     const [employee, setEmployee] = useState<Employee>();
     const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+    //const[changeStatus, setChangeStatus] = useState(false);
+    //const history = useHistory();
 
     const handleInvertActivStatus = (employeeId: string, active: boolean) => {
 
-        if(!window.confirm(`Tem certeza que deseja ${active ? "desativar" : "ativar"}?`)) {
+        if(!window.confirm(`Tem certeza que deseja ${active ? "inativar" : "ativar"}?`)) {
           return;
         }
-    
+        //console.log(changeStatus)
         const config: AxiosRequestConfig = {
-          method: 'PUT',
-          url: `/employees/active/${employeeId}`,
-          withCredentials: true
+            method: 'PUT',
+            url: `/employees/active/${employeeId}`,
+            withCredentials: true
         };
-    
+
+        setIsLoading(true);
         requestBackend(config)
-          .then(() => {
-            window.alert(`${active ? "Inativado" : "Ativado"} com sucesso!`);
-            history.replace("/employees");
-          });
+        .then(response => {
+            setEmployee(response.data)
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
       }
 
     useEffect(() => {
