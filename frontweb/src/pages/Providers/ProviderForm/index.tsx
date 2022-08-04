@@ -39,7 +39,7 @@ const ProviderForm = () => {
                 setValue('cpf', provider.cpf);
                 setValue('cnpj', provider.cnpj);
                 setValue('active', provider.active);
-                setValue('address', provider.address);
+                setValue('address', provider?.address);
             })
         }
      }, [isEditing, providerId, setValue])
@@ -54,9 +54,10 @@ const ProviderForm = () => {
         }
 
         requestBackend(config)
-            .then(() => {
-                history.replace("/providers");
-            });
+        .then((response) => {
+            const provider = response.data as Provider;
+            history.replace(`/providers/details/${provider.id}`)
+        });
     };
 
     const handleCancel = () => {

@@ -99,7 +99,7 @@ const ProviderDetails = () => {
                         {provider && <FieldDetailCard title="Estado" content={(provider.address != null) ? provider.address.state : ""} />}
                     </div>
                     <div className='col2-178'>
-                        {provider && <FieldDetailCard title="CEP" content={(provider.address != null) ? formatCEP(provider.address.cep) : ""} />}
+                        {provider && <FieldDetailCard title="CEP" content={(provider.address != null && provider.address.cep != null) ? formatCEP(provider.address.cep) : ""} />}
                     </div>
                     <div className='col5-466'>
                         {provider && <FieldDetailCard title="Complemento" content={(provider.address != null) ? provider.address.complement : ""} />}

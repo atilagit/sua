@@ -55,8 +55,9 @@ const ClientForm = () => {
         }
 
         requestBackend(config)
-            .then(() => {
-                history.replace("/clients");
+            .then((response) => {
+                const client = response.data as Client;
+                history.replace(`/clients/details/${client.id}`)
             });
     };
 

@@ -55,9 +55,10 @@ const EmployeeForm = () => {
         }
 
         requestBackend(config)
-            .then(() => {
-                history.replace("/employees");
-            });
+        .then((response) => {
+            const employee = response.data as Employee;
+            history.replace(`/employees/details/${employee.id}`)
+        });
     };
 
     const handleCancel = () => {
