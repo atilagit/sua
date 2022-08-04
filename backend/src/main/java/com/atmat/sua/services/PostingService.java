@@ -87,6 +87,18 @@ public class PostingService {
 		}
 	}
 	
+	@Transactional
+	public PostingDTO invertResolvedStatus(Long id) {
+		try {
+			Posting entity = repository.getOne(id);
+			entity.setResolved(!entity.getResolved());
+			entity = repository.save(entity);
+			return new PostingDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id " + id + " not found");
+		}
+	}
+	
 	public void delete(Long id) {
 		try {
 		repository.deleteById(id);

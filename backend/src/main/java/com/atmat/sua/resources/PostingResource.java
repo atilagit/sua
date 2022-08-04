@@ -71,6 +71,12 @@ public class PostingResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	@PutMapping(value = "/resolved/{id}")
+	public ResponseEntity<PostingDTO> invertResolvedStatus(@PathVariable Long id){
+		PostingDTO dto = service.invertResolvedStatus(id);
+		return ResponseEntity.ok().body(dto);
+	}
+	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);

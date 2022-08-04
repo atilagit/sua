@@ -43,6 +43,28 @@ const PostingDetails = () => {
       });
   }
 
+  const handleInvertResolvedStatus = (postingId: string, resolved: boolean) => {
+
+    if(!window.confirm(`Tem certeza que deseja ${resolved ? "pendenciar" : "resolver"}?`)) {
+      return;
+    }
+    
+    const config: AxiosRequestConfig = {
+        method: 'PUT',
+        url: `/postings/resolved/${postingId}`,
+        withCredentials: true
+    };
+
+    setIsLoading(true);
+    requestBackend(config)
+    .then(response => {
+      setPosting(response.data)
+    })
+    .finally(() => {
+        setIsLoading(false);
+    });
+  }
+
   useEffect(() => {
 
     const params: AxiosRequestConfig = {
@@ -108,7 +130,11 @@ const PostingDetails = () => {
               `/postings/posting/${posting?.id}`}`}>
               <Button text='EDITAR' />
             </Link>
-            <Button text={posting?.resolved ? "PENDENCIAR" : "RESOLVER"} />
+            <button
+                    onClick={() => handleInvertResolvedStatus(postingId, posting?.resolved ? posting?.resolved : false)}
+                    className="button-container">
+                    <p>{posting?.resolved ? "PENDENCIAR" : "RESOLVER"}</p>
+                </button>
             <button
               onClick={() => handleDelete(postingId)}
               className="button-container">
