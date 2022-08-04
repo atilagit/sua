@@ -4,7 +4,7 @@ import Footer from "components/Footer";
 import { Employee } from "types/employee";
 import { formatCEP, formatCpfCnpj, formatDate } from "util/formatters";
 
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 import './styles.css';
 import { AxiosRequestConfig } from 'axios';
@@ -22,6 +22,26 @@ const EmployeeDetails = () => {
     const { employeeId } = useParams<UrlParams>();
     const [employee, setEmployee] = useState<Employee>();
     const [isLoading, setIsLoading] = useState(false);
+    const history = useHistory();
+
+    const handleInvertActivStatus = (employeeId: string, active: boolean) => {
+
+        if(!window.confirm(`Tem certeza que deseja ${active ? "desativar" : "ativar"}?`)) {
+          return;
+        }
+    
+        const config: AxiosRequestConfig = {
+          method: 'PUT',
+          url: `/employees/active/${employeeId}`,
+          withCredentials: true
+        };
+    
+        requestBackend(config)
+          .then(() => {
+            window.alert(`${active ? "Inativado" : "Ativado"} com sucesso!`);
+            history.replace("/employees");
+          });
+      }
 
     useEffect(() => {
 
@@ -96,12 +116,16 @@ const EmployeeDetails = () => {
             <div className='buttons-container'>
                 {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
                     <>
-                    <Link to={`/employees/${employee?.id}`}>
-                        <Button text='EDITAR' />
-                    </Link>
-                    
-                    <Button text='Resetar Senha' />
-                    <Button text={employee?.active ? 'INATIVAR' : 'ATIVAR'} />
+                        <Link to={`/employees/${employee?.id}`}>
+                            <Button text='EDITAR' />
+                        </Link>
+
+                        <Button text='Resetar Senha' />
+                        <button
+                            onClick={() => handleInvertActivStatus(employeeId, employee?.active ? employee.active : false)}
+                            className="button-container">
+                            <p>{employee?.active ? 'INATIVAR' : 'ATIVAR'}</p>
+                        </button>
                     </>
                 )}
             </div>
