@@ -22,15 +22,13 @@ const EmployeeDetails = () => {
     const { employeeId } = useParams<UrlParams>();
     const [employee, setEmployee] = useState<Employee>();
     const [isLoading, setIsLoading] = useState(false);
-    //const[changeStatus, setChangeStatus] = useState(false);
-    //const history = useHistory();
 
     const handleInvertActivStatus = (employeeId: string, active: boolean) => {
 
         if(!window.confirm(`Tem certeza que deseja ${active ? "inativar" : "ativar"}?`)) {
           return;
         }
-        //console.log(changeStatus)
+        
         const config: AxiosRequestConfig = {
             method: 'PUT',
             url: `/employees/active/${employeeId}`,
