@@ -68,7 +68,8 @@ public class PostingService {
 
 	@Transactional
 	public PostingDTO insert(PostingDTO dto) {
-		Posting entity = new Posting(null, dto.getDate(), UnitType.valueOf(dto.getUnit()), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), dto.getResolved());
+		Boolean resolved = (dto.getResolved() != null ? dto.getResolved() : false);
+		Posting entity = new Posting(null, dto.getDate(), UnitType.valueOf(dto.getUnit()), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), resolved);
 		copyEmployeeAndClientAndProviderFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new PostingDTO(entity);

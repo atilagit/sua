@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
+import { formatPrice } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
@@ -43,6 +44,7 @@ const CreatePostingForm = () => {
                 setValue('unit', posting.unit);
                 setValue('quantity', posting.quantity);
                 setValue('price', posting.price);
+                setValue('total', formatPrice(posting.price * posting.quantity).toString());
                 setValue('note', posting.note);
                 setValue('salaryAdvance', posting.salaryAdvance);
                 setValue('resolved', posting.resolved);
@@ -168,6 +170,7 @@ const CreatePostingForm = () => {
                     <div>
                         <label about='total'>Total</label>
                         <input 
+                            {...register("total")}
                             type="text" 
                             className='form-control base-card form-create-posting-field form-create-posting-col2-178' 
                             name="total"

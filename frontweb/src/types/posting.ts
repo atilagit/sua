@@ -8,6 +8,7 @@ export type Posting = {
     unit: string;
     quantity: number;
     price: number;
+    total: string;
     note: string;
     salaryAdvance: boolean;
     resolved: boolean;
