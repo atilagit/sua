@@ -121,10 +121,10 @@ public class PostingService {
 	
 	private void copyEmployeeAndClientAndProviderFromDtoToEntity(PostingDTO dto, Posting entity) {
 		entity.setEmployee(employeeRepository.getOne(dto.getEmployee().getId()));
-		if(dto.getClient() != null) {
+		if(dto.getClient() != null && dto.getClient().getId() != null) {
 			entity.setClient(clientRepository.getOne(dto.getClient().getId()));
 		}
-		if(dto.getProvider() != null) {
+		if(dto.getProvider() != null && dto.getProvider().getId() != null) {
 			entity.setProvider(providerRepository.getOne(dto.getProvider().getId()));
 		}
 	}

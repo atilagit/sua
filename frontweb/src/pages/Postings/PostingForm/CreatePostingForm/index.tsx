@@ -65,8 +65,9 @@ const CreatePostingForm = () => {
         }
 
         requestBackend(config)
-            .then(() => {
-                history.replace("/postings");
+            .then((response) => {
+                const posting = response.data as Posting;
+                history.replace(`/postings/details/${posting.id}`)
             });
     };
 
@@ -121,8 +122,8 @@ const CreatePostingForm = () => {
                             {...register("unit", {
                                 required: 'Campo obrigatório'
                             })}>
-                            <option value="KG">KG</option>
-                            <option value="HOURS">Hora</option>
+                            <option value="KG">Kg</option>
+                            <option value="HOURS">Horas</option>
                             <option value="DAY">Diária</option>
                         </select>
                         <div className="invalid-feedback d-block">{errors.unit?.message}</div>

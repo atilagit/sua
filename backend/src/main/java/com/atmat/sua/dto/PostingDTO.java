@@ -56,7 +56,7 @@ public class PostingDTO implements Serializable {
 	public PostingDTO(Posting entity) {
 		id = entity.getId();
 		date = entity.getDate();
-		unit = entity.getUnit().getDescription();
+		unit = entity.getUnit().toString();
 		quantity = entity.getQuantity();
 		price = entity.getPrice();
 		note = entity.getNote();

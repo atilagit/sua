@@ -65,8 +65,9 @@ const CreateSalaryAdvanceForm = () => {
         }
 
         requestBackend(config)
-            .then(() => {
-                history.replace("/postings");
+            .then((response) => {
+                const posting = response.data as Posting;
+                history.replace(`/postings/details/${posting.id}`)
             });
     };
 
