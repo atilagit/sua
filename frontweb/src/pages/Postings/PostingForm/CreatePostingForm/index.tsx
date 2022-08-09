@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Posting } from 'types/posting';
-import { ShortEmployee } from 'types/shortEmployee'
 import { formatPrice } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
@@ -15,7 +14,7 @@ type UrlParams = {
 
 const CreatePostingForm = () => {
 
-    const options = [
+    const unityOptions = [
         { value: "KG", label: 'Kg' },
         { value: "HOURS", label: 'Hora(s)' },
         { value: "DAY", label: 'Diária' }
@@ -24,11 +23,6 @@ const CreatePostingForm = () => {
     const { postingId } = useParams<UrlParams>();
 
     const isEditing = postingId !== 'create';
-
-    const empregado: ShortEmployee = {
-        "id": 2,
-        "name": ""
-    }
 
     const history = useHistory();
 
@@ -92,22 +86,16 @@ const CreatePostingForm = () => {
                 <div className='form-create-posting-fields-container'>
                     <div>
                         <label about='provider'>Fornecedor</label>
-                        <input
-                            {...register("provider.id")}
-                            type="text"
-                            className='form-control base-card form-create-posting-field form-create-posting-col3-274'
-                            name="provider"
-                            defaultValue={empregado.id}
+                        <Select
+                            options={unityOptions}
+                            classNamePrefix="provider-select"
                         />
                     </div>
                     <div>
                         <label about='client'>Cliente</label>
-                        <input
-                            {...register("client.id")}
-                            type="text"
-                            className='form-control base-card form-create-posting-field form-create-posting-col3-274'
-                            name="client"
-                            defaultValue={empregado.id}
+                        <Select
+                            options={unityOptions}
+                            classNamePrefix="client-select"
                         />
                     </div>
                     <div>
@@ -126,7 +114,7 @@ const CreatePostingForm = () => {
                     <div>
                         <label about='unit'>Unidade*</label>
                         <Select
-                            options={options}
+                            options={unityOptions}
                             classNamePrefix="unity-select"
                         />
                     </div>
@@ -144,14 +132,9 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='employee'>Funcionário*</label>
-                        <input 
-                            {...register("employee.id", {
-                                required: 'Campo obrigatório'
-                            })}
-                            type="text" 
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.employee?.id ? 'is-invalid' : ''}`} 
-                            name="employee"
-                            defaultValue={empregado.id}
+                        <Select
+                            options={unityOptions}
+                            classNamePrefix="employee-select"
                         />
                         <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
                     </div>
