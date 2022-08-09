@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
+import Select from 'react-select';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
 import { formatPrice } from 'util/formatters';
@@ -13,6 +14,12 @@ type UrlParams = {
 }
 
 const CreatePostingForm = () => {
+
+    const options = [
+        { value: "KG", label: 'Kg' },
+        { value: "HOURS", label: 'Hora(s)' },
+        { value: "DAY", label: 'Diária' }
+    ]
 
     const { postingId } = useParams<UrlParams>();
 
@@ -118,17 +125,10 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='unit'>Unidade*</label>
-                        <select 
-                            value="unit" 
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.unit ? 'is-invalid' : ''}`}
-                            {...register("unit", {
-                                required: 'Campo obrigatório'
-                            })}>
-                            <option value="KG">Kg</option>
-                            <option value="HOURS">Horas</option>
-                            <option value="DAY">Diária</option>
-                        </select>
-                        <div className="invalid-feedback d-block">{errors.unit?.message}</div>
+                        <Select
+                            options={options}
+                            classNamePrefix="unity-select"
+                        />
                     </div>
                     <div>
                         <label about='price'>Preço*</label>
