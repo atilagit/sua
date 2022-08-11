@@ -117,7 +117,7 @@ const CreatePostingForm = () => {
                         <Select
                             options={selectProviders}
                             classNamePrefix="provider-select"
-                            getOptionLabel={(provider: ShortProvider) => provider.abbreviatedName}
+                            getOptionLabel={(provider: ShortProvider) => provider.firstAndLastName}
                             getOptionValue={(provider: ShortProvider) => String(provider.id)}
                         />
                     </div>
@@ -126,7 +126,7 @@ const CreatePostingForm = () => {
                         <Select
                             options={selectClients}
                             classNamePrefix="client-select"
-                            getOptionLabel={(client: ShortClient) => client.abbreviatedName}
+                            getOptionLabel={(client: ShortClient) => client.firstAndLastName}
                             getOptionValue={(client: ShortClient) => String(client.id)}
                         />
                     </div>

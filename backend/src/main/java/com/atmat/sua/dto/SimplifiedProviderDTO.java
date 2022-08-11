@@ -12,6 +12,7 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 	private Long id;
 	private String name;
 	private String abbreviatedName;
+	private String firstAndLastName;
 	
 	public SimplifiedProviderDTO() {
 	}
@@ -25,6 +26,7 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 		id = entity.getId();
 		name = buildMaxLengthName(entity.getName());
 		abbreviatedName = buildSimplifiedContactName(entity.getName());
+		firstAndLastName = buildFirstAndLastName(entity.getName());
 	}
 
 	public Long getId() {
@@ -51,6 +53,14 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 		this.abbreviatedName = abbreviatedName;
 	}
 	
+	public String getFirstAndLastName() {
+		return firstAndLastName;
+	}
+	
+	public void setFirstAndLastName(String firstAndLastName) {
+		this.firstAndLastName = firstAndLastName;
+	}
+	
 	private String buildSimplifiedContactName(String name) {
 		if (name == null) {
 			return null;
@@ -63,11 +73,6 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 		}
 		return (firstName.length() > 10) ? firstName.substring(0, 10) + "..." : firstName;
 	}
-
-	@Override
-	public int compareTo(SimplifiedProviderDTO o) {
-		return name.toLowerCase().compareTo(o.getName().toLowerCase());
-	}
 	
 	private String buildMaxLengthName(String name) {
 		int lengthOfName = name.trim().length();
@@ -76,5 +81,22 @@ public class SimplifiedProviderDTO implements Serializable, Comparable<Simplifie
 			return name.substring(0, maxLength) + "...";
 		}
 		return name;
+	}
+	
+	private String buildFirstAndLastName(String name) {
+		if(name == null) {
+			return null;
+		}
+		List<String> words = Arrays.asList(name.split(" "));
+		if (words.size() > 1) {
+			return words.get(0) + " " + words.get(words.size() - 1);
+		} else {
+			return words.get(0);
+		}
+	}
+
+	@Override
+	public int compareTo(SimplifiedProviderDTO o) {
+		return name.toLowerCase().compareTo(o.getName().toLowerCase());
 	}
 }

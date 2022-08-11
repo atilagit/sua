@@ -12,6 +12,7 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 	private Long id;
 	private String contact;
 	private String abbreviatedName;
+	private String firstAndLastName;
 	
 	public SimplifiedClientDTO() {
 	}
@@ -25,6 +26,7 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 		id = entity.getId();
 		contact = buildMaxLengthName(entity.getContact());
 		abbreviatedName = buildSimplifiedContactName(entity.getContact());
+		firstAndLastName = buildFirstAndLastName(entity.getContact());
 	}
 
 	public Long getId() {
@@ -51,6 +53,14 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 		this.abbreviatedName = abbreviatedName;
 	}
 	
+	public String getFirstAndLastName() {
+		return firstAndLastName;
+	}
+	
+	public void setFirstAndLastName(String firstAndLastName) {
+		this.firstAndLastName = firstAndLastName;
+	}
+	
 	private String buildSimplifiedContactName(String name) {
 		if (name == null) {
 			return null;
@@ -71,6 +81,18 @@ public class SimplifiedClientDTO implements Serializable, Comparable<SimplifiedC
 			return name.substring(0, maxLength) + "...";
 		}
 		return name;
+	}
+	
+	private String buildFirstAndLastName(String name) {
+		if(name == null) {
+			return null;
+		}
+		List<String> words = Arrays.asList(name.split(" "));
+		if (words.size() > 1) {
+			return words.get(0) + " " + words.get(words.size() - 1);
+		} else {
+			return words.get(0);
+		}
 	}
 
 	@Override
