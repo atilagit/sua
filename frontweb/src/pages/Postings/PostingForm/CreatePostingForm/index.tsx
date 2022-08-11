@@ -1,9 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Posting } from 'types/posting';
+import { ShortClient } from 'types/shortClient';
+import { ShortEmployee } from 'types/shortEmployee';
+import { ShortProvider } from 'types/shortProvider';
 import { formatPrice } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
@@ -26,12 +29,37 @@ const CreatePostingForm = () => {
 
     const history = useHistory();
 
+    const[selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
+    const[selectClients, setSelectClients] = useState<ShortClient[]>([]);
+    const[selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
+
     const { 
         register, 
         handleSubmit, 
         formState: { errors },
         setValue
      } = useForm<Posting>();
+
+     useEffect(() => {
+        requestBackend({url: '/employees/active-names', withCredentials: true})
+        .then(response => {
+            setSelectEmployees(response.data)
+        })
+     }, []);
+
+     useEffect(() => {
+        requestBackend({url: '/clients/active-names', withCredentials: true})
+        .then(response => {
+            setSelectClients(response.data)
+        })
+     }, []);
+
+     useEffect(() => {
+        requestBackend({url: '/providers/active-names', withCredentials: true})
+        .then(response => {
+            setSelectProviders(response.data)
+        })
+     }, []);
 
      useEffect(() => {
         if (isEditing){
@@ -54,7 +82,7 @@ const CreatePostingForm = () => {
                 setValue('provider', posting?.provider);
             })
         }
-     }, [isEditing, postingId, setValue])
+     }, [isEditing, postingId, setValue]);
 
     const onSubmit = (formData: Posting) => {
 
@@ -87,15 +115,19 @@ const CreatePostingForm = () => {
                     <div>
                         <label about='provider'>Fornecedor</label>
                         <Select
-                            options={unityOptions}
+                            options={selectProviders}
                             classNamePrefix="provider-select"
+                            getOptionLabel={(provider: ShortProvider) => provider.abbreviatedName}
+                            getOptionValue={(provider: ShortProvider) => String(provider.id)}
                         />
                     </div>
                     <div>
                         <label about='client'>Cliente</label>
                         <Select
-                            options={unityOptions}
+                            options={selectClients}
                             classNamePrefix="client-select"
+                            getOptionLabel={(client: ShortClient) => client.abbreviatedName}
+                            getOptionValue={(client: ShortClient) => String(client.id)}
                         />
                     </div>
                     <div>
@@ -133,8 +165,10 @@ const CreatePostingForm = () => {
                     <div>
                         <label about='employee'>Funcionário*</label>
                         <Select
-                            options={unityOptions}
+                            options={selectEmployees}
                             classNamePrefix="employee-select"
+                            getOptionLabel={(employee: ShortEmployee) => employee.name}
+                            getOptionValue={(employee: ShortEmployee) => String(employee.id)}
                         />
                         <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
                     </div>
