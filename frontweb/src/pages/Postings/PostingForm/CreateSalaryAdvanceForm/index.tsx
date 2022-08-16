@@ -1,7 +1,8 @@
 import { AxiosRequestConfig } from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
+import Select from 'react-select';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
 import { requestBackend } from 'util/requests';
@@ -17,12 +18,9 @@ const CreateSalaryAdvanceForm = () => {
 
     const isEditing = postingId !== 'create';
 
-    const empregado: ShortEmployee = {
-        "id": 2,
-        "name": ""
-    }
-
     const history = useHistory();
+
+    const[selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
 
     const {
         register,
@@ -30,6 +28,13 @@ const CreateSalaryAdvanceForm = () => {
         formState: { errors },
         setValue
     } = useForm<Posting>();
+
+    useEffect(() => {
+        requestBackend({url: '/employees/active-names', withCredentials: true})
+        .then(response => {
+            setSelectEmployees(response.data)
+        })
+     }, []);
 
     useEffect(() => {
         if (isEditing) {
@@ -99,14 +104,11 @@ const CreateSalaryAdvanceForm = () => {
                     <div className='form-create-salary-advance-second-line'>
                         <div>
                             <label about='employee'>Funcionário*</label>
-                            <input 
-                                {...register("employee.id", {
-                                    required: 'Campo obrigatório'
-                                })}
-                                type="text" 
-                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.employee?.id ? 'is-invalid' : ''}`} 
-                                name="employee"
-                                defaultValue={empregado.id}
+                            <Select
+                                options={selectEmployees}
+                                classNamePrefix="employee-select"
+                                getOptionLabel={(employee: ShortEmployee) => employee.name}
+                                getOptionValue={(employee: ShortEmployee) => String(employee.id)}
                             />
                             <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
                         </div>
