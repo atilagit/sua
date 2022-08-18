@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Posting } from 'types/posting';
@@ -26,7 +26,8 @@ const CreateSalaryAdvanceForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-        setValue
+        setValue,
+        control
     } = useForm<Posting>();
 
     useEffect(() => {
@@ -104,13 +105,24 @@ const CreateSalaryAdvanceForm = () => {
                     <div className='form-create-salary-advance-second-line'>
                         <div>
                             <label about='employee'>Funcionário*</label>
-                            <Select
-                                options={selectEmployees}
-                                classNamePrefix="employee-select"
-                                getOptionLabel={(employee: ShortEmployee) => employee.name}
-                                getOptionValue={(employee: ShortEmployee) => String(employee.id)}
+                            <Controller
+                                name='employee'
+                                rules={{ required: true }}
+                                control={control}
+                                render={({ field }) => (
+                                    <Select {...field}
+                                        options={selectEmployees}
+                                        classNamePrefix="employee-select"
+                                        getOptionLabel={(employee: ShortEmployee) => employee.name}
+                                        getOptionValue={(employee: ShortEmployee) => String(employee.id)}
+                                    />
+                                )}
                             />
-                            <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
+                            {errors.employee && (
+                                <div className="invalid-feedback d-block">
+                                    Campo obrigatório
+                                </div>
+                            )}
                         </div>
                         <div>
                             <label about='price'>Valor*</label>
