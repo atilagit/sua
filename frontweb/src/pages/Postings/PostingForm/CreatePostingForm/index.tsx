@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Posting } from 'types/posting';
@@ -37,7 +37,8 @@ const CreatePostingForm = () => {
         register, 
         handleSubmit, 
         formState: { errors },
-        setValue
+        setValue,
+        control
      } = useForm<Posting>();
 
      useEffect(() => {
@@ -114,20 +115,34 @@ const CreatePostingForm = () => {
                 <div className='form-create-posting-fields-container'>
                     <div>
                         <label about='provider'>Fornecedor</label>
-                        <Select
-                            options={selectProviders}
-                            classNamePrefix="provider-select"
-                            getOptionLabel={(provider: ShortProvider) => provider.firstAndLastName}
-                            getOptionValue={(provider: ShortProvider) => String(provider.id)}
+                        <Controller
+                            name='provider'
+                            rules={{ required: false }}
+                            control={control}
+                            render={({ field }) => (
+                                <Select {...field}
+                                    options={selectProviders}
+                                    classNamePrefix="provider-select"
+                                    getOptionLabel={(provider: ShortProvider) => provider.firstAndLastName}
+                                    getOptionValue={(provider: ShortProvider) => String(provider.id)}
+                                />
+                            )}
                         />
                     </div>
                     <div>
                         <label about='client'>Cliente</label>
-                        <Select
-                            options={selectClients}
-                            classNamePrefix="client-select"
-                            getOptionLabel={(client: ShortClient) => client.firstAndLastName}
-                            getOptionValue={(client: ShortClient) => String(client.id)}
+                        <Controller
+                            name='client'
+                            rules={{ required: false }}
+                            control={control}
+                            render={({ field }) => (
+                                <Select {...field}
+                                    options={selectClients}
+                                    classNamePrefix="client-select"
+                                    getOptionLabel={(client: ShortClient) => client.firstAndLastName}
+                                    getOptionValue={(client: ShortClient) => String(client.id)}
+                                />
+                            )}
                         />
                     </div>
                     <div>
@@ -164,13 +179,24 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='employee'>Funcionário*</label>
-                        <Select
-                            options={selectEmployees}
-                            classNamePrefix="employee-select"
-                            getOptionLabel={(employee: ShortEmployee) => employee.name}
-                            getOptionValue={(employee: ShortEmployee) => String(employee.id)}
+                        <Controller
+                            name='employee'
+                            rules={{ required: true }}
+                            control={control}
+                            render={({ field }) => (
+                                <Select {...field}
+                                    options={selectEmployees}
+                                    classNamePrefix="employee-select"
+                                    getOptionLabel={(employee: ShortEmployee) => employee.name}
+                                    getOptionValue={(employee: ShortEmployee) => String(employee.id)}
+                                />
+                            )}
                         />
-                        <div className="invalid-feedback d-block">{errors.employee?.id?.message}</div>
+                        {errors.employee && (
+                            <div className="invalid-feedback d-block">
+                                Campo obrigatório
+                            </div>
+                        )}
                     </div>
                     <div>
                         <label about='quantity'>Quantidade*</label>
