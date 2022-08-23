@@ -29,69 +29,69 @@ const CreatePostingForm = () => {
 
     const history = useHistory();
 
-    const[selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
-    const[selectClients, setSelectClients] = useState<ShortClient[]>([]);
-    const[selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
+    const [selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
+    const [selectClients, setSelectClients] = useState<ShortClient[]>([]);
+    const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
 
-    const { 
-        register, 
-        handleSubmit, 
+    const {
+        register,
+        handleSubmit,
         formState: { errors },
         setValue,
         control
-     } = useForm<Posting>();
+    } = useForm<Posting>();
 
-     useEffect(() => {
-        requestBackend({url: '/employees/active-names', withCredentials: true})
-        .then(response => {
-            setSelectEmployees(response.data)
-        })
-     }, []);
-
-     useEffect(() => {
-        requestBackend({url: '/clients/active-names', withCredentials: true})
-        .then(response => {
-            setSelectClients(response.data)
-        })
-     }, []);
-
-     useEffect(() => {
-        requestBackend({url: '/providers/active-names', withCredentials: true})
-        .then(response => {
-            setSelectProviders(response.data)
-        })
-     }, []);
-
-     useEffect(() => {
-        if (isEditing){
-            requestBackend({url: `/postings/${postingId}`, withCredentials: true})
-            .then((response) => {
-
-                const posting = response.data as Posting;
-
-                setValue('id', posting.id);
-                setValue('date', posting.date);
-                setValue('unit', posting.unit);
-                setValue('quantity', posting.quantity);
-                setValue('price', posting.price);
-                setValue('total', formatPrice(posting.price * posting.quantity).toString());
-                setValue('note', posting.note);
-                setValue('salaryAdvance', posting.salaryAdvance);
-                setValue('resolved', posting.resolved);
-                setValue('employee', posting.employee);
-                setValue('client', posting?.client);
-                setValue('provider', posting?.provider);
+    useEffect(() => {
+        requestBackend({ url: '/employees/active-names', withCredentials: true })
+            .then(response => {
+                setSelectEmployees(response.data)
             })
+    }, []);
+
+    useEffect(() => {
+        requestBackend({ url: '/clients/active-names', withCredentials: true })
+            .then(response => {
+                setSelectClients(response.data)
+            })
+    }, []);
+
+    useEffect(() => {
+        requestBackend({ url: '/providers/active-names', withCredentials: true })
+            .then(response => {
+                setSelectProviders(response.data)
+            })
+    }, []);
+
+    useEffect(() => {
+        if (isEditing) {
+            requestBackend({ url: `/postings/${postingId}`, withCredentials: true })
+                .then((response) => {
+
+                    const posting = response.data as Posting;
+
+                    setValue('id', posting.id);
+                    setValue('date', posting.date);
+                    setValue('unit', posting.unit);
+                    setValue('quantity', posting.quantity);
+                    setValue('price', posting.price);
+                    setValue('total', formatPrice(posting.price * posting.quantity).toString());
+                    setValue('note', posting.note);
+                    setValue('salaryAdvance', posting.salaryAdvance);
+                    setValue('resolved', posting.resolved);
+                    setValue('employee', posting.employee);
+                    setValue('client', posting?.client);
+                    setValue('provider', posting?.provider);
+                })
         }
-     }, [isEditing, postingId, setValue]);
+    }, [isEditing, postingId, setValue]);
 
     const onSubmit = (formData: Posting) => {
 
         const data = { ...formData, salaryAdvance: false }
 
         const config: AxiosRequestConfig = {
-            method: isEditing ? 'PUT' :'POST',
-            url: isEditing ? `/postings/${postingId}` :"/postings",
+            method: isEditing ? 'PUT' : 'POST',
+            url: isEditing ? `/postings/${postingId}` : "/postings",
             data: data,
             withCredentials: true
         }
@@ -167,12 +167,12 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='price'>Preço*</label>
-                        <input 
+                        <input
                             {...register("price", {
                                 required: 'Campo obrigatório'
                             })}
-                            type="text" 
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`} 
+                            type="text"
+                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
                             name="price"
                         />
                         <div className="invalid-feedback d-block">{errors.price?.message}</div>
@@ -200,41 +200,41 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='quantity'>Quantidade*</label>
-                        <input 
+                        <input
                             {...register("quantity", {
                                 required: 'Campo obrigatório'
                             })}
-                            type="text" 
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.quantity ? 'is-invalid' : ''}`} 
+                            type="text"
+                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.quantity ? 'is-invalid' : ''}`}
                             name="quantity"
                         />
                         <div className="invalid-feedback d-block">{errors.quantity?.message}</div>
                     </div>
                     <div>
                         <label about='total'>Total</label>
-                        <input 
+                        <input
                             {...register("total")}
-                            type="text" 
-                            className='form-control base-card form-create-posting-field form-create-posting-col2-178' 
+                            type="text"
+                            className='form-control base-card form-create-posting-field form-create-posting-col2-178'
                             name="total"
                             disabled={true}
                         />
                     </div>
                     <div>
                         <label about='note'>Observação</label>
-                        <input 
+                        <input
                             {...register("note")}
-                            type="text" 
+                            type="text"
                             className='form-control base-card form-create-posting-field form-create-posting-col5-466'
                             name="note"
                         />
                     </div>
                     <div>
                         <label about='note'>Resolv.</label>
-                        <input 
+                        <input
                             {...register("resolved")}
-                            type='text' 
-                            className='form-control base-card form-create-posting-field form-create-posting-col1-82' 
+                            type='text'
+                            className='form-control base-card form-create-posting-field form-create-posting-col1-82'
                             name="resolved"
                             disabled={isEditing}
                         />
