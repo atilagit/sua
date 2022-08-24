@@ -17,7 +17,7 @@ const PostingCard = ( {posting} : Props) => {
                     <p>{formatDate(posting.date)}</p>
                 </div>
                 <div className="unity-x-price">
-                    <p>{formatNumber(posting.quantity)} {posting.unit} x {formatPrice(posting.price)}</p>
+                    <p>{formatNumber(posting.quantity)} {posting.unit.label} x {formatPrice(posting.price)}</p>
                 </div>
                 <div className="total">
                     <p>Total: {formatPrice(posting.quantity * posting.price)}</p>

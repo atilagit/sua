@@ -59,7 +59,7 @@ const CreateSalaryAdvanceForm = () => {
         const data = { 
             ...formData, 
             salaryAdvance: true, 
-            unit: "ADVANCE" ,
+            unit: { "value": "ADVANCE" },
             quantity: 1
         }
 

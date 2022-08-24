@@ -3,8 +3,8 @@ package com.atmat.sua.entities.enums;
 public enum UnitType {
 
 	KG("Kg"), 
-	HOURS("hora(s)"), 
-	DAY("diária"), 
+	HOURS("Hora(s)"), 
+	DAY("Diária(s)"), 
 	ADVANCE("adiantam.");
 
 	private String description;

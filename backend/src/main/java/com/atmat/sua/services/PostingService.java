@@ -69,7 +69,7 @@ public class PostingService {
 	@Transactional
 	public PostingDTO insert(PostingDTO dto) {
 		Boolean resolved = (dto.getResolved() != null ? dto.getResolved() : false);
-		Posting entity = new Posting(null, dto.getDate(), UnitType.valueOf(dto.getUnit()), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), resolved);
+		Posting entity = new Posting(null, dto.getDate(), UnitType.valueOf(dto.getUnit().getValue()), dto.getQuantity(), dto.getPrice(), dto.getNote(), dto.getSalaryAdvance(), resolved);
 		copyEmployeeAndClientAndProviderFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new PostingDTO(entity);
@@ -116,7 +116,7 @@ public class PostingService {
 		entity.setPrice(dto.getPrice());
 		entity.setQuantity(dto.getQuantity());
 		entity.setSalaryAdvance(dto.getSalaryAdvance());
-		entity.setUnit(UnitType.valueOf(dto.getUnit()));
+		entity.setUnit(UnitType.valueOf(dto.getUnit().getValue()));
 		copyEmployeeAndClientAndProviderFromDtoToEntity(dto, entity);
 	}
 	

@@ -99,7 +99,7 @@ const PostingDetails = () => {
             {posting && <FieldDetailCard title="Data" content={formatDate(posting.date)} />}
           </div>
           <div className='col2-178'>
-            <FieldDetailCard title="Quantidade" content={posting?.quantity + " " + posting?.unit} />
+            <FieldDetailCard title="Quantidade" content={posting?.quantity + " " + posting?.unit.label} />
           </div>
           <div className='col2-178'>
             {posting && <FieldDetailCard title="Preço" content={formatPrice(posting.price)} />}

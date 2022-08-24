@@ -7,6 +7,7 @@ import { Posting } from 'types/posting';
 import { ShortClient } from 'types/shortClient';
 import { ShortEmployee } from 'types/shortEmployee';
 import { ShortProvider } from 'types/shortProvider';
+import { UnitDTO } from 'types/unitDto';
 import { formatPrice } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
@@ -17,12 +18,6 @@ type UrlParams = {
 
 const CreatePostingForm = () => {
 
-    const unityOptions = [
-        { value: "KG", label: 'Kg' },
-        { value: "HOURS", label: 'Hora(s)' },
-        { value: "DAY", label: 'Diária' }
-    ]
-
     const { postingId } = useParams<UrlParams>();
 
     const isEditing = postingId !== 'create';
@@ -32,6 +27,7 @@ const CreatePostingForm = () => {
     const [selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
     const [selectClients, setSelectClients] = useState<ShortClient[]>([]);
     const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
+    const [selectUnits, setselectUnits] = useState<UnitDTO[]>([]);
 
     const {
         register,
@@ -60,6 +56,16 @@ const CreatePostingForm = () => {
             .then(response => {
                 setSelectProviders(response.data)
             })
+    }, []);
+
+    useEffect(() => {
+        setselectUnits(
+            [
+                { value: "KG", label: 'Kg' },
+                { value: "HOURS", label: 'Hora(s)' },
+                { value: "DAY", label: 'Diária(s)' }
+            ]
+        )
     }, []);
 
     useEffect(() => {
@@ -160,9 +166,16 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='unit'>Unidade*</label>
-                        <Select
-                            options={unityOptions}
-                            classNamePrefix="unity-select"
+                        <Controller
+                            name='unit'
+                            rules={{ required: true }}
+                            control={control}
+                            render={({ field }) => (
+                                <Select {...field}
+                                    options={selectUnits}
+                                    classNamePrefix="unity-select"
+                                />
+                            )}
                         />
                     </div>
                     <div>
