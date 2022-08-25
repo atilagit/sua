@@ -10,6 +10,10 @@ export const formatPrice = (price: number) => {
     return new Intl.NumberFormat('pt-BR', params).format(price);
 }
 
+export const replaceCommaWithDot = (price: number) => {
+    return String(price).replace(',','.');
+}
+
 export const formatCpfCnpj = (texto: string) => {
     if (texto != null) {
         texto = texto.replace(/(\.|\/|-)/g, "");
@@ -30,3 +34,4 @@ export const formatDate = (texto: string) => {
 export const formatCEP = (texto: string) => {
     return texto.substring(0,5) + "-" + texto.substring(5);
 }
+

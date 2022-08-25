@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
@@ -8,7 +9,7 @@ import { ShortClient } from 'types/shortClient';
 import { ShortEmployee } from 'types/shortEmployee';
 import { ShortProvider } from 'types/shortProvider';
 import { UnitDTO } from 'types/unitDto';
-import { formatPrice } from 'util/formatters';
+import { formatPrice, replaceCommaWithDot } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
@@ -93,7 +94,11 @@ const CreatePostingForm = () => {
 
     const onSubmit = (formData: Posting) => {
 
-        const data = { ...formData, salaryAdvance: false }
+        const data = {
+            ...formData,
+            salaryAdvance: false,
+            price: replaceCommaWithDot(formData.price)
+        }
 
         const config: AxiosRequestConfig = {
             method: isEditing ? 'PUT' : 'POST',
@@ -177,16 +182,28 @@ const CreatePostingForm = () => {
                                 />
                             )}
                         />
+                        {errors.unit && (
+                            <div className="invalid-feedback d-block">
+                                Campo obrigatório
+                            </div>
+                        )}
                     </div>
+
                     <div>
                         <label about='price'>Preço*</label>
-                        <input
-                            {...register("price", {
-                                required: 'Campo obrigatório'
-                            })}
-                            type="text"
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
-                            name="price"
+                        <Controller
+                            name='price'
+                            rules={{ required: 'Campo obrigatório' }}
+                            control={control}
+                            render={({ field }) => (
+                                <CurrencyInput
+                                    placeholder='R$ 0,00'
+                                    className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
+                                    disableGroupSeparators={true}
+                                    value={field.value}
+                                    onValueChange={field.onChange}
+                                />
+                            )}
                         />
                         <div className="invalid-feedback d-block">{errors.price?.message}</div>
                     </div>
