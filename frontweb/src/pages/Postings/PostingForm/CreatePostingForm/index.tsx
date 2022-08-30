@@ -199,7 +199,9 @@ const CreatePostingForm = () => {
                                 <CurrencyInput
                                     placeholder='R$ 0,00'
                                     className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
-                                    disableGroupSeparators={true}
+                                    disableGroupSeparators={false}
+                                    prefix="R$ "
+                                    decimalScale = {2}
                                     value={field.value}
                                     onValueChange={field.onChange}
                                 />
