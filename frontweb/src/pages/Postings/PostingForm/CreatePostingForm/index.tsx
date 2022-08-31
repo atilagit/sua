@@ -97,7 +97,8 @@ const CreatePostingForm = () => {
         const data = {
             ...formData,
             salaryAdvance: false,
-            price: replaceCommaWithDot(formData.price)
+            price: replaceCommaWithDot(formData.price),
+            quantity: replaceCommaWithDot(formData.quantity)
         }
 
         const config: AxiosRequestConfig = {
@@ -199,7 +200,6 @@ const CreatePostingForm = () => {
                                 <CurrencyInput
                                     placeholder='R$ 0,00'
                                     className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
-                                    disableGroupSeparators={false}
                                     prefix="R$ "
                                     decimalScale = {2}
                                     decimalSeparator=","
@@ -234,13 +234,20 @@ const CreatePostingForm = () => {
                     </div>
                     <div>
                         <label about='quantity'>Quantidade*</label>
-                        <input
-                            {...register("quantity", {
-                                required: 'Campo obrigatório'
-                            })}
-                            type="text"
-                            className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.quantity ? 'is-invalid' : ''}`}
-                            name="quantity"
+                        <Controller
+                            name='quantity'
+                            rules={{ required: 'Campo obrigatório' }}
+                            control={control}
+                            render={({ field }) => (
+                                <CurrencyInput
+                                    className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.quantity ? 'is-invalid' : ''}`}
+                                    decimalsLimit = {2}
+                                    decimalSeparator=","
+                                    groupSeparator="."
+                                    value={field.value}
+                                    onValueChange={field.onChange}
+                                />
+                            )}
                         />
                         <div className="invalid-feedback d-block">{errors.quantity?.message}</div>
                     </div>

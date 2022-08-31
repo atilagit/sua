@@ -2,7 +2,7 @@ import Button from 'components/Button';
 import FieldDetailCard from 'components/FieldDetailCard';
 import Footer from 'components/Footer';
 import { Posting } from 'types/posting';
-import { formatDate, formatPrice } from 'util/formatters';
+import { formatDate, formatPrice, formatNumber } from 'util/formatters';
 
 import { Link, useHistory, useParams } from 'react-router-dom';
 
@@ -99,7 +99,7 @@ const PostingDetails = () => {
             {posting && <FieldDetailCard title="Data" content={formatDate(posting.date)} />}
           </div>
           <div className='col2-178'>
-            <FieldDetailCard title="Quantidade" content={posting?.quantity + " " + posting?.unit.label} />
+            <FieldDetailCard title="Quantidade" content={formatNumber(posting?.quantity ? posting.quantity : 0) + " " + posting?.unit.label} />
           </div>
           <div className='col2-178'>
             {posting && <FieldDetailCard title="Preço" content={formatPrice(posting.price)} />}
