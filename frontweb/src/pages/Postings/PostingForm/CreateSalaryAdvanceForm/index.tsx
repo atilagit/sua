@@ -1,10 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
+import CurrencyInput from 'react-currency-input-field';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
+import { replaceCommaWithDot } from 'util/formatters';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 
@@ -60,7 +62,8 @@ const CreateSalaryAdvanceForm = () => {
             ...formData, 
             salaryAdvance: true, 
             unit: { "value": "ADVANCE" },
-            quantity: 1
+            quantity: 1,
+            price: replaceCommaWithDot(formData.price)
         }
 
         const config: AxiosRequestConfig = {
@@ -126,13 +129,21 @@ const CreateSalaryAdvanceForm = () => {
                         </div>
                         <div>
                             <label about='price'>Valor*</label>
-                            <input 
-                                {...register("price", {
-                                    required: 'Campo obrigatório'
-                                })}
-                                type="text" 
-                                className={`form-control base-card form-create-salary-advance-field form-create-salary-advance-col2-178 ${errors.price ? 'is-invalid' : ''}`} 
-                                name="price"
+                            <Controller
+                                name='price'
+                                rules={{ required: 'Campo obrigatório' }}
+                                control={control}
+                                render={({ field }) => (
+                                    <CurrencyInput
+                                        placeholder='R$ 0,00'
+                                        className={`form-control base-card form-create-posting-field form-create-posting-col2-178 ${errors.price ? 'is-invalid' : ''}`}
+                                        disableGroupSeparators={false}
+                                        prefix="R$ "
+                                        decimalScale={2}
+                                        value={field.value}
+                                        onValueChange={field.onChange}
+                                    />
+                                )}
                             />
                             <div className="invalid-feedback d-block">{errors.price?.message}</div>
                         </div>
