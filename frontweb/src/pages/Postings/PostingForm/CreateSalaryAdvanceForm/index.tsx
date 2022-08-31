@@ -140,6 +140,8 @@ const CreateSalaryAdvanceForm = () => {
                                         disableGroupSeparators={false}
                                         prefix="R$ "
                                         decimalScale={2}
+                                        decimalSeparator=","
+                                        groupSeparator="."
                                         value={field.value}
                                         onValueChange={field.onChange}
                                     />
