@@ -16,15 +16,14 @@ const Clients = () => {
   const [page, setPage] = useState<SpringPage<Client>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-
+  const getClients = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/clients",
       withCredentials: true,
       params: {
-        page: 0,
-        size: 50
+        page: pageNumber,
+        size: 20
       }
     }
 
@@ -36,6 +35,10 @@ const Clients = () => {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  useEffect(() => {
+    getClients(0)
   }, []);
 
   return (
@@ -60,7 +63,11 @@ const Clients = () => {
           </Link>
         )))}
 
-      <Pagination />
+      <Pagination
+        pageCount={page ? page.totalPages : 0}
+        range={3}
+        onChange={getClients}
+      />
     </div>
   );
 };

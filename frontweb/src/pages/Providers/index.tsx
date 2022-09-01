@@ -14,15 +14,14 @@ const Providers = () => {
   const [page, setPage] = useState<SpringPage<Provider>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-
+  const getProviders = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/providers",
       withCredentials: true,
       params: {
-        page: 0,
-        size: 50
+        page: pageNumber,
+        size: 20
       }
     }
 
@@ -34,6 +33,10 @@ const Providers = () => {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  useEffect(() => {
+    getProviders(0)
   }, []);
 
   return (
@@ -59,7 +62,11 @@ const Providers = () => {
           </Link>
         )))}
 
-      <Pagination />
+      <Pagination
+        pageCount={page ? page.totalPages : 0}
+        range={3}
+        onChange={getProviders}
+      />
     </div>
   );
 };

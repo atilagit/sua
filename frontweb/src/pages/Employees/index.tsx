@@ -16,15 +16,14 @@ const Employees = () => {
   const [page, setPage] = useState<SpringPage<Employee>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-
+  const getEmployees = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/employees",
       withCredentials: true,
       params: {
-        page: 0,
-        size: 50
+        page: pageNumber,
+        size: 20
       }
     }
 
@@ -36,6 +35,10 @@ const Employees = () => {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  useEffect(() => {
+    getEmployees(0);
   }, []);
 
 
@@ -61,7 +64,11 @@ const Employees = () => {
           </Link>
         )))}
 
-      <Pagination />
+      <Pagination
+        pageCount={page ? page.totalPages : 0}
+        range={3}
+        onChange={getEmployees}
+      />
     </div>
   );
 };

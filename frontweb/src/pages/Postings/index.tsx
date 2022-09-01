@@ -16,14 +16,13 @@ const Postings = () => {
   const [page, setPage] = useState<SpringPage<Posting>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-
+  const getPostings = (pageNumber: number) => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/postings",
       withCredentials: true,
       params: {
-        page: 0,
+        page: pageNumber,
         size: 50
       }
     }
@@ -36,6 +35,10 @@ const Postings = () => {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  useEffect(() => {
+    getPostings(0);
   }, []);
 
   return (
@@ -88,7 +91,11 @@ const Postings = () => {
         </Link>
       )))}
 
-      <Pagination />
+      <Pagination
+        pageCount={page ? page.totalPages : 0}
+        range={3}
+        onChange={getPostings}
+      />
     </div>
   );
 };
