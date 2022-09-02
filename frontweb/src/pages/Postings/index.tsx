@@ -1,7 +1,7 @@
 import PostingCard from 'components/PostingCard';
 import { Posting } from 'types/posting';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Pagination from 'components/Pagination';
 import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
@@ -11,18 +11,32 @@ import './styles.css';
 import ListLoader from '../../components/ListLoader';
 import ResumeBadge from 'components/ResumeBadge';
 
+type ControlComponentsData = {
+  activePage: number;
+}
+
 const Postings = () => {
 
   const [page, setPage] = useState<SpringPage<Posting>>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const getPostings = (pageNumber: number) => {
+  const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>(
+    {
+      activePage: 0
+    }
+  );
+
+  const handlePageChange = (pageNumber: number) => {
+    setControlComponentsData({ activePage: pageNumber })
+  }
+
+  const getPostings = useCallback(() => {
     const params: AxiosRequestConfig = {
       method: 'GET',
       url: "/postings",
       withCredentials: true,
       params: {
-        page: pageNumber,
+        page: controlComponentsData.activePage,
         size: 50
       }
     }
@@ -35,11 +49,11 @@ const Postings = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }
+  }, [controlComponentsData]);
 
   useEffect(() => {
-    getPostings(0);
-  }, []);
+    getPostings();
+  }, [getPostings]);
 
   return (
     <div className="page-container page-container-especific">
@@ -94,7 +108,7 @@ const Postings = () => {
       <Pagination
         pageCount={page ? page.totalPages : 0}
         range={3}
-        onChange={getPostings}
+        onChange={handlePageChange}
       />
     </div>
   );
