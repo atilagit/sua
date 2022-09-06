@@ -10,6 +10,7 @@ import { AxiosRequestConfig } from 'axios';
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
 import ResumeBadge from 'components/ResumeBadge';
+import PostingFilter from 'components/PostingFilter';
 
 type ControlComponentsData = {
   activePage: number;
@@ -68,33 +69,7 @@ const Postings = () => {
           </div>
           <ResumeBadge text= "Resumo:" total={16562.334} />
         </div>
-        <div>
-          <div className='filter-container'>
-            <div className='field-content'>
-              Search bar
-            </div>
-            <div className='field-content'>
-              Search bar
-            </div>
-            <div className='field-content'>
-              Search bar
-            </div>
-            <div className='field-content'>
-              Search bar
-            </div>
-          </div>
-          <div className='filter-container'>
-            <div className='field-content'>
-              Search bar
-            </div>
-            <div className='field-content'>
-              Search bar
-            </div>
-            <div className='field-content-extended'>
-              Search bar
-            </div>
-          </div>
-        </div>
+        <PostingFilter />
       </div>
       )}
 
