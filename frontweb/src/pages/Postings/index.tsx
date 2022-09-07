@@ -9,7 +9,6 @@ import { AxiosRequestConfig } from 'axios';
 
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
-import ResumeBadge from 'components/ResumeBadge';
 import PostingFilter from 'components/PostingFilter';
 
 type ControlComponentsData = {
@@ -60,16 +59,14 @@ const Postings = () => {
     <div className="page-container page-container-especific">
       {isLoading ? <ListLoader /> : (
       <div className='container-filter-crud-postings'>
-        <div>
           <div className='container-buttons-crud'>
             <Link to="/postings/posting/create">
-              <button className='button'>NOVO</button>
+              <button className='button-new'>
+                NOVO
+              </button>
             </Link>
-            <button className='button'>LIMPAR</button>
           </div>
-          <ResumeBadge text= "Resumo:" total={16562.334} />
-        </div>
-        <PostingFilter />
+          <PostingFilter />
       </div>
       )}
 
