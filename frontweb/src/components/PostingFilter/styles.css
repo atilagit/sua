@@ -4,23 +4,23 @@
     height: 100px;
     border-radius: 10px;
     margin-bottom: 12px;
-    padding: 10px;
+    padding: 8px;
 
     background: #7297AD;
-    opacity: 0.75;
     border-radius: 10px;
 }
 
 .posting-filter-form {
     width: 100%;
-    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
 .posting-filter-container-first-line {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
 }
 
 .posting-filter-container-second-line {
@@ -28,6 +28,172 @@
     display: flex;
     justify-content: space-between;
 }
+
+.posting-filter-select__control {
+    width: 178px;
+    min-width: 178px;
+    height: 30px;
+    background: #7297AD !important;
+    border: none !important;
+    border-bottom: 1px solid #FFF !important;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0 !important;
+    display: flex;
+    align-items: flex-end !important;
+    margin: 0px;
+    opacity: 1;
+
+    font-family: 'Ubuntu' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 21px !important;
+}
+
+.posting-filter-select__menu {
+    opacity: 1 !important;
+    background-color: #7297AD !important;
+}
+
+.posting-filter-select__indicator-separator {
+    display: none;
+}
+
+.posting-filter-select__placeholder {
+    color: #FFFBF5 !important;
+    opacity: 0.75;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 24px;
+}
+
+/* ----------------- */
+.posting-filter-situation-select__control {
+    width: 178px;
+    min-width: 178px;
+    height: 30px;
+    background: #7297AD !important;
+    border: none !important;
+    border-bottom: 1px solid #FFF !important;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0 !important;
+    display: flex;
+    align-items: flex-end !important;
+    margin: 0px;
+    opacity: 1;
+
+    font-family: 'Ubuntu' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 21px !important;
+}
+
+.posting-filter-situation-select__menu {
+    opacity: 1 !important;
+    background-color: #7297AD !important;
+}
+
+.posting-filter-situation-select__indicator-separator {
+    display: none;
+}
+
+.posting-filter-situation-select__placeholder {
+    color: #FFFBF5 !important;
+    opacity: 0.75;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 24px;
+}
+
+/* ----------------- */
+
+.posting-filter-provider-select__control {
+    width: 178px;
+    min-width: 178px;
+    height: 30px;
+    background: #7297AD !important;
+    border: none !important;
+    border-bottom: 1px solid #FFF !important;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0 !important;
+    display: flex;
+    align-items: flex-end !important;
+    margin: 0px;
+    opacity: 1;
+
+    font-family: 'Ubuntu' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 21px !important;
+}
+
+.posting-filter-provider-select__menu {
+    opacity: 1 !important;
+    background-color: #7297AD !important;
+}
+
+.posting-filter-provider-select__indicator-separator {
+    display: none;
+}
+
+.posting-filter-provider-select__placeholder {
+    color: #FFFBF5 !important;
+    opacity: 0.75;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 24px;
+}
+
+/* ----------------- */
+
+.posting-filter-client-select__control {
+    width: 178px;
+    min-width: 178px;
+    height: 30px;
+    background: #7297AD !important;
+    border: none !important;
+    border-bottom: 1px solid #FFF !important;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0 !important;
+    display: flex;
+    align-items: flex-end !important;
+    margin: 0px;
+    opacity: 1;
+
+    font-family: 'Ubuntu' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 21px !important;
+}
+
+.posting-filter-client-select__menu {
+    opacity: 1 !important;
+    background-color: #7297AD !important;
+}
+
+.posting-filter-client-select__indicator-separator {
+    display: none;
+}
+
+.posting-filter-client-select__placeholder {
+    color: #FFFBF5 !important;
+    opacity: 0.75;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 24px;
+}
+
+/* ----------------- */
+
+
+
 
 .posting-filter-input-container {
     display: flex;

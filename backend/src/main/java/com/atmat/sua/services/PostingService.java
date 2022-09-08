@@ -51,8 +51,8 @@ public class PostingService {
 		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
 		Client client = (clientId != 0) ? clientRepository.getOne(clientId) : null;
 		Provider provider = (providerId != 0) ? providerRepository.getOne(providerId) : null;
-		LocalDate de = (from != null) ? LocalDate.parse(from) : null;
-		LocalDate ate = (to != null) ? LocalDate.parse(to) : null;
+		LocalDate de = ((from != null) && (!from.equals(""))) ? LocalDate.parse(from) : null;
+		LocalDate ate = ((to != null) && (!to.equals(""))) ?  LocalDate.parse(to) : null;
 		List<Long> listOfId = (ArrayList<Long>) Arrays.stream(exclusionList).boxed().collect(Collectors.toList());
 		
 		Page<Posting> page = repository.find(employee, client, provider, resolved, de, ate, listOfId, pageRequest);
