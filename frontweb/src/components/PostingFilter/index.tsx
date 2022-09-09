@@ -16,6 +16,8 @@ const PostingFilter = () => {
   const [selectClients, setSelectClients] = useState<ShortClient[]>([]);
   const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
   const [selectResolved, setselectResolved] = useState<ResolvedDTO[]>([]);
+  const [fromDate, setFromDate] = useState<Date>();
+  const [toDate, setTodate] = useState<Date>();
 
   type PostingFilterData = {
     employee: ShortEmployee;
@@ -140,12 +142,12 @@ const PostingFilter = () => {
         <div className='posting-filter-container-second-line'>
           <div className='posting-filter-input-container small-input'>
             <DatePicker
-              selected={new Date()}
-              onChange={(date: Date) => { }}
+              selected={fromDate}
+              onChange={(date: Date) => setFromDate(date)}
               className="form-control"
               dateFormat="dd/MM/yyyy"
               placeholderText="De"
-              name="fromDate"
+              id="fromDate"
             />
             <button className='product-filter-search-icon'>
               <SearchIcon />
@@ -153,12 +155,12 @@ const PostingFilter = () => {
           </div>
           <div className='posting-filter-input-container small-input'>
             <DatePicker
-              selected={new Date()}
-              onChange={(date: Date) => { }}
+              selected={toDate}
+              onChange={(date: Date) => setTodate(date)}
               className="form-control"
               dateFormat="dd/MM/yyyy"
               placeholderText="Até"
-              name="toDate"
+              id="toDate"
             />
             <button className='product-filter-search-icon'>
               <SearchIcon />
