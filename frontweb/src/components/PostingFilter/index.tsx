@@ -7,7 +7,8 @@ import { ShortClient } from 'types/shortClient';
 import { ShortEmployee } from 'types/shortEmployee';
 import { ShortProvider } from 'types/shortProvider';
 import { requestBackend } from 'util/requests';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import './styles.css';
 const PostingFilter = () => {
@@ -138,11 +139,12 @@ const PostingFilter = () => {
         </div>
         <div className='posting-filter-container-second-line'>
           <div className='posting-filter-input-container small-input'>
-            <input
-              {...register("fromDate")}
-              type='date'
-              className='form-control'
-              placeholder="De"
+            <DatePicker
+              selected={new Date()}
+              onChange={(date: Date) => { }}
+              className="form-control"
+              dateFormat="dd/MM/yyyy"
+              placeholderText="De"
               name="fromDate"
             />
             <button className='product-filter-search-icon'>
@@ -150,11 +152,12 @@ const PostingFilter = () => {
             </button>
           </div>
           <div className='posting-filter-input-container small-input'>
-            <input
-              {...register("toDate")}
-              type='date'
-              className='form-control'
-              placeholder="De"
+            <DatePicker
+              selected={new Date()}
+              onChange={(date: Date) => { }}
+              className="form-control"
+              dateFormat="dd/MM/yyyy"
+              placeholderText="Até"
               name="toDate"
             />
             <button className='product-filter-search-icon'>
