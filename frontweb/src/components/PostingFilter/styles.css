@@ -68,133 +68,6 @@
     line-height: 24px;
 }
 
-/* ----------------- */
-.posting-filter-situation-select__control {
-    width: 178px;
-    min-width: 178px;
-    height: 30px;
-    background: #7297AD !important;
-    border: none !important;
-    border-bottom: 1px solid #FFF !important;
-    box-sizing: border-box;
-    box-shadow: none;
-    border-radius: 0 !important;
-    display: flex;
-    align-items: flex-end !important;
-    margin: 0px;
-    opacity: 1;
-
-    font-family: 'Ubuntu' !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 18px !important;
-    line-height: 21px !important;
-}
-
-.posting-filter-situation-select__menu {
-    opacity: 1 !important;
-    background-color: #7297AD !important;
-}
-
-.posting-filter-situation-select__indicator-separator {
-    display: none;
-}
-
-.posting-filter-situation-select__placeholder {
-    color: #FFFBF5 !important;
-    opacity: 0.75;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 24px;
-}
-
-/* ----------------- */
-
-.posting-filter-provider-select__control {
-    width: 178px;
-    min-width: 178px;
-    height: 30px;
-    background: #7297AD !important;
-    border: none !important;
-    border-bottom: 1px solid #FFF !important;
-    box-sizing: border-box;
-    box-shadow: none;
-    border-radius: 0 !important;
-    display: flex;
-    align-items: flex-end !important;
-    margin: 0px;
-    opacity: 1;
-
-    font-family: 'Ubuntu' !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 18px !important;
-    line-height: 21px !important;
-}
-
-.posting-filter-provider-select__menu {
-    opacity: 1 !important;
-    background-color: #7297AD !important;
-}
-
-.posting-filter-provider-select__indicator-separator {
-    display: none;
-}
-
-.posting-filter-provider-select__placeholder {
-    color: #FFFBF5 !important;
-    opacity: 0.75;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 24px;
-}
-
-/* ----------------- */
-
-.posting-filter-client-select__control {
-    width: 178px;
-    min-width: 178px;
-    height: 30px;
-    background: #7297AD !important;
-    border: none !important;
-    border-bottom: 1px solid #FFF !important;
-    box-sizing: border-box;
-    box-shadow: none;
-    border-radius: 0 !important;
-    display: flex;
-    align-items: flex-end !important;
-    margin: 0px;
-    opacity: 1;
-
-    font-family: 'Ubuntu' !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    font-size: 18px !important;
-    line-height: 21px !important;
-}
-
-.posting-filter-client-select__menu {
-    opacity: 1 !important;
-    background-color: #7297AD !important;
-}
-
-.posting-filter-client-select__indicator-separator {
-    display: none;
-}
-
-.posting-filter-client-select__placeholder {
-    color: #FFFBF5 !important;
-    opacity: 0.75;
-    font-weight: 500;
-    font-size: 21px;
-    line-height: 24px;
-}
-
-/* ----------------- */
-
-
-
-
 .posting-filter-input-container {
     display: flex;
     align-items: center;
@@ -239,4 +112,9 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 23px;
+}
+
+.product-filter-search-icon {
+    border: none;
+    background-color: unset;
 }

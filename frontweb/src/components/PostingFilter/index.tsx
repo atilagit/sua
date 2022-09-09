@@ -145,7 +145,7 @@ const PostingFilter = () => {
               placeholder="De"
               name="fromDate"
             />
-            <button>
+            <button className='product-filter-search-icon'>
               <SearchIcon />
             </button>
           </div>
@@ -157,7 +157,7 @@ const PostingFilter = () => {
               placeholder="De"
               name="toDate"
             />
-            <button>
+            <button className='product-filter-search-icon'>
               <SearchIcon />
             </button>
           </div>
@@ -169,7 +169,7 @@ const PostingFilter = () => {
               placeholder="Omitir Id's: 158,982,58"
               name="exclusionList"
             />
-            <button>
+            <button className='product-filter-search-icon'>
               <SearchIcon />
             </button>
           </div>
