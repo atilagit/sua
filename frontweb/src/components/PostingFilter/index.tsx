@@ -20,18 +20,19 @@ const PostingFilter = () => {
   const [toDate, setToDate] = useState<Date>();
 
   type PostingFilterData = {
-    employee: ShortEmployee;
-    client: ShortClient;
-    provider: ShortProvider;
-    fromDate: Date;
-    toDate: Date;
+    employee: ShortEmployee | null;
+    client: ShortClient | null;
+    provider: ShortProvider | null;
+    fromDate: Date | null;
+    toDate: Date | null;
     exclusionList: string;
-    situation: ResolvedDTO;
+    situation: ResolvedDTO | null;
   };
 
   const {
     register,
     handleSubmit,
+    setValue,
     control
   } = useForm<PostingFilterData>();
 
@@ -40,6 +41,17 @@ const PostingFilter = () => {
     
     const dmin = fromDate?.toISOString().slice(0, 10);
     console.log(dmin);
+  }
+
+  
+  const handleFormClear = () => {
+      setValue('employee', null);
+      setValue('client', null);
+      setValue('provider', null);
+      setValue('fromDate', null);
+      setValue('toDate', null);
+      setValue('exclusionList', "");
+      setValue('situation', null);
   }
 
   useEffect(() => {
@@ -138,7 +150,7 @@ const PostingFilter = () => {
               )}
             />
           </div>
-          <button className='clean-button'>
+          <button onClick={handleFormClear} className='clean-button'>
             LIMPAR
           </button>
         </div>
