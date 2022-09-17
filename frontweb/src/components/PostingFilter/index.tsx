@@ -17,14 +17,14 @@ const PostingFilter = () => {
   const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
   const [selectResolved, setselectResolved] = useState<ResolvedDTO[]>([]);
   const [fromDate, setFromDate] = useState<Date>();
-  const [toDate, setTodate] = useState<Date>();
+  const [toDate, setToDate] = useState<Date>();
 
   type PostingFilterData = {
     employee: ShortEmployee;
     client: ShortClient;
     provider: ShortProvider;
-    fromDate: string;
-    toDate: string;
+    fromDate: Date;
+    toDate: Date;
     exclusionList: string;
     situation: ResolvedDTO;
   };
@@ -37,6 +37,9 @@ const PostingFilter = () => {
 
   const onSubmit = (formData: PostingFilterData) => {
     console.log("ENVIOU: ", formData)
+    
+    const dmin = fromDate?.toISOString().slice(0, 10);
+    console.log(dmin);
   }
 
   useEffect(() => {
@@ -156,7 +159,7 @@ const PostingFilter = () => {
           <div className='posting-filter-input-container small-input'>
             <DatePicker
               selected={toDate}
-              onChange={(date: Date) => setTodate(date)}
+              onChange={(date: Date) => setToDate(date)}
               className="form-control"
               dateFormat="dd/MM/yyyy"
               placeholderText="Até"
