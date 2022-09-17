@@ -118,3 +118,20 @@
     border: none;
     background-color: unset;
 }
+
+@media (max-width: 960px) {
+    .posting-filter-container {
+        width: calc(100% - 10px);  
+        height: unset;
+    }
+
+    .posting-filter-container-first-line {
+        justify-content: center;
+        flex-wrap: wrap-reverse;
+    }
+    
+    .posting-filter-container-second-line {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

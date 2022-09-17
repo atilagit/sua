@@ -26,12 +26,20 @@
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (max-width: 1160px) {
+@media (max-width: 1150px) {
     .container-filter-crud-postings {
-        flex-wrap: wrap-reverse;
         justify-content: center;
+    }
+
+    .button-new {
+        width: 170px;
+        height: 40px;
     }
 }
 
