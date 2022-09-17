@@ -16,8 +16,8 @@ const PostingFilter = () => {
   const [selectClients, setSelectClients] = useState<ShortClient[]>([]);
   const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
   const [selectResolved, setselectResolved] = useState<ResolvedDTO[]>([]);
-  const [fromDate, setFromDate] = useState<Date>();
-  const [toDate, setToDate] = useState<Date>();
+  const [fromDate, setFromDate] = useState<Date | null>();
+  const [toDate, setToDate] = useState<Date | null>();
 
   type PostingFilterData = {
     employee: ShortEmployee | null;
@@ -33,16 +33,25 @@ const PostingFilter = () => {
     register,
     handleSubmit,
     setValue,
+    getValues,
     control
   } = useForm<PostingFilterData>();
 
   const onSubmit = (formData: PostingFilterData) => {
-    console.log("ENVIOU: ", formData)
-    
-    const dmin = fromDate?.toISOString().slice(0, 10);
-    console.log(dmin);
-  }
+    setValue('fromDate', fromDate ? fromDate: null)
+    setValue('toDate', toDate ? toDate : null);
 
+    const obj: PostingFilterData = {
+      employee: getValues('employee'),
+      client: getValues('client'),
+      provider: getValues('provider'),
+      fromDate: getValues('fromDate'),
+      toDate: getValues('toDate'),
+      exclusionList: getValues('exclusionList'),
+      situation: getValues('situation')
+    }
+    console.log("ENVIOU: ", obj);
+  }
   
   const handleFormClear = () => {
       setValue('employee', null);
@@ -52,6 +61,8 @@ const PostingFilter = () => {
       setValue('toDate', null);
       setValue('exclusionList', "");
       setValue('situation', null);
+      setFromDate(null);
+      setToDate(null);
   }
 
   useEffect(() => {
