@@ -37,8 +37,8 @@ public class PostingResource {
 			@RequestParam(value = "clientId", defaultValue = "0") Long clientId,
 			@RequestParam(value = "providerId", defaultValue = "0") Long providerId,
 			@Param(value = "resolved") Boolean resolved,
-			@Param(value = "fromDate") String from,
-			@Param(value = "toDate") String to,
+			@Param(value = "fromDate") String fromDate,
+			@Param(value = "toDate") String toDate,
 			@RequestParam(value = "exclusionList", defaultValue = "0") long[] exclusionList,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "size", defaultValue = "20") Integer size,
@@ -48,7 +48,7 @@ public class PostingResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
 				
-		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, resolved, from, to, exclusionList, pageRequest);
+		Page<PostingDTO> list = service.findAllPaged(employeeId, clientId, providerId, resolved, fromDate, toDate, exclusionList, pageRequest);
 		return ResponseEntity.ok().body(list);
 	}
 	

@@ -9,10 +9,11 @@ import { AxiosRequestConfig } from 'axios';
 
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
-import PostingFilter from 'components/PostingFilter';
+import PostingFilter, { PostingFilterData } from 'components/PostingFilter';
 
 type ControlComponentsData = {
   activePage: number;
+  filterData: PostingFilterData;
 }
 
 const Postings = () => {
@@ -22,13 +23,18 @@ const Postings = () => {
 
   const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>(
     {
-      activePage: 0
+      activePage: 0,
+      filterData: { employee: null, client: null, provider: null, fromDate: null, toDate: null, exclusionList: "", situation: null }
     }
   );
 
   const handlePageChange = (pageNumber: number) => {
-    setControlComponentsData({ activePage: pageNumber })
+    setControlComponentsData({ activePage: pageNumber, filterData:  controlComponentsData.filterData })
   }
+
+  const handleSubmitFilter = (data: PostingFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData: data });
+  };
 
   const getPostings = useCallback(() => {
     const params: AxiosRequestConfig = {
@@ -37,7 +43,14 @@ const Postings = () => {
       withCredentials: true,
       params: {
         page: controlComponentsData.activePage,
-        size: 50
+        size: 50,
+        employeeId: controlComponentsData.filterData?.employee?.id,
+        clientId: controlComponentsData.filterData?.client?.id,
+        providerId: controlComponentsData.filterData?.provider?.id,
+        fromDate: controlComponentsData.filterData?.fromDate?.toISOString().slice(0,10),
+        toDate: controlComponentsData.filterData?.toDate?.toISOString().slice(0,10),
+        resolved: controlComponentsData.filterData?.situation?.value,
+        exclusionList: controlComponentsData.filterData?.exclusionList
       }
     }
 
@@ -58,7 +71,7 @@ const Postings = () => {
   return (
     <div className="page-container page-container-especific">
       {isLoading ? <ListLoader /> : (
-      <div className='container-filter-crud-postings'>
+        <div className='container-filter-crud-postings'>
           <div className='container-buttons-crud'>
             <Link to="/postings/posting/create">
               <button className='button-new'>
@@ -66,18 +79,19 @@ const Postings = () => {
               </button>
             </Link>
           </div>
-          <PostingFilter />
-      </div>
+          <PostingFilter onSubmitFilter={handleSubmitFilter} />
+        </div>
       )}
 
       {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
-        <Link to={`postings/details/${posting.id}`} key={posting.id}>
-          <PostingCard posting={posting} />
-        </Link>
-      )))}
+          <Link to={`postings/details/${posting.id}`} key={posting.id}>
+            <PostingCard posting={posting} />
+          </Link>
+        )))}
 
       <Pagination
+        forcePage={page?.number}
         pageCount={page ? page.totalPages : 0}
         range={3}
         onChange={handlePageChange}

@@ -11,23 +11,28 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './styles.css';
-const PostingFilter = () => {
+
+export type PostingFilterData = {
+  employee: ShortEmployee | null;
+  client: ShortClient | null;
+  provider: ShortProvider | null;
+  fromDate: Date | null;
+  toDate: Date | null;
+  exclusionList: string;
+  situation: ResolvedDTO | null;
+};
+
+type Props = {
+  onSubmitFilter: (data: PostingFilterData ) => void;
+}
+
+const PostingFilter = ( {onSubmitFilter}: Props) => {
   const [selectEmployees, setSelectEmployees] = useState<ShortEmployee[]>([]);
   const [selectClients, setSelectClients] = useState<ShortClient[]>([]);
   const [selectProviders, setSelectProviders] = useState<ShortProvider[]>([]);
   const [selectResolved, setselectResolved] = useState<ResolvedDTO[]>([]);
   const [fromDate, setFromDate] = useState<Date | null>();
   const [toDate, setToDate] = useState<Date | null>();
-
-  type PostingFilterData = {
-    employee: ShortEmployee | null;
-    client: ShortClient | null;
-    provider: ShortProvider | null;
-    fromDate: Date | null;
-    toDate: Date | null;
-    exclusionList: string;
-    situation: ResolvedDTO | null;
-  };
 
   const {
     register,
@@ -50,7 +55,7 @@ const PostingFilter = () => {
       exclusionList: getValues('exclusionList'),
       situation: getValues('situation')
     }
-    console.log("ENVIOU: ", obj);
+    onSubmitFilter(obj);
   }
   
   const handleFormClear = () => {
