@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { Client } from 'types/client';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type UrlParams = {
@@ -56,8 +57,12 @@ const ClientForm = () => {
 
         requestBackend(config)
             .then((response) => {
+                toast.success('Cliente cadastrado com sucesso!');
                 const client = response.data as Client;
                 history.replace(`/clients/details/${client.id}`)
+            })
+            .catch(() => {
+                toast.error('Erro ao tentar cadastrar o cliente');
             });
     };
 
