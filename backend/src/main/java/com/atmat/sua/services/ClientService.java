@@ -62,7 +62,8 @@ public class ClientService {
 	
 	@Transactional
 	public ClientDTO insert(ClientDTO dto) {
-		Client entity = new Client(null, dto.getContact(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null);
+		boolean active = (dto.getActive() == null) ? true : dto.getActive();
+		Client entity = new Client(null, dto.getContact(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), active, null);
 		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ClientDTO(entity);

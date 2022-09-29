@@ -62,7 +62,8 @@ public class ProviderService {
 
 	@Transactional
 	public ProviderDTO insert(ProviderDTO dto) {
-		Provider entity = new Provider(null, dto.getName(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), dto.getActive(), null, null);
+		boolean active = (dto.getActive() == null) ? true : dto.getActive();
+		Provider entity = new Provider(null, dto.getName(), dto.getCorporateName(), dto.getCpf(), dto.getCnpj(), active, null, null);
 		if(dto.getAddress() != null) createAdrressFromDtoToEntity(dto, entity);
 		entity = repository.save(entity);
 		return new ProviderDTO(entity);
