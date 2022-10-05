@@ -57,13 +57,13 @@ const ClientForm = () => {
 
         requestBackend(config)
             .then((response) => {
-                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                const action = config.method === "PUT" ? "alterado" : "cadastrado";
                 toast.success('Cliente ' +  action + ' com sucesso!');
                 const client = response.data as Client;
                 history.replace(`/clients/details/${client.id}`)
             })
             .catch(() => {
-                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                const action = config.method === "PUT" ? "alterar" : "cadastrar";
                 toast.error('Erro ao tentar ' + action + ' o cliente');
             });
     };

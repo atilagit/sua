@@ -76,13 +76,13 @@ const CreateSalaryAdvanceForm = () => {
 
         requestBackend(config)
             .then((response) => {
-                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                const action = config.method === "PUT" ? "alterado" : "cadastrado";
                 toast.success('Adiantamento ' +  action + ' com sucesso!');
                 const posting = response.data as Posting;
                 history.replace(`/postings/details/${posting.id}`)
             })
             .catch(() => {
-                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                const action = config.method === "PUT" ? "alterar" : "cadastrar";
                 toast.error('Erro ao tentar ' + action + ' o adiantamento');
             });
     };

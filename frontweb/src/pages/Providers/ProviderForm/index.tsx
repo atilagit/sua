@@ -56,13 +56,13 @@ const ProviderForm = () => {
 
         requestBackend(config)
         .then((response) => {
-            var action = config.method === "PUT" ? "alterado" : "cadastrado";
+            const action = config.method === "PUT" ? "alterado" : "cadastrado";
             toast.success('Fornecedor ' +  action + ' com sucesso!');
             const provider = response.data as Provider;
             history.replace(`/providers/details/${provider.id}`)
         })
         .catch(() => {
-            var action = config.method === "PUT" ? "alterar" : "cadastrar";
+            const action = config.method === "PUT" ? "alterar" : "cadastrar";
             toast.error('Erro ao tentar ' + action + ' o fornecedor');
         });
     };

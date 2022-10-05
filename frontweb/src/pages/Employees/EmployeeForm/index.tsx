@@ -57,13 +57,13 @@ const EmployeeForm = () => {
 
         requestBackend(config)
             .then((response) => {
-                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                const action = config.method === "PUT" ? "alterado" : "cadastrado";
                 toast.success('Funcionário ' +  action + ' com sucesso!');
                 const employee = response.data as Employee;
                 history.replace(`/employees/details/${employee.id}`)
             })
             .catch(() => {
-                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                const action = config.method === "PUT" ? "alterar" : "cadastrar";
                 toast.error('Erro ao tentar ' + action + ' o funcionário');
             });
     };
