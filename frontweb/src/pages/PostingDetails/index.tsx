@@ -39,7 +39,7 @@ const PostingDetails = () => {
 
     requestBackend(config)
       .then(() => {
-        window.alert("Deletado com sucesso!");
+        toast.success('Deletado com sucesso!');
         history.replace("/postings");
       });
   }
