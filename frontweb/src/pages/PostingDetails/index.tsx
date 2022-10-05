@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
 import { AxiosRequestConfig } from 'axios';
 import { hasAnyRoles } from 'util/auth';
+import { toast } from 'react-toastify';
 
 type UrlParams = {
   postingId: string;
@@ -58,7 +59,13 @@ const PostingDetails = () => {
     setIsLoading(true);
     requestBackend(config)
     .then(response => {
+      const posting = response.data as Posting;
+      const action = posting.resolved ? "resolvido" : "pendenciado";
+      toast.success('Lançamento ' +  action + ' com sucesso!');
       setPosting(response.data)
+    })
+    .catch(() => {
+        toast.error('Erro ao tentar alterar lançamento');
     })
     .finally(() => {
         setIsLoading(false);

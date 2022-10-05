@@ -11,6 +11,7 @@ import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
+import { toast } from 'react-toastify';
 
 type UrlParams = {
     clientId: string;
@@ -37,7 +38,13 @@ const ClientDetails = () => {
         setIsLoading(true);
         requestBackend(config)
         .then(response => {
-            setClient(response.data)
+            const client = response.data as Client;
+            const action = client.active ? "ativado" : "inativado";
+            toast.success('Cliente ' +  action + ' com sucesso!');
+            setClient(client)
+        })
+        .catch(() => {
+            toast.error('Erro ao tentar alterar cliente');
         })
         .finally(() => {
             setIsLoading(false);

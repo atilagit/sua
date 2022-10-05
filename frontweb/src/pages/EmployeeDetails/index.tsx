@@ -12,6 +12,7 @@ import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
 import { ADMIN, hasAnyRoles, OPERATOR } from "util/auth";
+import { toast } from 'react-toastify';
 
 type UrlParams = {
     employeeId: string;
@@ -38,7 +39,13 @@ const EmployeeDetails = () => {
         setIsLoading(true);
         requestBackend(config)
         .then(response => {
+            const employee = response.data as Employee;
+            const action = employee.active ? "ativado" : "inativado";
+            toast.success('Funcionário ' +  action + ' com sucesso!');
             setEmployee(response.data)
+        })
+        .catch(() => {
+            toast.error('Erro ao tentar alterar funcionário');
         })
         .finally(() => {
             setIsLoading(false);

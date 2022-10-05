@@ -11,6 +11,7 @@ import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { useEffect, useState } from 'react';
 import DetailLoader from 'components/DetailLoader';
+import { toast } from 'react-toastify';
 
 type UrlParams = {
     providerId: string;
@@ -37,7 +38,13 @@ const ProviderDetails = () => {
         setIsLoading(true);
         requestBackend(config)
         .then(response => {
+            const provider = response.data as Provider;
+            const action = provider.active ? "ativado" : "inativado";
+            toast.success('Fornecedor ' +  action + ' com sucesso!');
             setProvider(response.data)
+        })
+        .catch(() => {
+            toast.error('Erro ao tentar alterar fornecedor');
         })
         .finally(() => {
             setIsLoading(false);
