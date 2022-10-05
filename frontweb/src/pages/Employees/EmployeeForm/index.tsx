@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { Employee } from 'types/employee';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type UrlParams = {
@@ -56,8 +57,14 @@ const EmployeeForm = () => {
 
         requestBackend(config)
             .then((response) => {
+                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                toast.success('Funcionário ' +  action + ' com sucesso!');
                 const employee = response.data as Employee;
                 history.replace(`/employees/details/${employee.id}`)
+            })
+            .catch(() => {
+                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                toast.error('Erro ao tentar ' + action + ' o funcionário');
             });
     };
 

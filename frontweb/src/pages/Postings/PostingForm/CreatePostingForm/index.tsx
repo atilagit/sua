@@ -11,6 +11,7 @@ import { ShortProvider } from 'types/shortProvider';
 import { UnitDTO } from 'types/unitDto';
 import { formatPrice, replaceCommaWithDot } from 'util/formatters';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type UrlParams = {
@@ -110,8 +111,14 @@ const CreatePostingForm = () => {
 
         requestBackend(config)
             .then((response) => {
+                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                toast.success('Lançamento ' +  action + ' com sucesso!');
                 const posting = response.data as Posting;
                 history.replace(`/postings/details/${posting.id}`)
+            })
+            .catch(() => {
+                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                toast.error('Erro ao tentar ' + action + ' o lançamento');
             });
     };
 

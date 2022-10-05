@@ -8,6 +8,7 @@ import { Posting } from 'types/posting';
 import { ShortEmployee } from 'types/shortEmployee'
 import { replaceCommaWithDot } from 'util/formatters';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type UrlParams = {
@@ -75,8 +76,14 @@ const CreateSalaryAdvanceForm = () => {
 
         requestBackend(config)
             .then((response) => {
+                var action = config.method === "PUT" ? "alterado" : "cadastrado";
+                toast.success('Adiantamento ' +  action + ' com sucesso!');
                 const posting = response.data as Posting;
                 history.replace(`/postings/details/${posting.id}`)
+            })
+            .catch(() => {
+                var action = config.method === "PUT" ? "alterar" : "cadastrar";
+                toast.error('Erro ao tentar ' + action + ' o adiantamento');
             });
     };
 

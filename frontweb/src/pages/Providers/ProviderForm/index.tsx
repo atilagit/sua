@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { Provider } from 'types/provider';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type UrlParams = {
@@ -55,8 +56,14 @@ const ProviderForm = () => {
 
         requestBackend(config)
         .then((response) => {
+            var action = config.method === "PUT" ? "alterado" : "cadastrado";
+            toast.success('Fornecedor ' +  action + ' com sucesso!');
             const provider = response.data as Provider;
             history.replace(`/providers/details/${provider.id}`)
+        })
+        .catch(() => {
+            var action = config.method === "PUT" ? "alterar" : "cadastrar";
+            toast.error('Erro ao tentar ' + action + ' o fornecedor');
         });
     };
 
