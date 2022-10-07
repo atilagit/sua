@@ -1,0 +1,29 @@
+.not-found-container {
+    margin: auto;
+    max-width: 1140px;
+    font-size: 20px;
+    display: flex;
+    padding: 30px 10px 0px 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 120px;
+}
+
+.not-found-card {
+    width: 85%;
+    max-width: 600px;
+    min-width: 260px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.not-found-card h2 {
+    font-weight: 200;
+    margin-bottom: 15px;
+}
+
+.not-found-content-container {
+    text-align: center;
+}

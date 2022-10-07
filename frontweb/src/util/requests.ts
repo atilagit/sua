@@ -54,8 +54,11 @@ axios.interceptors.response.use(function (response) {
     //
     return response;
 }, function (error) {
-    if (error.response.status === 401) {
+    if (error.response.status === 401 || error.response.status === 403) {
         history.push('/auth');
+    }
+    else if (error.response.status === 404) {
+        history.push('/notfound');
     }
     return Promise.reject(error);
 });

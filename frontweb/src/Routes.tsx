@@ -18,6 +18,7 @@ import PostingForm from 'pages/Postings/PostingForm';
 import ProviderForm from 'pages/Providers/ProviderForm';
 import ClientForm from 'pages/Clients/ClientForm';
 import EmployeeForm from 'pages/Employees/EmployeeForm';
+import NotFound from 'pages/NotFound';
 
 const Routes = () => (
     <Router history={history}>
@@ -70,6 +71,9 @@ const Routes = () => (
             </PrivateRoute>
             <Route path="/auth">
                 <Auth />
+            </Route>
+            <Route path="/notfound">
+                <NotFound />
             </Route>
         </Switch>
     </Router>
