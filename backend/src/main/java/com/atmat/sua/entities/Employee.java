@@ -173,6 +173,15 @@ public class Employee implements UserDetails, Serializable {
 		return updatedAt;
 	}
 	
+	public boolean hasHole(String roleName){
+		for (Role role: roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@PrePersist
 	public void prePersist() {
 		createdAt = Instant.now();

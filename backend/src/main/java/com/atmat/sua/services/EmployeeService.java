@@ -51,6 +51,9 @@ public class EmployeeService implements UserDetailsService{
 	
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private AuthService authService;
 
 	@Transactional(readOnly = true)
 	public Page<EmployeeDTO> findAllPaged(PageRequest pageRequest){
@@ -60,6 +63,7 @@ public class EmployeeService implements UserDetailsService{
 
 	@Transactional(readOnly = true)
 	public EmployeeDTO findById(Long id) {
+		authService.validateSelfOrOperatorOrAdmin(id);
 		Optional<Employee> obj = repository.findById(id);
 		Employee entity = obj.orElseThrow(() -> new ResourceNotFoundException(Employee.class.getSimpleName() + " not found"));
 		return new EmployeeDTO(entity);
