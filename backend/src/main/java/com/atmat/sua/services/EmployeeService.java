@@ -57,6 +57,7 @@ public class EmployeeService implements UserDetailsService{
 
 	@Transactional(readOnly = true)
 	public Page<EmployeeDTO> findAllPaged(PageRequest pageRequest){
+		authService.validateOperatorOrAdmin();
 		Page<Employee> list = repository.findAll(pageRequest);
 		return list.map(x -> new EmployeeDTO(x));
 	}
