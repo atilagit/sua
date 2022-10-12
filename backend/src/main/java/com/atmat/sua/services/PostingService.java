@@ -44,16 +44,26 @@ public class PostingService {
 	
 	@Autowired
 	private ProviderRepository providerRepository;
+	
+	@Autowired
+	private AuthService authService;
 
 	@Transactional(readOnly = true)
 	public Page<PostingDTO> findAllPaged(Long employeeId, Long clientId, Long providerId, Boolean resolved, 
 			String from, String to, long[] exclusionList, PageRequest pageRequest){
-		Employee employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
+		
+		Employee employee;
 		Client client = (clientId != 0) ? clientRepository.getOne(clientId) : null;
 		Provider provider = (providerId != 0) ? providerRepository.getOne(providerId) : null;
 		LocalDate de = ((from != null) && (!from.equals(""))) ? LocalDate.parse(from) : null;
 		LocalDate ate = ((to != null) && (!to.equals(""))) ?  LocalDate.parse(to) : null;
 		List<Long> listOfId = (ArrayList<Long>) Arrays.stream(exclusionList).boxed().collect(Collectors.toList());
+		
+		if (authService.isOperatorOrAdmin()) {
+			employee = (employeeId != 0) ? employeeRepository.getOne(employeeId) : null;
+		} else {
+			employee = authService.authenticated();
+		}
 		
 		Page<Posting> page = repository.find(employee, client, provider, resolved, de, ate, listOfId, pageRequest);
 		return page.map(x -> new PostingDTO(x));

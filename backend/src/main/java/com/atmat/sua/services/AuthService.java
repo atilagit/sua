@@ -41,4 +41,9 @@ public class AuthService {
 		}
 		throw new ForbiddenException("Access denied");
 	}
+	
+	public boolean isOperatorOrAdmin() {
+		Employee user = authenticated();
+		return (user.hasHole("ROLE_ADMIN") || user.hasHole("ROLE_OPERATOR"));
+	}
 }
