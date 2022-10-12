@@ -7,9 +7,12 @@ import { SpringPage } from 'types/vendor/spring';
 import { requestBackend } from 'util/requests';
 import { AxiosRequestConfig } from 'axios';
 
+import { hasAnyRoles } from 'util/auth';
+
 import './styles.css';
 import ListLoader from '../../components/ListLoader';
 import PostingFilter, { PostingFilterData } from 'components/PostingFilter';
+import BasicPostingFilter from 'components/BasicPostingFilter';
 
 type ControlComponentsData = {
   activePage: number;
@@ -71,16 +74,23 @@ const Postings = () => {
   return (
     <div className="page-container page-container-especific">
       {isLoading ? <ListLoader /> : (
-        <div className='container-filter-crud-postings'>
-          <div className='container-buttons-crud'>
-            <Link to="/postings/posting/create">
-              <button className='button-new'>
-                NOVO
-              </button>
-            </Link>
-          </div>
-          <PostingFilter onSubmitFilter={handleSubmitFilter} />
-        </div>
+        <>
+          {hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
+            <div className='container-filter-crud-postings'>
+              <div className='container-buttons-crud'>
+                <Link to="/postings/posting/create">
+                  <button className='button-new'>
+                    NOVO
+                  </button>
+                </Link>
+              </div>
+              <PostingFilter onSubmitFilter={handleSubmitFilter} />
+            </div>
+          )}
+          {!hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR']) && (
+            <BasicPostingFilter onSubmitFilter={handleSubmitFilter} />
+          )}
+        </>
       )}
 
       {isLoading ? <ListLoader /> : (

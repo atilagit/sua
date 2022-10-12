@@ -1,4 +1,4 @@
 export type ResolvedDTO = {
-    value: boolean;
+    value: boolean | null;
     label?: string;
 }

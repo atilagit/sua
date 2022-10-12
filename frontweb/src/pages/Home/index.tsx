@@ -33,7 +33,7 @@ const Home = () => {
             btn1="DIÁRIAS" btn1rota="/postings"
             btn2="MEUS DADOS" btn2rota={`/employees/details/${getAuthData().userId}`}
             btn3="TROCAR SENHA" btn3rota="/"
-            btn4="-" btn4rota="/"
+            btn4="SAIR" btn4rota="/"
           />
         )}
       </div>
