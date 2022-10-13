@@ -4,9 +4,10 @@ import { formatDate, formatNumber, formatPrice } from 'util/formatters';
 
 type Props = {
     posting: Posting;
+    adminView: boolean;
 }
 
-const PostingCard = ( {posting} : Props) => {
+const PostingCard = ( {posting, adminView} : Props) => {
     return (
         <div className="base-card posting-card">
             <div className="line1">
@@ -26,6 +27,7 @@ const PostingCard = ( {posting} : Props) => {
                     <h2>{posting.resolved? "RESOLVIDO" : "PENDENTE"}</h2>
                 </div>
             </div>
+            {adminView && (
             <div className="line2">
                 <div className="provider">
                     <p>Fornecedor: {posting.provider?.abbreviatedName}</p>
@@ -40,6 +42,7 @@ const PostingCard = ( {posting} : Props) => {
                     <p>Id: {posting.id}</p>
                 </div>
             </div>
+            )}
         </div>
     );
 }

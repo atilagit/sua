@@ -96,7 +96,7 @@ const Postings = () => {
       {isLoading ? <ListLoader /> : (
         page?.content.map(posting => (
           <Link to={`postings/details/${posting.id}`} key={posting.id}>
-            <PostingCard posting={posting} />
+            <PostingCard posting={posting} adminView={hasAnyRoles(['ROLE_ADMIN', 'ROLE_OPERATOR'])} />
           </Link>
         )))}
 
